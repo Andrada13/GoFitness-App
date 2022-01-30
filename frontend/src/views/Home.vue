@@ -4,6 +4,9 @@
     <header class="jumbotron">
 <h3>{{content}}</h3>
     </header>
+
+    <a type="button" href="/register" class="btn btn-lg btn-dark">Get Started</a>
+
   </div>
 </template>
 
@@ -31,3 +34,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.btn{
+  padding: 15px 40px;
+  font-size: 19px;
+}
+</style>

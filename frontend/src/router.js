@@ -3,6 +3,9 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
+import Contact from './views/Contact.vue';
+
+
 
 
 Vue.use(Router);
@@ -48,6 +51,10 @@ export const router = new Router({
     {
       path: '/register',
       component: Register
+    },
+    {
+      path: '/contact',
+      component: Contact
     },
     {
       path: '/profile',
