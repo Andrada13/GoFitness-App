@@ -21,14 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import backend.models.UsersRoles;
+import backend.models.Messages;
 import backend.models.Role;
 import backend.models.Trainer;
 import backend.models.User;
+import backend.repository.MessageRepository;
 import backend.repository.RoleRepository;
 import backend.repository.TrainerRepository;
 import backend.repository.UserRepository;
 import backend.requests.AddTrainerRequest;
 import backend.requests.LoginRequest;
+import backend.requests.ReceiveMessagesRequest;
 import backend.requests.SignupRequest;
 import backend.response.JwtResponse;
 import backend.response.MessageResponse;
@@ -51,6 +54,10 @@ public class AuthController {
 
 	@Autowired
 	RoleRepository roleRepository;
+
+	@Autowired
+	MessageRepository messageRepository;
+
 
 	@Autowired
 	PasswordEncoder encoder;
@@ -152,5 +159,22 @@ public class AuthController {
 
 		return ResponseEntity.ok(new MessageResponse("Trainer add successfully!"));
 	}
+
+
+	//request for contact messages and put them in database
+	@PostMapping("/messages")
+	public ResponseEntity<?> receiveMessages(@Valid @RequestBody ReceiveMessagesRequest messageRequest) {
+
+		// Receive messages
+		Messages message = new Messages(messageRequest.getName(),messageRequest.getEmail(),messageRequest.getSubject()
+		, messageRequest.getMessage());
+
+
+		messageRepository.save(message);
+
+		return ResponseEntity.ok(new MessageResponse("Message send successfully!"));
+	}
+
+
 
 }

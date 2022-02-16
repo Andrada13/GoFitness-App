@@ -38,6 +38,15 @@ class AuthService {
     });
 }
 
+addMessage(messages) {
+  return axios.post(API_URL +'messages', {
+      name: messages.name,
+      email: messages.email,
+      subject: messages.subject,
+      message:messages.message
+  });
+}
+
 }
 
 export default new AuthService();

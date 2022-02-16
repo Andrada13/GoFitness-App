@@ -15,12 +15,16 @@
           <div class="col-lg-6">
             <div class="contact-box ml-3">
             <br> <br>
-              <h1 class="font-weight-light mt-2">Contact us</h1>
-              <form class="mt-4">
+              <h2 class="font-weight-light mt-2">Send a message</h2>
+              <br>
+              <form class="mt-4" @submit.prevent="handleMessages">
+                 <div v-if="!successful">
+
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
                       <input
+                      v-model="messages.name"
                         class="form-control"
                         type="text"
                         placeholder="Name :"
@@ -30,6 +34,7 @@
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
                       <input
+                       v-model="messages.email"
                         class="form-control"
                         type="email"
                         placeholder="Email address :"
@@ -39,6 +44,7 @@
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
                       <input
+                         v-model="messages.subject"
                         class="form-control"
                         type="text"
                         placeholder="Subject :"
@@ -48,6 +54,7 @@
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
                       <textarea
+                        v-model="messages.message"
                         class="form-control"
                         rows="3"
                         placeholder="Message :"
@@ -63,7 +70,14 @@
                     </button>
                   </div>
                 </div>
+                 </div>
               </form>
+                    <div
+        v-if="message"
+        class="alert"
+        :class="successful ? 'alert-dark' : 'alert-danger'"
+      >{{message}}</div>
+
             </div>
             <br />
             <br />
@@ -129,17 +143,52 @@
         </div>
       </div>
     </div>
+
+
   </div>
 </template>
 
 <script>
+
+import Message from '../models/message';
+ 
 export default {
   name: "Contact",
   data() {
     return {
       msg: "Contact us",
+      messages: new Message('', '', '',''),
+      submitted: false,
+      successful: false,
+      message: ''
     };
   },
+      methods: {
+    handleMessages() {
+      this.message = '';
+      this.submitted = true;
+      this.$validator.validate().then(isValid => {
+        if (isValid) {
+          this.$store.dispatch('auth/addMessage', this.messages).then(
+            data => {
+              this.message = data.message;
+              this.successful = true;
+             this.$router.push("/contact");
+
+            },
+            error => {
+              this.message =
+                (error.response && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString();
+              this.successful = false;
+            }
+          );
+        }
+      });
+    }
+  }
+
 };
 </script>
 
@@ -151,6 +200,7 @@ export default {
 }
 
 .contact3 h1,
+.contact3 h2,
 .contact3 h6 {
   color: #1a1a1b;
 }

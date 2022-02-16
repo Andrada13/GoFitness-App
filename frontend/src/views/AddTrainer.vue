@@ -57,7 +57,7 @@
       <div
         v-if="message"
         class="alert"
-        :class="successful ? 'alert-success' : 'alert-danger'"
+        :class="successful ? 'alert alert-dark' : 'alert-danger'"
       >{{message}}</div>
     </div>
   </div>

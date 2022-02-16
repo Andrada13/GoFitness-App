@@ -12,7 +12,7 @@
           >
         </li>
         <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/programs" class="nav-link"
+          <router-link to='programs' class="nav-link"
             >Programs Board</router-link
           >
         </li>
@@ -25,10 +25,8 @@
         </li>
 
         <div class="nav-item" @click="isOpen = !isOpen">
-          <li class="nav-item">
-            <router-link to="/programs" class="nav-link">
+          <li class="nav-item-programs">
               Programs
-            </router-link>
           </li>
 
           <svg viewBox="0 0 1030 638" width="5">
@@ -55,7 +53,7 @@
         </div>
 
         <li class="nav-item">
-          <router-link to="/trainer" class="nav-link"> Trainers </router-link>
+          <router-link to="/trainersDetails" class="nav-link"> Trainers </router-link>
         </li>
 
         <li class="nav-item">
@@ -124,16 +122,30 @@ export default {
 
 <style>
 nav {
-  width: 98.9vw;
-  background-color: #0d0d0e;
+  width: 100%;
+  background-color: #0f0f0f;
   display: flex;
   align-items: center;
   justify-content: center;
 
 }
 nav .nav-item {
-  color: #fff;
-  padding: 0px 20px 3px;
+  color: rgb(252, 248, 248);
+  padding: 0px 40px 0px;
+  position: relative;
+  text-align: center; 
+  border-bottom: 5px solid transparent;
+  display: flex;
+  transition: 0.4s;
+  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
+   
+
+}
+
+nav .nav-item-programs {
+  color: rgb(250, 243, 243);
+  padding: 8px 20px 3px;
   position: relative;
   text-align: center; 
   border-bottom: 5px solid transparent;
@@ -148,8 +160,8 @@ nav .nav-item {
 nav .nav-link.active,
 nav .nav-link:hover,
 nav .nav-link:visited {
-  background-color: #030303;
-  color: #fff;
+  background-color: #131212;
+  color: rgb(238, 238, 238);
 }
 nav .nav-item a {
   color: inherit;

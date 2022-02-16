@@ -4,6 +4,8 @@ import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import Contact from './views/Contact.vue';
+import Trainers from './views/Trainers.vue';
+
 
 
 
@@ -55,6 +57,10 @@ export const router = new Router({
     {
       path: '/contact',
       component: Contact
+    },
+    {
+      path: '/trainersDetails',
+      component: Trainers
     },
     {
       path: '/profile',
