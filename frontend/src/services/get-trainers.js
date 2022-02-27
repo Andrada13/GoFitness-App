@@ -24,6 +24,11 @@ class Trainer {
         return axios.put(`${API_URL_TRAINER}/trainers/${id}`, trainer, { headers: authHeader() });
     }
 
+    getNumberOfTrainers() {
+        return axios.get(`${API_URL_TRAINER}/trainersNumber/`,  { headers: authHeader() });
+    }
+        
+
     addTrainer(trainer) {
         return axios.post(`${API_URL_NEW_TRAINER}/trainer`, {
             name: trainer.name,

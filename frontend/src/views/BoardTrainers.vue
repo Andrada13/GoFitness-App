@@ -146,11 +146,12 @@ export default {
   <div class="jumbotron myclass">
     <div class="container">
       <br /><br />
-      <h1 class="display-4">Dashboard</h1>
+      <h1 class="display-4">Dashboard Trainers</h1>
       <hr class="my-4" />
+
       <table>
         <thead>
-          <th><font-awesome-icon icon="list-ul" /> Trainers</th>
+          <h6> Trainers : {{numberOfTrainers}}</h6> 
           <th>
             <div style="width: 1150px" align="right">
               <button type="button" class="btn btn-dark" v-on:click="addTrainer()">
@@ -167,7 +168,7 @@ export default {
         <input
           type="text"
           class="form-control rounded"
-          placeholder="Search by username :"
+          placeholder="Search trainer by username :"
           v-model="search"
           aria-label="Search"
           aria-describedby="search-addon"
@@ -179,7 +180,7 @@ export default {
       <table class="table table-striped">
         <thead class="thead-dark">
           <th>#</th>
-          <th>Name</th>
+          <th>Trainer Name</th>
           <th>Email</th>
           <th>Type</th>
           <th>Update</th>
@@ -187,7 +188,6 @@ export default {
         </thead>
         <tbody>
           <tr v-for="trainer in filteredTrainers" v-bind:key="trainer.id">
-            <tr v-for="trainer in pageOfItems" :key="trainer.name">
             <td>{{ trainer.id }}</td>
             <td>{{ trainer.name }}</td>
             <td>{{ trainer.email }}</td>
@@ -205,15 +205,6 @@ export default {
           </tr>
        </tbody>
       </table>
-            <div class="card text-center m-11">
-          <jw-pagination
-            :pageSize="2"
-            :items="filteredTrainers"
-            @changePage="changePage"
-            :styles="customStyles"
-          ></jw-pagination>
-        
-      </div>
     </div>
   </div>
 </template>
@@ -222,17 +213,6 @@ export default {
 <script>
 import Trainer from "../services/get-trainers";
 
-const customStyles = {
-  ul: {
-    color: "black",
-  },
-  li: {
-    display: "inline-block",
-  },
-  a: {
-    color: "black",
-  },
-};
 
 export default {
   name: "Trainers",
@@ -240,11 +220,11 @@ export default {
     return {
       search: "",
       trainers: [],
-      pageOfItems: [],
-      customStyles,
       role: "",
       index: "",
       content: "",
+      numberOfTrainers: 0,
+
     };
   },
 
@@ -255,6 +235,12 @@ export default {
       });
 
     },
+    getNumbers() {
+      Trainer.getNumberOfTrainers().then((response) => {
+        this.numberOfTrainers = response.data;
+      });
+    },
+
         updateTrainer(id) {
       this.$router.push(`/updateTrainer/${id}`);
     },
@@ -268,13 +254,14 @@ export default {
         addTrainer() {
       this.$router.push(`/addTrainer/`);
     },
-        changePage(pageOfItems) {
-      return (this.pageOfItems = pageOfItems);
-    },
+     //   changePage(pageOfItems) {
+    //  return (this.pageOfItems = pageOfItems);
+  //  },
 
   },
   created() {
     this.getAllTrainers();
+    this.getNumbers();
   },
 
   computed: {

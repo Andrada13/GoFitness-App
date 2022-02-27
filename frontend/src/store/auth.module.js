@@ -53,6 +53,20 @@ export const auth = {
       );
     },
 
+    addProgram({ commit }, program) {
+      return AuthService.addProgram(program).then(
+        response => {
+          commit('registerSuccess');
+          return Promise.resolve(response.data);
+        },
+        error => {
+          commit('registerFailure');
+          return Promise.reject(error);
+        }
+      );
+    },
+
+
     addMessage({ commit }, messages) {
       return AuthService.addMessage(messages).then(
         response => {

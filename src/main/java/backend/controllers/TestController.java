@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import backend.models.Memberships;
+import backend.models.Program;
 import backend.models.Trainer;
 import backend.models.User;
+import backend.repository.MembershipRepository;
+import backend.repository.ProgramRepository;
 import backend.repository.RoleRepository;
 import backend.repository.TrainerRepository;
 import backend.repository.UserRepository;
+import backend.service.ProgramService;
 import backend.service.TrainerService;
 import backend.service.UserService;
 
@@ -32,10 +37,19 @@ public class TestController {
   private UserRepository userRepository;
 
   @Autowired
+  ProgramRepository programRepository;
+
+  @Autowired
+  MembershipRepository membershipRepository;
+
+  @Autowired
   TrainerRepository trainerRepository;
 
   @Autowired
   UserService userService;
+
+  @Autowired
+  ProgramService programService;
 
   @Autowired
   TrainerService trainerService;
@@ -84,6 +98,20 @@ public class TestController {
 
   }
 
+  @GetMapping("programs/program/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<Program> getProgramsById(@PathVariable("id") long id) {
+    Optional<Program> programData = programRepository.findById(id);
+
+    if (programData.isPresent()) {
+      return new ResponseEntity<>(programData.get(), HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+  }
+
+
 
   // delete user by id
   @DeleteMapping("admin/user/{id}")
@@ -107,6 +135,18 @@ public class TestController {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @DeleteMapping("programs/program/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<HttpStatus> deleteProgram(@PathVariable("id") long id) {
+    try {
+      programRepository.deleteById(id);
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
 
   // get user by username
   @GetMapping("/admin/{username}")
@@ -134,10 +174,30 @@ public class TestController {
   @GetMapping("/trainers")
   // @PreAuthorize is used to provide expression-based access control before
   // executing the method.
- @PreAuthorize("hasRole('ADMIN')")
+ //@PreAuthorize("hasRole('ADMIN')")
   public List<Trainer> fetchTrainers() {
     return trainerRepository.findAll();
   }
+
+    //get all programs from database
+    @GetMapping("/programs")
+    // @PreAuthorize is used to provide expression-based access control before
+    // executing the method.
+  // @PreAuthorize("hasRole('ADMIN')")
+    public List<Program> fetchPrograms() {
+      return programRepository.findAll();
+    }
+
+
+    @GetMapping("/allMemberships")
+    // @PreAuthorize is used to provide expression-based access control before
+    // executing the method.
+  // @PreAuthorize("hasRole('ADMIN')")
+    public List<Memberships> fetchMemberships() {
+      return membershipRepository.findAll();
+    }
+
+  
 
   @PutMapping("trainers/{id}")
   @PreAuthorize("hasRole('ADMIN')")
@@ -146,6 +206,17 @@ public class TestController {
     String email = trainer.getEmail();
     String type =  trainer.getType();
     trainerService.updateTrainers(id, name, email,type);
+
+  }
+
+  @PutMapping("programs/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  public void updateProgram(@PathVariable long id, @RequestBody Program program) {
+    String name = program.getName();
+    String description = program.getDescription();
+    String trainerName =  program.getTrainerName();
+    String price = program.getPrice();
+    programService.updatePrograms(id, name, description,trainerName, price);
 
   }
 
@@ -160,5 +231,19 @@ public class TestController {
   public Long getNumberOfUsers() {
     return userRepository.count();
   }
+
+  @GetMapping("/trainersNumber")
+  @PreAuthorize("hasRole('ADMIN')")
+  public Long getNumberOfTrainers() {
+    return trainerRepository.count();
+  }
+
+  @GetMapping("/programsNumber")
+  @PreAuthorize("hasRole('ADMIN')")
+  public Long getNumberOfPrograms() {
+    return programRepository.count();
+  }
+
+
 
 }

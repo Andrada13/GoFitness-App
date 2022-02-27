@@ -21,12 +21,12 @@
       <div v-if="!currentUser" class="navbar-nav ml-auto ">
 
         <li class="nav-item">
-          <router-link to="/home" class="nav-link"> Home </router-link>
+          <router-link to="/home" class="nav-link"> Acasa </router-link>
         </li>
 
         <div class="nav-item" @click="isOpen = !isOpen">
           <li class="nav-item-programs">
-              Programs
+              Antrenamente
           </li>
 
           <svg viewBox="0 0 1030 638" width="5">
@@ -40,12 +40,12 @@
             <div class="sub-menu" v-if="isOpen">
               <div class="nav-item">
                 <router-link to="/programs/onlineClasses"
-                  >Online Classes</router-link
+                  >Antrenamente Online</router-link
                 >
               </div>
               <div class="nav-item">
                 <router-link to="/programs/memberships"
-                  >Memberships</router-link
+                  >Abonamente</router-link
                 >
               </div>
             </div>
@@ -53,11 +53,11 @@
         </div>
 
         <li class="nav-item">
-          <router-link to="/trainersDetails" class="nav-link"> Trainers </router-link>
+          <router-link to="/trainersDetails" class="nav-link"> Antrenori </router-link>
         </li>
 
         <li class="nav-item">
-          <router-link to="/about" class="nav-link"> About us </router-link>
+          <router-link to="/about" class="nav-link"> Despre noi </router-link>
         </li>
 
         <li class="nav-item">
@@ -66,11 +66,11 @@
 
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
-            Become A Member
+            Creeaza cont
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link"> Login </router-link>
+          <router-link to="/login" class="nav-link"> Intra in cont </router-link>
         </li>
       </div>
 
@@ -81,7 +81,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href @click.prevent="logOut"> Logout </a>
+          <a class="nav-link" href @click.prevent="logOut"> Delogare </a>
         </li>
       </div>
     </nav>

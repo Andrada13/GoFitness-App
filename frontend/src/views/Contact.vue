@@ -15,7 +15,7 @@
           <div class="col-lg-6">
             <div class="contact-box ml-3">
             <br> <br>
-              <h2 class="font-weight-light mt-2">Send a message</h2>
+              <h2 class="font-weight-light mt-2">Trimite un mesaj </h2>
               <br>
               <form class="mt-4" @submit.prevent="handleMessages">
                  <div v-if="!successful">
@@ -27,7 +27,7 @@
                       v-model="messages.name"
                         class="form-control"
                         type="text"
-                        placeholder="Name :"
+                        placeholder="Nume :"
                       />
                     </div>
                   </div>
@@ -37,7 +37,7 @@
                        v-model="messages.email"
                         class="form-control"
                         type="email"
-                        placeholder="Email address :"
+                        placeholder="Adresa de email :"
                       />
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                          v-model="messages.subject"
                         class="form-control"
                         type="text"
-                        placeholder="Subject :"
+                        placeholder="Subiect :"
                       />
                     </div>
                   </div>
@@ -57,7 +57,7 @@
                         v-model="messages.message"
                         class="form-control"
                         rows="3"
-                        placeholder="Message :"
+                        placeholder="Mesaj :"
                       ></textarea>
                     </div>
                   </div>
@@ -66,7 +66,7 @@
                       type="submit"
                       class="btn btn-dark mt-3 text-white border-0 px-3 py-2"
                     >
-                      <span> SEND </span>
+                      <span> TRIMITE </span>
                     </button>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                       />
                     </div>
                     <div class="">
-                      <h6>Address :</h6>
+                      <h6>Adresa :</h6>
                       <p>
                         Calea Victoriei 125 <br />
                         Sector 1 Bucuresti
@@ -112,7 +112,7 @@
                       />
                     </div>
                     <div class="">
-                      <h6>Phone :</h6>
+                      <h6>Telefon :</h6>
                       <p>
                         +(40) 753627389 <br>
                         +(40) 648264829

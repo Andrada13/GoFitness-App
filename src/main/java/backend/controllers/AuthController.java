@@ -22,13 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import backend.models.UsersRoles;
 import backend.models.Messages;
+import backend.models.Program;
 import backend.models.Role;
 import backend.models.Trainer;
 import backend.models.User;
 import backend.repository.MessageRepository;
+import backend.repository.ProgramRepository;
 import backend.repository.RoleRepository;
 import backend.repository.TrainerRepository;
 import backend.repository.UserRepository;
+import backend.requests.AddProgramRequest;
 import backend.requests.AddTrainerRequest;
 import backend.requests.LoginRequest;
 import backend.requests.ReceiveMessagesRequest;
@@ -51,6 +54,9 @@ public class AuthController {
 
 	@Autowired
 	TrainerRepository trainerRepository;
+
+	@Autowired
+	ProgramRepository programRepository;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -158,6 +164,27 @@ public class AuthController {
 		trainerRepository.save(trainer);
 
 		return ResponseEntity.ok(new MessageResponse("Trainer add successfully!"));
+	}
+
+
+	@PostMapping("/program")
+	public ResponseEntity<?> registerProgram(@Valid @RequestBody AddProgramRequest addProgramRequest) {
+		if (programRepository.existsByName(addProgramRequest.getName())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Name is already taken!"));
+		}
+
+		// Create new program
+		Program program = new Program(addProgramRequest.getName(), 
+							 addProgramRequest.getDescription(),
+							 addProgramRequest.getTrainerName(),
+							 addProgramRequest.getPrice());
+
+
+		programRepository.save(program);
+
+		return ResponseEntity.ok(new MessageResponse("Program add successfully!"));
 	}
 
 

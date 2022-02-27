@@ -38,6 +38,15 @@ class AuthService {
     });
 }
 
+addProgram(program) {
+  return axios.post(API_URL +'program', {
+      name: program.name,
+      description: program.description,
+      trainerName : program.trainerName,
+      price: program.price
+  });
+}
+
 addMessage(messages) {
   return axios.post(API_URL +'messages', {
       name: messages.name,
