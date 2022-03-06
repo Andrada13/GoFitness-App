@@ -47,7 +47,7 @@
 
  <div class="row wrap-service-26 mt-4 pt-3">
             <div class="col-md-6"> 
-				<img src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" class="img-fluid-1" /> 
+				<img src="https://images.unsplash.com/photo-1551529674-48920e9b835b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2194&q=80" class="img-fluid-6" /> 
 			</div>
             <div class="col-md-6 align-self-center">
                 <h3 class="mt-3">LIFESTYLE CLASS</h3>
@@ -64,6 +64,8 @@
 
       </div>    
     </div>
+
+
 </div>
 </template>
   
@@ -123,6 +125,12 @@ margin: 0 auto;
     width: 550px;
     height: 600px;
 }
+
+.img-fluid-6{
+    width: 630px;
+    height: 530px;
+}
+
 .service-26 {
   font-family: "Montserrat", sans-serif;
 	color: #8d97ad;

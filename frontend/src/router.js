@@ -7,6 +7,8 @@ import Contact from './views/Contact.vue';
 import Trainers from './views/Trainers.vue';
 import OnlineClasses from './views/OnlineClasses.vue';
 import Memberships from './views/Memberships.vue';
+import About from './views/About.vue';
+import OnlineAppointment from './views/OnlineAppointment.vue';
 
 
 
@@ -65,6 +67,10 @@ export const router = new Router({
       component: Trainers
     },
     {
+      path: '/about',
+      component: About
+    },
+    {
       path: '/programs/onlineClasses',
       component: OnlineClasses
     },
@@ -73,6 +79,10 @@ export const router = new Router({
       component: Memberships
     },
     {
+      path: '/programs/onlineClasses/appointment',
+      component: OnlineAppointment
+    },
+      {
       path: '/profile',
       name: 'profile',
       // lazy-loaded
@@ -132,6 +142,10 @@ export const router = new Router({
       name: "Update Program",
       component: () => import('./views/UpdateProgram.vue'),
       beforeEnter: getAdminAccess,
+    },
+    {
+      path: "/programs/onlineClasses/appointment/:id",
+      component: () => import('./views/ClassAppointment.vue'),
     },
     {
       path: "/addTrainer/",

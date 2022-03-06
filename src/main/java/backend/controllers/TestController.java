@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import backend.models.Memberships;
 import backend.models.Program;
+import backend.models.ProgramTime;
 import backend.models.Trainer;
 import backend.models.User;
 import backend.repository.MembershipRepository;
 import backend.repository.ProgramRepository;
+import backend.repository.ProgramTimeRepository;
 import backend.repository.RoleRepository;
 import backend.repository.TrainerRepository;
 import backend.repository.UserRepository;
@@ -44,6 +46,9 @@ public class TestController {
 
   @Autowired
   TrainerRepository trainerRepository;
+
+  @Autowired
+  ProgramTimeRepository programTimeRepository;
 
   @Autowired
   UserService userService;
@@ -99,7 +104,7 @@ public class TestController {
   }
 
   @GetMapping("programs/program/{id}")
-  @PreAuthorize("hasRole('ADMIN')")
+ // @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Program> getProgramsById(@PathVariable("id") long id) {
     Optional<Program> programData = programRepository.findById(id);
 
@@ -168,6 +173,13 @@ public class TestController {
   @PreAuthorize("hasRole('ADMIN')")
   public List<User> fetchUsers() {
     return userRepository.findAll();
+  }
+
+  @GetMapping("/timeprograms")
+  // @PreAuthorize is used to provide expression-based access control before
+  // executing the method.
+  public List<ProgramTime> fetchProgramTime() {
+    return programTimeRepository.findAll();
   }
 
   //get all trainers from database

@@ -1,4 +1,3 @@
-
 <template>
   <div class="jumbotron myclass">
     <div class="container">

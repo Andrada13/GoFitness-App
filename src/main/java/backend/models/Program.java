@@ -1,5 +1,8 @@
 package backend.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,6 +22,11 @@ public class Program {
     private String name;
 
     @NotBlank
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
+    private List<ProgramTime> programs=new ArrayList<>();
+
+
+    @NotBlank
     @Size(max = 50)
     private String description;
 
@@ -29,17 +37,37 @@ public class Program {
     @NotBlank
     private String price;
 
-    public Program(Long id, @NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description,
-            @NotBlank @Size(max = 50) String trainerName, @NotBlank String price) {
+
+    public List<ProgramTime> getPrograms() {
+        return programs;
+    }
+
+
+
+    public void setPrograms(List<ProgramTime> programs) {
+        this.programs = programs;
+    }
+
+
+
+
+
+    public Program(Long id, @NotBlank @Size(max = 50) String name, @NotBlank List<ProgramTime> programs,
+            @NotBlank @Size(max = 50) String description, @NotBlank @Size(max = 50) String trainerName,
+            @NotBlank String price) {
         this.id = id;
         this.name = name;
+        this.programs = programs;
         this.description = description;
         this.trainerName = trainerName;
         this.price = price;
     }
 
-    public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description,
-            @NotBlank @Size(max = 50) String trainerName, @NotBlank String price) {
+
+
+    public Program(@NotBlank @Size(max = 50) String name,
+            @NotBlank @Size(max = 50) String description, @NotBlank @Size(max = 50) String trainerName,
+            @NotBlank String price) {
         this.name = name;
         this.description = description;
         this.trainerName = trainerName;
@@ -50,13 +78,18 @@ public class Program {
 
     }
 
+
     public Long getId() {
         return id;
     }
 
+
+
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getName() {
         return name;

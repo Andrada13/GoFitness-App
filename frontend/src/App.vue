@@ -16,6 +16,10 @@
             >Programs Board</router-link
           >
         </li>
+       <li v-if="showAdminBoard" class="nav-item">
+          <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
+        </li>
+
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto ">
@@ -72,16 +76,62 @@
         <li class="nav-item">
           <router-link to="/login" class="nav-link"> Intra in cont </router-link>
         </li>
+        
       </div>
 
-      <div v-if="currentUser" class="navbar-nav ml-auto">
+      <div v-if="currentUser && !showAdminBoard" class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <router-link to="/home" class="nav-link"> Acasa </router-link>
+        </li>
+
+        <div class="nav-item" @click="isOpen = !isOpen">
+          <li class="nav-item-programs">
+              Antrenamente
+          </li>
+
+          <svg viewBox="0 0 1030 638" width="5">
+            <path
+              d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
+              fill="#FFF"
+            ></path>
+          </svg>
+
+          <transition name="fade" apear>
+            <div class="sub-menu" v-if="isOpen">
+              <div class="nav-item">
+                <router-link to="/programs/onlineClasses"
+                  >Antrenamente Online</router-link
+                >
+              </div>
+              <div class="nav-item">
+                <router-link to="/programs/memberships"
+                  >Abonamente</router-link
+                >
+              </div>
+            </div>
+          </transition>
+        </div>
+
+        <li class="nav-item">
+          <router-link to="/trainersDetails" class="nav-link"> Antrenori </router-link>
+        </li>
+
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link"> Despre noi </router-link>
+        </li>
+
+        <li class="nav-item">
+          <router-link to="/contact" class="nav-link"> Contact </router-link>
+        </li>
+
         <li class="nav-item">
           <router-link to="/profile" class="nav-link">
             {{ currentUser.username }}
           </router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href @click.prevent="logOut"> Delogare </a>
+        <li class="nav-item py-7 px-8">
+          <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
         </li>
       </div>
     </nav>

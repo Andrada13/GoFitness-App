@@ -19,6 +19,19 @@ public class AddProgramRequest {
     @NotBlank
     private String price;
 
+    @NotBlank
+    private String perioada;
+
+
+    
+    public String getPerioada() {
+        return perioada;
+    }
+
+    public void setPerioada(String perioada) {
+        this.perioada = perioada;
+    }
+
     public String getName() {
         return name;
     }
