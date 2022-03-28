@@ -1,3 +1,5 @@
+
+<!--
 <template>
     <div class="pricing1 py-4 bg-light">
   <div class="container">
@@ -8,9 +10,9 @@
       </div>
     </div>
     <br>
-    <!-- Row  -->
+   
     <div class="row mt-5">
-      <!-- Column -->
+
       <div class="col-lg-4 col-md-6" v-for="membership in memberships"
               v-bind:key="membership.id"
             >
@@ -45,9 +47,10 @@
 
 
 <style scoped>
-@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800);
+
+
 .pricing1 {
-  font-family: "Montserrat", sans-serif;
+  font-family: serif;
   color: #8d97ad;
   font-weight: 300;
 }
@@ -154,7 +157,7 @@
 .pricing1 .onoffswitch-inner::after {
   content: "";
   padding-right: 24px;
-  background-color: #3e4555;
+  background-color: #ebeef3;
   color: #999999;
   text-align: right;
 }
@@ -231,5 +234,5 @@ export default {
   },
 };
 </script>
-
+-->
 

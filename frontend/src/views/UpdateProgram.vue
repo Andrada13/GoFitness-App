@@ -106,7 +106,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .center_div {
   margin: 0 auto;
   width: 80%;

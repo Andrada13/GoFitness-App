@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "programs", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name"),
@@ -23,16 +25,26 @@ public class Program {
 
     @NotBlank
     @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
-    private List<ProgramTime> programs=new ArrayList<>();
+    private List<ProgramTime> programs =new ArrayList<>();
 
 
     @NotBlank
     @Size(max = 50)
     private String description;
 
+   // @NotBlank
+  //  @Size(max = 50)
+  //  @ManyToMany(mappedBy = "program", cascade = CascadeType.ALL)
+   // private String trainerName;
+
+   // 
+   // @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	//@JoinColumn(name = "program_id")
+   // @JsonIgnore
     @NotBlank
-    @Size(max = 50)
-    private String trainerName;
+    @ManyToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Trainer> trainer = new ArrayList<>();
+
 
     @NotBlank
     private String price;
@@ -52,31 +64,40 @@ public class Program {
 
 
 
+
+
+
+   
+
     public Program(Long id, @NotBlank @Size(max = 50) String name, @NotBlank List<ProgramTime> programs,
-            @NotBlank @Size(max = 50) String description, @NotBlank @Size(max = 50) String trainerName,
-            @NotBlank String price) {
+            @NotBlank @Size(max = 50) String description, List<Trainer> trainerName, @NotBlank String price) {
         this.id = id;
         this.name = name;
         this.programs = programs;
         this.description = description;
-        this.trainerName = trainerName;
+        //this.trainerName = trainerName;
         this.price = price;
     }
 
 
 
-    public Program(@NotBlank @Size(max = 50) String name,
-            @NotBlank @Size(max = 50) String description, @NotBlank @Size(max = 50) String trainerName,
-            @NotBlank String price) {
+
+
+
+    public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description,
+            List<Trainer> trainerName, @NotBlank String price) {
         this.name = name;
         this.description = description;
-        this.trainerName = trainerName;
+       // this.trainerName = trainerName;
         this.price = price;
     }
+
+
 
     public Program() {
 
     }
+
 
 
     public Long getId() {
@@ -107,13 +128,13 @@ public class Program {
         this.description = description;
     }
 
-    public String getTrainerName() {
-        return trainerName;
-    }
+   
 
-    public void setTrainerName(String trainerName) {
-        this.trainerName = trainerName;
-    }
+
+
+
+  
+
 
     public String getPrice() {
         return price;

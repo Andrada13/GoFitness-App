@@ -88,10 +88,14 @@ public class AuthController {
 
 		return ResponseEntity.ok(new JwtResponse(jwt, 
 												 userDetails.getId(), 
+												 userDetails.getFullName(),
 												 userDetails.getUsername(), 
 												 userDetails.getEmail(),
-												 roles));
-	}
+												 roles,			
+												 userDetails.getPhoneNumber(),
+												 userDetails.getAddress()));
+}
+
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -107,9 +111,12 @@ public class AuthController {
 		}
 
 		// Create new user's account
-		User user = new User(signUpRequest.getUsername(), 
+		User user = new User(signUpRequest.getFullName(),
+		                     signUpRequest.getUsername(), 
 							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
+							 encoder.encode(signUpRequest.getPassword()),
+							 signUpRequest.getPhoneNumber(),
+							 signUpRequest.getAddress());
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -127,6 +134,13 @@ public class AuthController {
 					roles.add(adminRole);
 
 					break;
+				case "trainer":
+					Role trainerRole = roleRepository.findByName(UsersRoles.ROLE_TRAINER)
+							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					roles.add(trainerRole);
+
+					break;
+
 				default:
 					Role userRole = roleRepository.findByName(UsersRoles.ROLE_USER)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -138,12 +152,12 @@ public class AuthController {
 		user.setRoles(roles);
 		userRepository.save(user);
 
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		return ResponseEntity.ok(new MessageResponse("Contul a fost creat cu succes!"));
 	}
 
 	@PostMapping("/trainer")
 	public ResponseEntity<?> registerTrainer(@Valid @RequestBody AddTrainerRequest addTrainerRequest) {
-		if (trainerRepository.existsByName(addTrainerRequest.getName())) {
+		if (trainerRepository.existsByUsername(addTrainerRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Name is already taken!"));
@@ -156,17 +170,41 @@ public class AuthController {
 		}
 
 		// Create new trainer's account
-		Trainer trainer = new Trainer(addTrainerRequest.getName(), 
+		Trainer trainer = new Trainer(addTrainerRequest.getFullName(),
+			addTrainerRequest.getUsername(), 
 							 addTrainerRequest.getEmail(),
-							 addTrainerRequest.getType());
+							 addTrainerRequest.getDescription(),
+							 encoder.encode(addTrainerRequest.getPassword()),
+							 addTrainerRequest.getPhoneNumber(),
+							 addTrainerRequest.getAddress());
 
+	    Set<String> strRoles = addTrainerRequest.getRole();
+		Set<Role> roles = new HashSet<>();
+
+		if (strRoles == null) {
+			Role userRole = roleRepository.findByName(UsersRoles.ROLE_TRAINER)
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+			roles.add(userRole);
+		} else {
+			strRoles.forEach(role -> {
+				switch (role) {
+
+				default:
+					Role trainerRole = roleRepository.findByName(UsersRoles.ROLE_TRAINER)
+							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					roles.add(trainerRole);
+				}
+			});
+		}
+
+		trainer.setRoles(roles);
 
 		trainerRepository.save(trainer);
 
 		return ResponseEntity.ok(new MessageResponse("Trainer add successfully!"));
 	}
 
-
+/*
 	@PostMapping("/program")
 	public ResponseEntity<?> registerProgram(@Valid @RequestBody AddProgramRequest addProgramRequest) {
 		if (programRepository.existsByName(addProgramRequest.getName())) {
@@ -201,7 +239,7 @@ public class AuthController {
 
 		return ResponseEntity.ok(new MessageResponse("Message send successfully!"));
 	}
-
+*/
 
 
 }

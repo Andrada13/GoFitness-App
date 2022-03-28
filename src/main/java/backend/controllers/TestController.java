@@ -210,7 +210,7 @@ public class TestController {
     }
 
   
-
+/*
   @PutMapping("trainers/{id}")
   @PreAuthorize("hasRole('ADMIN')")
   public void updateTrainer(@PathVariable long id, @RequestBody Trainer trainer) {
@@ -220,18 +220,19 @@ public class TestController {
     trainerService.updateTrainers(id, name, email,type);
 
   }
-
+*/
+/*
   @PutMapping("programs/{id}")
   @PreAuthorize("hasRole('ADMIN')")
   public void updateProgram(@PathVariable long id, @RequestBody Program program) {
     String name = program.getName();
     String description = program.getDescription();
-    String trainerName =  program.getTrainerName();
+    String trainerName =  program.getTrainers();
     String price = program.getPrice();
     programService.updatePrograms(id, name, description,trainerName, price);
 
   }
-
+*/
 
   @GetMapping("/all")
   public String allAccess() {

@@ -1,21 +1,38 @@
 <template>
   <body>
-    <div class="container">
-      <div class="row">
+    <br><br><br>
         <div class="col-lg-10 col-xl-9 mx-auto">
           <div
             class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden"
           >
             <div class="card-img-left d-none d-md-flex">
-              <!-- Background image for card set in CSS! -->
             </div>
-            <div class="card-body p-4 p-sm-6">
+            <div class="card-body p-4 p-sm-4">
               <h6 class="card-title text-center mb-5 fw-light fs-5">
                 Creeaza cont
               </h6>
 
               <form name="form" @submit.prevent="handleRegister">
                 <div v-if="!successful">
+
+
+                <div class="form-floating mb-3">
+                    <input
+                      v-model="user.fullName"
+                      v-validate="'required|max:50'"
+                      type="text"
+                      class="form-control"
+                      id="floatingInputFullName"
+                      placeholder="fullName"
+                      required
+                      autofocus
+                    />
+                    <label for="floatingInputFullName">Nume si prenume :</label>
+
+                  </div>
+
+
+
                   <div class="form-floating mb-3">
                     <input
                       v-model="user.username"
@@ -27,7 +44,7 @@
                       required
                       autofocus
                     />
-                    <label for="floatingInputUsername">Username :</label>
+                    <label for="floatingInputUsername">Nume de utilizator :</label>
 
                     <small>
                       <div
@@ -46,7 +63,7 @@
                       type="email"
                       class="form-control"
                       id="floatingInputEmail"
-                      placeholder="name@example.com"
+                      placeholder="email"
                     />
                     <label for="floatingInputEmail">Adresa de email :</label>
 
@@ -81,6 +98,48 @@
                     >
                   </div>
 
+                <div class="form-floating mb-3">
+                    <input
+                      v-model="user.phoneNumber"
+                      v-validate="'required|min:10|max:10'"
+                      type="text"
+                      class="form-control"
+                      id="floatingInputPhoneNumber"
+                      placeholder="phoneNumber"
+                      required
+                      autofocus
+                    />
+                    <label for="floatingInputPhoneNumber">Numar de telefon :</label>
+
+                    <small>
+                      <div
+                        v-if="submitted && errors.has('phoneNumber')"
+                        class="alert-danger"
+                      >
+                        {{ errors.first("phoneNumber") }}
+                      </div></small
+                    >
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input
+                      v-model="user.address"
+                      v-validate="'required|max:70'"
+                      type="text"
+                      class="form-control"
+                      id="floatingInputAddress"
+                      placeholder="address"
+                      required
+                      autofocus
+                    />
+                    <label for="floatingInputAddress">Adresa :</label>
+
+                   
+                  </div>
+
+
+
+
                   <div class="d-grid mb-2">
                     <button
                       class="
@@ -112,8 +171,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
   </body>
 </template>
 
@@ -123,7 +180,7 @@ export default {
   name: "Register",
   data() {
     return {
-      user: new User("", "", ""),
+      user: new User("", "", "","","",""),
       submitted: false,
       successful: false,
       message: "",
@@ -168,16 +225,18 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #feffff;
+
+*{
+  font-family: serif;
 }
 
 .card-img-left {
   width: 45%;
-  /* Link to your background image using in the property below! */
+    background-size: cover;
+
+
   background: scroll center
-    url("https://images.unsplash.com/photo-1590487988256-9ed24133863e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=728&q=80");
-  background-size: cover;
+    url("https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
 }
 
 .btn-login {

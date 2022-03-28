@@ -1,33 +1,21 @@
 <template>
 
   <div class="container">
- <br><br>
-      <h6 class="display-6">
-        Buna, <strong>{{currentUser.username}}</strong>! 
-      </h6>
-      <p class="mt-0 mb-5">Acesta este profilul tau.</p>
-   
-      <!-- Page content -->
+ <br><br> <br> <br> <br>
     <div class="container-fluid mt--14">
       <div class="row">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
           <div class="card card-profile shadow">
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
-                <h3>
-                  {{currentUser.username}}<span class="font-weight-light"></span>
+                <h3><i>
+                  Buna, {{currentUser.fullName}}<span class="font-weight-light"></span></i>
                 </h3>
-                <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
-                </div>
+                <i class="ni location_pin mr-2">Bine ai venit in profilul tau, aici poti gasi informatii personale, cat
+                  si detalii legate de cursurile de care esti interesata.
+                </i>
                 <hr class="my-4">
-                <p></p>
+               
               </div>
             </div>
           </div>
@@ -51,15 +39,36 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">Nume si prenume : 
+                         <i> {{currentUser.fullName}}</i>
+                        </label>
+                      </div>
+                    </div>
+                     <div class="col-lg-6">
+                      <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Nume de utilizator : 
-                          {{currentUser.username}}
+                         <i> {{currentUser.username}}</i>
                         </label>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Adresa de mail :
-                          {{currentUser.email}}
+                        <label class="form-control-label" for="input-email">Email :
+                          <i>{{currentUser.email}}</i>
+                        </label>
+                      </div>
+                    </div>
+                     <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Telefon :
+                          <i>{{currentUser.phoneNumber}}</i>
+                        </label>
+                      </div>
+                    </div>
+                     <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Adresa :
+                          <i>{{currentUser.address}}</i>
                         </label>
                       </div>
                     </div>
@@ -87,13 +96,13 @@
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-city">City</label>
+                        <label class="form-control-label" for="input-city">Timpul de desfasurare a cursului :</label>
                         <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="" value="">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-country">Country</label>
+                        <label class="form-control-label" for="input-country">Data abonamentului :</label>
                         <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="" value="">
                       </div>
                     </div>
@@ -105,14 +114,7 @@
           </div>
         </div>
     </div>
-    <p>
-      <strong>Email:</strong>
-      {{currentUser.email}}
-    </p>
-    <strong>Authorities:</strong>
-    <ul>
-      <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li>
-    </ul>
+    <br><br>
   </div>
 
 
@@ -128,6 +130,7 @@ export default {
     currentUser() {
       return this.$store.state.auth.user;
     }, 
+    
   },
   mounted() {
     if (!this.currentUser) {

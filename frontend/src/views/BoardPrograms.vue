@@ -1,17 +1,17 @@
 <template>
   <div class="jumbotron myclass">
     <div class="container">
-      <br /><br />
-      <h1 class="display-4">Dashboard Programs</h1>
+      <br /><br /><br><br>
+      <h1 class="display-4">Dashboard cursuri</h1>
       <hr class="my-4" />
 
       <table>
         <thead>
-          <h6> Programs : {{numberOfPrograms}}</h6> 
+          <h6> Cursuri : {{numberOfPrograms}}</h6> 
           <th>
             <div style="width: 1150px" align="right">
               <button type="button" class="btn btn-dark" v-on:click="addProgram()">
-                New Program
+                Adauga curs
               </button>
             </div>
           </th>
@@ -132,7 +132,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .myclass {
   color: A3C6C4;
 }

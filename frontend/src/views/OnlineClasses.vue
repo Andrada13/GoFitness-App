@@ -25,12 +25,9 @@
               <p>
                 <i>{{ program.description }}</i>
               </p>
-              <p>{{ program.trainerName }}</p>
+              <p>Antrenor : {{ program.trainerName }}</p>
             </div>
             <hr class="my-4" />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <div class="col-md-12 mt-3 text-center">
@@ -71,36 +68,30 @@
                 </div>
 
                 <div class="col-md-12 img-hover mb-4">
-      
-               
-
-<div class="hovereffect">
-                  <img
-                    v-bind:src="myImage3"
-                    class="rounded img-shadow img-fluid"
-                  />
-             <div class="overlay">
-            <h2>jajdagd</h2>
-            <a class="info" href="#">link here</a>
-        </div>
-</div>
-                      </div>
+                  <div class="hovereffect">
+                    <img
+                      v-bind:src="myImage3"
+                      class="rounded img-shadow img-fluid"
+                    />
+                    <div class="overlay">
+                      <h2>jajdagd</h2>
+                      <a class="info" href="#">link here</a>
+                    </div>
+                  </div>
                 </div>
-          
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    
-
-
   </div>
 </template>
 
 <style scoped>
-
+* {
+  background-color: black;
+}
 .hovereffect {
   width: 100%;
   height: 100%;
@@ -118,7 +109,7 @@
   overflow: hidden;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-transform: translate(460px, -100px) rotate(180deg);
@@ -192,9 +183,10 @@
 }
 
 .service-12 {
-  font-family: "Montserrat", sans-serif;
+  font-family: serif;
   color: #8d97ad;
   font-weight: 300;
+  font-size: 20px;
 }
 
 .service-12 h1,
@@ -208,8 +200,14 @@
 
 .service-12 h6 {
   line-height: 22px;
-  font-size: 18px;
+  font-size: 20px;
 }
+
+.service-12 h4 {
+  line-height: 22px;
+  font-size: 30px;
+}
+
 
 .service-12 .font-weight-medium {
   font-weight: 500;
@@ -217,10 +215,6 @@
 
 .service-12 .badge {
   line-height: 14px;
-}
-
-.service-12 .badge-info {
-  background: #188ef4;
 }
 
 .service-12 .subtitle {
@@ -248,10 +242,6 @@
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-}
-
-.service-12 .wrap-service12 .uneven-box {
-  margin-top: 100px;
 }
 </style>
 

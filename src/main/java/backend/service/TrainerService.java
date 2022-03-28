@@ -15,6 +15,7 @@ public class TrainerService {
     @Autowired
     TrainerRepository trainerRepository;
 
+    /*
     public void updateTrainers(long id, String name, String email, String type) {
         Trainer trainer = findTrainerById(id);
         trainer.setName(name);
@@ -22,7 +23,7 @@ public class TrainerService {
         trainer.setType(type);
         trainerRepository.save(trainer);
     }
-
+*/
     public Trainer findTrainerById(long id) {
         for (Trainer trainer : findAllTrainers()) {
             if (trainer.getId() == id) {

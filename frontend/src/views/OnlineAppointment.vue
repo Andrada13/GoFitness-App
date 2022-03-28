@@ -1,16 +1,14 @@
 <template>
   <div>
     <br /><br />
+    <div class="titlul">
     <h1 class="display-4">Rezervare curs online</h1>
-    <hr class="my-4" />
-
-    
+    </div>
 
     <div class="py-5 service-6">
       <div class="container">
-        <!-- Row  -->
         <div class="row">
-          <!-- Column -->
+           <hr class="my-4" />
           <div class="col-md-4 wrap-service6-box">
             <div class="card border-0 bg-success-gradiant text-black mb-4">
               <div class="card-body">
@@ -18,8 +16,8 @@
                   Cat dureaza un curs/antrenament online ?
                 </h6>
                 <p class="mt-3">
-                  Antrenamentele dureaza in jur de 2 ore cu posibilitatea prelungirii acestora,
-                  in functie de disponibilitatea antrenorilor.
+                  Antrenamentele dureaza in jur de 2 ore cu posibilitatea prelungirii acestora.
+                  
                 </p>
                                 <h6 class="font-weight-medium text-black">
                   Cum se vor desfasura cursurile ?
@@ -32,8 +30,6 @@
               </div>
             </div>
           </div>
-          <!-- Column -->
-          <!-- Column -->
           <div class="col-md-4 wrap-service6-box">
             <div class="card border-0 bg-info-gradiant text-black mb-4">
               <div class="card-body">
@@ -53,12 +49,11 @@
               </div>
             </div>
           </div>
-          <!-- Column -->
-          <!-- Column -->
+
           <div class="col-md-4 wrap-service6-box">
             <div class="card border-0 bg-danger-gradiant text-black mb-4">
               <div class="card-body">
-                                  <h6 class="font-weight-medium text-black">Cum pot plati ?</h6>
+             <h6 class="font-weight-medium text-black">Cum pot plati ?</h6>
                 <p class="mt-3">
                   Plata se efectueaza exclusiv cu cardul.
                 </p>
@@ -73,8 +68,15 @@
               </div>
             </div>
           </div>
-          <!-- Column -->
         </div>
+      <hr class="my-4" />
+      </div>
+    
+      <br>
+      <div class="tabel">
+      <h4>
+        Programul antrenamentelor online este urmatorul :
+      </h4>
       </div>
     </div>
 
@@ -150,8 +152,18 @@ export default {
 </script>
 
 <style scoped>
+.titlul h1{
+  text-align: center;
+}
+.table{
+  font-family: serif;
+}
+.tabel h4{
+  padding: 30px ;
+}
+
 .service-6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: serif;
   color: #8d97ad;
   font-weight: 300;
 }
@@ -164,7 +176,9 @@ export default {
 .service-6 h6 {
   color: #3e4555;
 }
-
+.service-6 h6{
+  font-size:19px;
+}
 .service-6 .font-weight-medium {
   font-weight: 500;
 }

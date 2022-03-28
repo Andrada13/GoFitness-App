@@ -93,7 +93,7 @@ export const router = new Router({
       path: '/admin',
       name: 'admin',
       // lazy-loaded
-      component: () => import('./views/BoardAdmin.vue'),
+      component: () => import('./views/BoardUsers.vue'),
       beforeEnter: getAdminAccess,
 
     },

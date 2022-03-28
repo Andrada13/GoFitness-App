@@ -23,6 +23,11 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String username;
 
+	private String fullName;
+
+	private String phoneNumber;
+	private String address;
+
 
 	private String email;
 
@@ -32,12 +37,15 @@ public class UserDetailsImpl implements UserDetails {
 	//convert Set<Role> into List<GrantedAuthority>
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String username, String email, String password,
+	public UserDetailsImpl(Long id, String fullName, String username, String email, String password, String phoneNumber, String address,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
+		this.fullName = fullName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
 		this.authorities = authorities;
 	}
 	public static UserDetailsImpl build(User user) {
@@ -47,9 +55,12 @@ public class UserDetailsImpl implements UserDetails {
 
 		return new UserDetailsImpl(
 				user.getId(), 
+				user.getFullName(),
 				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword(), 
+				user.getPhoneNumber(), 
+				user.getAddress(),
 				authorities);
 	}
 
@@ -76,6 +87,21 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	
+	//@Override
+	public String getFullName() {
+		return fullName;
+	}
+
+	//@Override
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+//	@Override
+	public String getAddress() {
+		return address;
+	}
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

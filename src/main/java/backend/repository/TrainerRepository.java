@@ -10,8 +10,8 @@ import backend.models.Trainer;
 @Repository
 public interface TrainerRepository extends JpaRepository<Trainer, Long> {
 	
-	Optional<Trainer> findByName(String name) ;
-	Boolean existsByName(String name);
+	Optional<Trainer> findByUsername(String username) ;
+	Boolean existsByUsername(String username);
 	Boolean existsByEmail(String email);
 
 

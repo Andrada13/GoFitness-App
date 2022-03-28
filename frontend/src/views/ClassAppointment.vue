@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="rezervare">
     <br /><br />
     <div class="col-md-12">
       <h2 align="center">Programare curs online</h2>
@@ -18,10 +18,11 @@
           </div>
 
           <label><strong> Informatii utilizator : </strong></label>
-            <label>Email : <i> {{currentUser.email}} </i></label>
+          <label
+            >Email : <i> {{ currentUser.email }} </i></label
+          >
 
-                <hr class="my-4">
-
+          <hr class="my-4" />
 
           <fieldset class="form-group">
             <label>Denumire :</label>
@@ -56,7 +57,6 @@
             </select>
           </fieldset>
 
-
           <br />
           <div class="form-group text-center">
             <button class="btn btn-dark btn-block" type="submit">
@@ -82,17 +82,16 @@ export default {
       price: 0,
       time_program: "",
       timePrograms: [],
-      content:""
+      content: "",
     };
   },
   computed: {
     id() {
       return this.$route.params.id;
     },
-        currentUser() {
+    currentUser() {
       return this.$store.state.auth.user;
-    }, 
-
+    },
   },
 
   methods: {
@@ -135,8 +134,10 @@ export default {
 </script>
 
 <style scoped>
+
+
 .center_div {
-  margin: 0 auto;
+ 
   width: 80%;
 }
 label {
@@ -149,7 +150,7 @@ label {
   padding: 40px 40px;
 }
 .card {
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   padding: 25px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;

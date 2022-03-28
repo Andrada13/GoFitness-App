@@ -1,8 +1,11 @@
 <template>
+
   <div id="app">
     <!-- add fixed-top after navbar-->
-    <nav class="navbar navbar-expand">
-      <div class="navbar-nav mr-auto">
+   
+    <nav class="navbar fixed-top navbar-expand">
+      <div class="ms-auto">
+      <div class="navbar-nav ">
         <li v-if="showAdminBoard" class="nav-item">
           <router-link to="/admin" class="nav-link">Users Board</router-link>
         </li>
@@ -19,16 +22,20 @@
        <li v-if="showAdminBoard" class="nav-item">
           <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
         </li>
-
+      </div>
       </div>
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto ">
+<div class="ms-auto">
+      <div v-if="!currentUser" class="navbar-nav ">
+  
 
         <li class="nav-item">
           <router-link to="/home" class="nav-link"> Acasa </router-link>
         </li>
 
+ 
         <div class="nav-item" @click="isOpen = !isOpen">
+        
           <li class="nav-item-programs">
               Antrenamente
           </li>
@@ -56,6 +63,7 @@
           </transition>
         </div>
 
+
         <li class="nav-item">
           <router-link to="/trainersDetails" class="nav-link"> Antrenori </router-link>
         </li>
@@ -78,8 +86,8 @@
         </li>
         
       </div>
-
-      <div v-if="currentUser && !showAdminBoard" class="navbar-nav ml-auto">
+ </div>
+      <div v-if="currentUser && !showAdminBoard" class="navbar-nav">
 
         <li class="nav-item">
           <router-link to="/home" class="nav-link"> Acasa </router-link>
@@ -127,7 +135,7 @@
 
         <li class="nav-item">
           <router-link to="/profile" class="nav-link">
-            {{ currentUser.username }}
+            {{ currentUser.fullName }}
           </router-link>
         </li>
         <li class="nav-item py-7 px-8">
@@ -136,9 +144,10 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div >
       <router-view />
     </div>
+
   </div>
 </template>
 
@@ -171,24 +180,32 @@ export default {
 </script>
 
 <style>
+
+
+
 nav {
   width: 100%;
   background-color: #0f0f0f;
-  display: flex;
   align-items: center;
   justify-content: center;
+  display: flex;
+  max-width: 100%;
+
+
+
 
 }
 nav .nav-item {
   color: rgb(252, 248, 248);
-  padding: 0px 40px 0px;
+  padding: 0px 40px 0px 0px;
   position: relative;
-  text-align: center; 
+  
   border-bottom: 5px solid transparent;
   display: flex;
   transition: 0.4s;
-  font-size: 17px;
-  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-family: serif;
+
    
 
 }
@@ -197,12 +214,12 @@ nav .nav-item-programs {
   color: rgb(250, 243, 243);
   padding: 8px 20px 3px;
   position: relative;
-  text-align: center; 
+  /*text-align: center;*/ 
   border-bottom: 5px solid transparent;
-  display: flex;
+  display: inline;
   transition: 0.4s;
-  font-size: 17px;
-  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-family: serif;
 
 
 }

@@ -19,8 +19,13 @@ public class User {
 	private Long id;
 
 	@NotBlank
+	@Size(max = 50)
+	private String fullName;
+
+	@NotBlank
 	@Size(max = 20)
 	private String username;
+
 	@NotBlank
 	@Size(max = 50)
 	@Email
@@ -29,6 +34,14 @@ public class User {
 	@NotBlank
 	@Size(max = 120)
 	private String password;
+
+	@NotBlank
+	@Size(min=10,max = 10)
+	private String phoneNumber;
+
+	@NotBlank
+	@Size(max = 70)
+	private String address;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
@@ -39,13 +52,22 @@ public class User {
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
+
+	
+    public User(@NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 20) String username,
+			@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password,
+			@NotBlank @Size(min = 10,max = 10) String phoneNumber, @NotBlank @Size(max = 70) String address) {
+		this.fullName = fullName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
 	}
 
-    public Long getId() {
+
+
+	public Long getId() {
 		return id;
 	}
 
@@ -84,5 +106,42 @@ public class User {
 		this.roles = roles;
 	}
 
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
 
 }

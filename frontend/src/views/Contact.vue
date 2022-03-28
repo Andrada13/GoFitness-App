@@ -1,83 +1,84 @@
 <template>
   <div class="contact3 py-5">
-    <div class="row no-gutters">
+  
       <div class="container">
         <div class="row">
-          <div class="col-lg-6">
-              <br><br>
+          <div class="col-lg-5">
+            <br /><br />
             <div class="card-shadow">
               <img
-                src="https://images.unsplash.com/photo-1488998427799-e3362cec87c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="img-fluid"
               />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="contact-box ml-3">
-            <br> <br>
-              <h2 class="font-weight-light mt-2">Trimite un mesaj </h2>
-              <br>
+              <br />
+              <br />
+              <h2 class="font-weight-light mt-2">Trimite un mesaj</h2>
+              <br />
               <form class="mt-4" @submit.prevent="handleMessages">
-                 <div v-if="!successful">
-
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group mt-2">
-                      <input
-                      v-model="messages.name"
-                        class="form-control"
-                        type="text"
-                        placeholder="Nume :"
-                      />
+                <div v-if="!successful">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group mt-2">
+                        <input
+                          v-model="messages.name"
+                          class="form-control"
+                          type="text"
+                          placeholder="Nume :"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group mt-2">
-                      <input
-                       v-model="messages.email"
-                        class="form-control"
-                        type="email"
-                        placeholder="Adresa de email :"
-                      />
+                    <div class="col-lg-12">
+                      <div class="form-group mt-2">
+                        <input
+                          v-model="messages.email"
+                          class="form-control"
+                          type="email"
+                          placeholder="Adresa de email :"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group mt-2">
-                      <input
-                         v-model="messages.subject"
-                        class="form-control"
-                        type="text"
-                        placeholder="Subiect :"
-                      />
+                    <div class="col-lg-12">
+                      <div class="form-group mt-2">
+                        <input
+                          v-model="messages.subject"
+                          class="form-control"
+                          type="text"
+                          placeholder="Subiect :"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group mt-2">
-                      <textarea
-                        v-model="messages.message"
-                        class="form-control"
-                        rows="3"
-                        placeholder="Mesaj :"
-                      ></textarea>
+                    <div class="col-lg-12">
+                      <div class="form-group mt-2">
+                        <textarea
+                          v-model="messages.message"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Mesaj :"
+                        ></textarea>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <button
-                      type="submit"
-                      class="btn btn-dark mt-3 text-white border-0 px-3 py-2"
-                    >
-                      <span> TRIMITE </span>
-                    </button>
+                    <div class="col-lg-12">
+                      <button
+                        type="submit"
+                        class="btn btn-dark mt-3 text-white border-0 px-3 py-2"
+                      >
+                        <span> TRIMITE </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-                 </div>
               </form>
-                    <div
-        v-if="message"
-        class="alert"
-        :class="successful ? 'alert-dark' : 'alert-danger'"
-      >{{message}}</div>
-
+              <div
+                v-if="message"
+                class="alert"
+                :class="successful ? 'alert-dark' : 'alert-danger'"
+              >
+                {{ message }}
+              </div>
             </div>
             <br />
             <br />
@@ -114,7 +115,7 @@
                     <div class="">
                       <h6>Telefon :</h6>
                       <p>
-                        +(40) 753627389 <br>
+                        +(40) 753627389 <br />
                         +(40) 648264829
                       </p>
                     </div>
@@ -142,43 +143,41 @@
           </div>
         </div>
       </div>
-    </div>
-
-
+ 
   </div>
 </template>
 
 <script>
+import Message from "../models/message";
 
-import Message from '../models/message';
- 
 export default {
   name: "Contact",
   data() {
     return {
       msg: "Contact us",
-      messages: new Message('', '', '',''),
+      messages: new Message("", "", "", ""),
       submitted: false,
       successful: false,
-      message: ''
+      message: "",
     };
   },
-      methods: {
+  methods: {
     handleMessages() {
-      this.message = '';
+      this.message = "";
       this.submitted = true;
-      this.$validator.validate().then(isValid => {
+      this.$validator.validate().then((isValid) => {
         if (isValid) {
-          this.$store.dispatch('auth/addMessage', this.messages).then(
-            data => {
+          this.$store.dispatch("auth/addMessage", this.messages).then(
+            (data) => {
               this.message = data.message;
               this.successful = true;
-             this.$router.push("/contact");
-
+              this.$router.push("/contact");
             },
-            error => {
+            (error) => {
               this.message =
-                (error.response && error.response.data && error.response.data.message) ||
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
                 error.message ||
                 error.toString();
               this.successful = false;
@@ -186,15 +185,14 @@ export default {
           );
         }
       });
-    }
-  }
-
+    },
+  },
 };
 </script>
 
 <style scoped>
 .contact3 {
-  font-family: "Montserrat", sans-serif;
+  font-family: serif;
   color: #8d97ad;
   font-weight: 300;
 }
@@ -216,6 +214,6 @@ export default {
 
 .img-fluid {
   height: 450px;
-  width: 635px;
+  width: 720px;
 }
 </style>

@@ -1,24 +1,24 @@
 <template>
   <div class="jumbotron myclass">
     <div class="container">
-      <br /><br />
-      <h1 class="display-4">Dashboard</h1>
+      <br /><br /><br><br>
+      <h1 class="display-4">Dashboard utilizatori</h1>
       <hr class="my-4" />
-
+<!--
       <div class="row">
         <div class="col-sm-2">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Number of users:</h5>
+              <h5 class="card-title">Utilizatori:</h5>
               <p class="card-text">{{ numberOfUsers }}</p>
             </div>
           </div>
         </div>
       </div>
-
+-->
       <table>
         <thead>
-          <!--  <h5>Number of users : {{ numberOfUsers }}</h5>-->
+          <h6> Utilizatori : {{numberOfUsers}}</h6> 
           <th>
             <div style="width: 1150px" align="right">
               <button type="button" class="btn btn-dark" v-on:click="addUser()">
@@ -28,7 +28,19 @@
           </th>
         </thead>
       </table>
-
+<!--
+      <table>
+        <thead>
+          <th>
+            <div style="width: 1150px" align="right">
+              <button type="button" class="btn btn-dark" v-on:click="addUser()">
+                New User
+              </button>
+            </div>
+          </th>
+        </thead>
+      </table>
+-->
       <br /><br />
       <h3>{{ content }}</h3>
       <div class="input-group">
@@ -177,7 +189,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .myclass {
   color: A3C6C4;
 }

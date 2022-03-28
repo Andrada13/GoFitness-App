@@ -16,6 +16,8 @@ public class ProgramService {
     @Autowired
     ProgramRepository programRepository;
 
+
+    /*
     public void updatePrograms(Long id, String name, String description,String trainerName, String price) {
         Program program = findProgramById(id);
         program.setName(name);
@@ -24,7 +26,7 @@ public class ProgramService {
         program.setPrice(price);
         programRepository.save(program);
     }
-
+*/
     public Program findProgramById(long id) {
         for (Program program : findAllPrograms()) {
             if (program.getId() == id) {

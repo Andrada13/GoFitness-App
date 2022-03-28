@@ -1,5 +1,6 @@
 <template>
   <body>
+    <br><br><br>
     <div class="container">
       <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
@@ -7,7 +8,6 @@
             class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden"
           >
             <div class="card-img-left d-none d-md-flex">
-              <!-- Background image for card set in CSS! -->
             </div>
             <div class="card-body p-4 p-sm-6">
               <h6 class="card-title text-center mb-5 fw-light fs-5">
@@ -27,7 +27,7 @@
                       required
                       autofocus
                     />
-                    <label for="floatingInputUsername">Username :</label>
+                    <label for="floatingInputUsername">Nume de utilizator :</label>
 
                     <small>
                       <div
@@ -104,7 +104,11 @@ export default {
   data() {
     return {
       user: new User('', ''),
-      message: ''
+      message: '',
+      submitted: false,
+      successful: false,
+
+
     };
   },
   computed: {
@@ -143,15 +147,17 @@ export default {
 </script>
 
 <style scoped>
+*{
+  font-family: serif;
+}
 body {
-  background: #feffff;
+  background: #fdfdfd;
 }
 
 .card-img-left {
   width: 45%;
-  /* Link to your background image using in the property below! */
   background: scroll center
-    url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1375&q=80");
+    url("https://images.unsplash.com/photo-1590487988152-68aca60adba1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80");
   background-size: cover;
 }
 

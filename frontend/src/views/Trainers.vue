@@ -4,22 +4,14 @@
       <div class="row">
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            src="https://images.unsplash.com/photo-1574755851171-8959b8334d6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
             class="zoom img-fluid"
             alt=""
           />
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-            class="zoom img-fluid"
-            alt=""
-          />
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          <img
-            src="https://images.pexels.com/photos/158827/field-corn-air-frisch-158827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            src="https://images.unsplash.com/photo-1597076545399-91a3ff0e71b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -27,7 +19,15 @@
 
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
+            class="zoom img-fluid"
+            alt=""
+          />
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+          <img
+            src="https://images.unsplash.com/photo-1596357395217-80de13130e92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -75,7 +75,7 @@
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
 
           <img
-            src="https://images.pexels.com/photos/1038914/pexels-photo-1038914.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            src="https://images.unsplash.com/photo-1580051745101-2dca6e53f15c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -83,7 +83,7 @@
 
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -91,7 +91,7 @@
 
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -99,7 +99,7 @@
 
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
-            src="https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
             class="zoom img-fluid"
             alt=""
           />
@@ -112,9 +112,10 @@
 </template>
 
 <style scoped>
+
+
 .service-3 {
-  font-family: "Montserrat", sans-serif;
-  color: #8d97ad;
+  font-family: serif;
   font-weight: 300;
 }
 
@@ -136,7 +137,7 @@
 }
 
 .service-3 .subtitle {
-  color: #8d97ad;
+  color: #121314;
   line-height: 24px;
 }
 
@@ -176,9 +177,7 @@ body {
   overflow: hidden;
 }
 
-.green {
-  background-color: #6fb936;
-}
+
 .thumb {
   margin-bottom: 30px;
 }
@@ -187,23 +186,6 @@ body {
   margin-top: 85px;
 }
 
-img.zoom {
-  width: 100%;
-  height: 200px;
-  border-radius: 5px;
-  object-fit: cover;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-}
-
-.transition {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
-}
 .modal-header {
   border-bottom: none;
 }

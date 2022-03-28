@@ -92,11 +92,14 @@
 
 
 <style scoped>
+
+*{
+  background-color: black;
+}
 .pt-3-half { padding-top: 1.4rem; }
 
-@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
 .service-14 {
-  font-family: "Montserrat", sans-serif;
+  font-family: serif;
   color: #8d97ad;
   font-weight: 300;
 }
