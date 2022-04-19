@@ -1,44 +1,94 @@
 <template>
-
   <div id="app">
     <!-- add fixed-top after navbar-->
-   
+
     <nav class="navbar fixed-top navbar-expand">
       <div class="ms-auto">
-      <div class="navbar-nav ">
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Users Board</router-link>
-        </li>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/trainers" class="nav-link"
-            >Trainers Board</router-link
-          >
-        </li>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to='programs' class="nav-link"
-            >Programs Board</router-link
-          >
-        </li>
-       <li v-if="showAdminBoard" class="nav-item">
-          <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
-        </li>
-      </div>
+        <div class="navbar-nav">
+          <li v-if="showAdminBoard" class="nav-item">
+            <router-link to="/admin" class="nav-link">Users Board</router-link>
+          </li>
+          <li v-if="showAdminBoard" class="nav-item">
+            <router-link to="/trainers" class="nav-link"
+              >Trainers Board</router-link
+            >
+          </li>
+          <li v-if="showAdminBoard" class="nav-item">
+            <router-link to="programs" class="nav-link"
+              >Programs Board</router-link
+            >
+          </li>
+          <li v-if="showAdminBoard" class="nav-item">
+            <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
+          </li>
+        </div>
       </div>
 
-<div class="ms-auto">
-      <div v-if="!currentUser" class="navbar-nav ">
-  
+      <div class="ms-auto">
+        <div v-if="!currentUser" class="navbar-nav">
+          <li class="nav-item">
+            <router-link to="/home" class="nav-link"> Acasa </router-link>
+          </li>
 
+          <div class="nav-item" @click="isOpen = !isOpen">
+            <li class="nav-item-programs">Antrenamente</li>
+
+            <svg viewBox="0 0 1030 638" width="5">
+              <path
+                d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
+                fill="#FFF"
+              ></path>
+            </svg>
+
+            <transition name="fade" apear>
+              <div class="sub-menu" v-if="isOpen">
+                <div class="nav-item">
+                  <router-link to="/programs/onlineClasses"
+                    >Antrenamente Online</router-link
+                  >
+                </div>
+                <div class="nav-item">
+                  <router-link to="/programs/memberships"
+                    >Abonamente</router-link
+                  >
+                </div>
+              </div>
+            </transition>
+          </div>
+
+          <li class="nav-item">
+            <router-link to="/trainersDetails" class="nav-link">
+              Antrenori
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link"> Despre noi </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/contact" class="nav-link"> Contact </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link">
+              Creeaza cont
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">
+              Intra in cont
+            </router-link>
+          </li>
+        </div>
+      </div>
+      <div v-if="currentUser && !showAdminBoard" class="navbar-nav">
         <li class="nav-item">
           <router-link to="/home" class="nav-link"> Acasa </router-link>
         </li>
 
- 
         <div class="nav-item" @click="isOpen = !isOpen">
-        
-          <li class="nav-item-programs">
-              Antrenamente
-          </li>
+          <li class="nav-item-programs">Antrenamente</li>
 
           <svg viewBox="0 0 1030 638" width="5">
             <path
@@ -55,75 +105,17 @@
                 >
               </div>
               <div class="nav-item">
-                <router-link to="/programs/memberships"
-                  >Abonamente</router-link
-                >
+                <router-link to="/programs/memberships">Abonamente</router-link>
               </div>
             </div>
           </transition>
         </div>
 
-
         <li class="nav-item">
-          <router-link to="/trainersDetails" class="nav-link"> Antrenori </router-link>
-        </li>
-
-        <li class="nav-item">
-          <router-link to="/about" class="nav-link"> Despre noi </router-link>
-        </li>
-
-        <li class="nav-item">
-          <router-link to="/contact" class="nav-link"> Contact </router-link>
-        </li>
-
-        <li class="nav-item">
-          <router-link to="/register" class="nav-link">
-            Creeaza cont
+          <router-link to="/trainersDetails" class="nav-link">
+            Antrenori
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link"> Intra in cont </router-link>
-        </li>
-        
-      </div>
- </div>
-      <div v-if="currentUser && !showAdminBoard" class="navbar-nav">
-
-        <li class="nav-item">
-          <router-link to="/home" class="nav-link"> Acasa </router-link>
-        </li>
-
-        <div class="nav-item" @click="isOpen = !isOpen">
-          <li class="nav-item-programs">
-              Antrenamente
-          </li>
-
-          <svg viewBox="0 0 1030 638" width="5">
-            <path
-              d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
-              fill="#FFF"
-            ></path>
-          </svg>
-
-          <transition name="fade" apear>
-            <div class="sub-menu" v-if="isOpen">
-              <div class="nav-item">
-                <router-link to="/programs/onlineClasses"
-                  >Antrenamente Online</router-link
-                >
-              </div>
-              <div class="nav-item">
-                <router-link to="/programs/memberships"
-                  >Abonamente</router-link
-                >
-              </div>
-            </div>
-          </transition>
-        </div>
-
-        <li class="nav-item">
-          <router-link to="/trainersDetails" class="nav-link"> Antrenori </router-link>
-        </li>
 
         <li class="nav-item">
           <router-link to="/about" class="nav-link"> Despre noi </router-link>
@@ -133,7 +125,7 @@
           <router-link to="/contact" class="nav-link"> Contact </router-link>
         </li>
 
-        <li class="nav-item">
+        <li  class="nav-item">
           <router-link to="/profile" class="nav-link">
             {{ currentUser.fullName }}
           </router-link>
@@ -144,10 +136,9 @@
       </div>
     </nav>
 
-    <div >
+    <div>
       <router-view />
     </div>
-
   </div>
 </template>
 
@@ -180,9 +171,6 @@ export default {
 </script>
 
 <style>
-
-
-
 nav {
   width: 100%;
   background-color: #0f0f0f;
@@ -190,38 +178,29 @@ nav {
   justify-content: center;
   display: flex;
   max-width: 100%;
-
-
-
-
 }
 nav .nav-item {
   color: rgb(252, 248, 248);
   padding: 0px 40px 0px 0px;
   position: relative;
-  
+
   border-bottom: 5px solid transparent;
   display: flex;
   transition: 0.4s;
   font-size: 20px;
   font-family: serif;
-
-   
-
 }
 
 nav .nav-item-programs {
   color: rgb(250, 243, 243);
   padding: 8px 20px 3px;
   position: relative;
-  /*text-align: center;*/ 
+  /*text-align: center;*/
   border-bottom: 5px solid transparent;
   display: inline;
   transition: 0.4s;
   font-size: 20px;
   font-family: serif;
-
-
 }
 
 nav .nav-link.active,

@@ -8,6 +8,16 @@ const API_URL_NEW_PROGRAM = 'http://localhost:8080/api/auth';
 
 
 class Program {
+    
+    getTrainerByCourse(id) {
+        return axios.get(`${API_URL_PROGRAM}/trainersByCourseId/${id}`, { headers: authHeader() });
+    
+    }
+
+    getTrainerNotByCourse(id) {
+        return axios.get(`${API_URL_PROGRAM}/trainersNotByCourseId/${id}`, { headers: authHeader() });
+    
+    }
 
     getPrograms() {
         return axios.get(API_URL, { headers: authHeader() });
@@ -35,6 +45,29 @@ class Program {
             description: program.description,
             trainerName: program.trainerName,
             price: program.price
+        });
+    }
+
+    addTimeProgram(time,id){
+        return axios.post(`${API_URL_PROGRAM}/time/${time}/${id}`, {
+           
+        });
+    }
+    addTrainerIdToCourseId(trainerToCourseId,id) {
+        return axios.post(`${API_URL_PROGRAM}/trainerIdToCourseId/${trainerToCourseId}/${id}`, {
+           
+        });
+    }
+
+    getTimeByCourseId(id){
+        return axios.get(`${API_URL_PROGRAM}/time/${id}`, {
+           
+        });
+    }
+
+    getProgramsById(id){
+        return axios.get(`${API_URL_PROGRAM}/program/${id}`, {
+           
         });
     }
 }

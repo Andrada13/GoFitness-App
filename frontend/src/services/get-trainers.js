@@ -16,8 +16,8 @@ class Trainer {
     deleteTrainersById(id) {
         return axios.delete(`${API_URL}/trainer/${id}`, { headers: authHeader() });
     }
-    getTrainer(id) {
-        return axios.get(`${API_URL}/trainer/${id}`, { headers: authHeader() });
+    getTrainerByCourse(id) {
+        return axios.get(`${API_URL_TRAINER}/trainersByCourseId/${id}`, { headers: authHeader() });
 
     }
     updateTrainer(id, trainer) {

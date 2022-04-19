@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import backend.models.Program;
 import backend.models.User;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,14 +32,17 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String email;
 
+
 	@JsonIgnore
 	private String password;
+
+private List<Program> programs;
 
 	//convert Set<Role> into List<GrantedAuthority>
 	private Collection<? extends GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Long id, String fullName, String username, String email, String password, String phoneNumber, String address,
-			Collection<? extends GrantedAuthority> authorities) {
+			Collection<? extends GrantedAuthority> authorities,List<Program> programs) {
 		this.id = id;
 		this.fullName = fullName;
 		this.username = username;
@@ -47,11 +51,15 @@ public class UserDetailsImpl implements UserDetails {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.authorities = authorities;
+		this.programs = programs;
 	}
+
 	public static UserDetailsImpl build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 				.collect(Collectors.toList());
+
+			
 
 		return new UserDetailsImpl(
 				user.getId(), 
@@ -61,7 +69,20 @@ public class UserDetailsImpl implements UserDetails {
 				user.getPassword(), 
 				user.getPhoneNumber(), 
 				user.getAddress(),
-				authorities);
+				authorities, user.getPrograms()
+								);
+	}
+
+
+	
+
+
+	public List<Program> getPrograms() {
+		return programs;
+	}
+
+	public void setPrograms(List<Program> programs) {
+		this.programs = programs;
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {

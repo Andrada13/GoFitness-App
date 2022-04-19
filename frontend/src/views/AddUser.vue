@@ -1,12 +1,26 @@
 
 <template>
+<div>
+  <br><br><br><br><br>
+ <h2 align="center">Adauga un nou utilizator</h2>
   <div class="col-md-12">
     <div class="card card-container">
-     <h2 align="center">Add new user</h2>
+    
       <form name="form" @submit.prevent="handleRegister">
         <div v-if="!successful">
+           <div class="form-group">
+            <label for="username">Nume si prenume :</label>
+            <input
+              v-model="user.fullName"
+              v-validate="'required|max:50'"
+              type="text"
+              class="form-control"
+              name="fullName"
+            />
+         
+          </div>
           <div class="form-group">
-            <label for="username">Username :</label>
+            <label for="username">Nume de utilizator :</label>
             <input
               v-model="user.username"
               v-validate="'required|min:3|max:20'"
@@ -34,7 +48,7 @@
             >{{errors.first('email')}}</div></small>
           </div>
           <div class="form-group">
-            <label for="password">Password :</label>
+            <label for="password">Parola :</label>
             <input
               v-model="user.password"
               v-validate="'required|min:6|max:40'"
@@ -47,9 +61,51 @@
               class="alert-danger"
             >{{errors.first('password')}}</div></small>
           </div>
+          <div class="form-group">
+            <label for="username">Adresa :</label>
+            <input
+              v-model="user.address"
+              v-validate="'required|max:50'"
+              type="text"
+              class="form-control"
+              name="address"
+            />
+         
+          </div>
+          <div class="form-group">
+            <label for="username">Numar de telefon :</label>
+            <input
+              v-model="user.phoneNumber"
+              v-validate="'required|max:50'"
+              type="text"
+              class="form-control"
+              name="phoneNumber"
+            />
+         
+          </div>
+
+           <div class="form-group">
+            <label>Rol :</label>
+            
+
+            <select class="form-select" v-model="user.role">
+              <option selected disabled>
+                Alegeti rolul utilizatorului :
+              </option>
+
+
+          
+              <option v-for="role in roles" v-bind:key="[role.id]" v-bind:value="role.id">
+                {{ role.name}} 
+              </option>
+  
+            </select>
+          </div>
+
+
           <br>
           <div class="form-group text-center">
-            <button class="btn btn-dark btn-block">Add user</button>
+            <button class="btn btn-dark w-100">Adauga utilizator</button>
           </div>
         </div>
       </form>
@@ -61,27 +117,41 @@
       >{{message}}</div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
+
+import Role from "../services/get-roles";
 import User from '../models/user';
+
 export default {
   name: 'Register',
+
   data() {
     return {
-      user: new User('', '', ''),
+      user: new User('', '', '','','','',''),
       submitted: false,
       successful: false,
-      message: ''
+      message: '',
+      roles: [],
     };
   },
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-    }
+    },
   },
   methods: {
-    handleRegister() {
+    
+    getAllRoles() {
+      Role.getRole().then((response) => {
+        this.roles = response.data;
+      });
+    },
+     handleRegister() {
+
+console.log(this.user);
       this.message = '';
       this.submitted = true;
       this.$validator.validate().then(isValid => {
@@ -90,6 +160,7 @@ export default {
             data => {
               this.message = data.message;
               this.successful = true;
+              this.$router.push("/admin");
             },
             error => {
               this.message =
@@ -101,12 +172,26 @@ export default {
           );
         }
       });
+    
+  },
+ },
+    created() {
+    this.getAllRoles();
     }
-}
+   
+  
+
+ 
 };
+
 </script>
 
 <style scoped>
+
+*{
+  font-family: serif;
+} 
+
 label {
   display: block;
   margin-top: 10px;

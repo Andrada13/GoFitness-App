@@ -6,7 +6,6 @@ import Register from './views/Register.vue';
 import Contact from './views/Contact.vue';
 import Trainers from './views/Trainers.vue';
 import OnlineClasses from './views/OnlineClasses.vue';
-import Memberships from './views/Memberships.vue';
 import About from './views/About.vue';
 import OnlineAppointment from './views/OnlineAppointment.vue';
 
@@ -74,10 +73,7 @@ export const router = new Router({
       path: '/programs/onlineClasses',
       component: OnlineClasses
     },
-    {
-      path: '/programs/memberships',
-      component: Memberships
-    },
+   
     {
       path: '/programs/onlineClasses/appointment',
       component: OnlineAppointment
@@ -96,6 +92,36 @@ export const router = new Router({
       component: () => import('./views/BoardUsers.vue'),
       beforeEnter: getAdminAccess,
 
+    },
+    {
+      path: '/listTrainers/:id',
+      name: 'listTrainers',
+      // lazy-loaded
+      component: () => import('./views/ListOfTrainers.vue'),
+     // beforeEnter: getAdminAccess,
+
+    },
+    {
+      path: '/listProgram/:id',
+      name: 'listProgram',
+      // lazy-loaded
+      component: () => import('./views/ListOfProgram.vue'),
+     // beforeEnter: getAdminAccess,
+
+    },
+    {
+      path: '/adminProfile',
+      name: 'adminProfile',
+      // lazy-loaded
+      component: () => import('./views/AdminProfile.vue'),
+      beforeEnter: getAdminAccess,
+
+    },
+    {
+      path: '/trainerProfile',
+      name: 'trainerProfile',
+      // lazy-loaded
+      component: () => import('./views/TrainerProfile.vue')
     },
     {
       path: '/trainers',

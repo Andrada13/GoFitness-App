@@ -3,11 +3,14 @@
 
   <div>
     <br>
+    <br><br><br>
 <br>
-  <!--  <div class="container center_div">-->
+<h2 align="center">Editeaza profil utilizator</h2>
+   <div class="container center_div">
       <div class="col-md-12">
     <div class="card card-container">
-     <h2 align="center">Update user</h2>
+     
+
 
       <form @submit="validateAndSubmit">
         <div v-if="errors.length">
@@ -20,30 +23,43 @@
           </div>
         </div>
         <fieldset class="form-group">
-          <label>ID user :</label>
+          <label>ID utilizator :</label>
           <input type="text" class="form-control" v-model="id" disabled />
         </fieldset>
         <fieldset class="form-group">
-          <label>Role :</label>
+          <label>Rol :</label>
           <input type="text" class="form-control" v-model="role" disabled />
         </fieldset>
 
         <fieldset class="form-group">
-          <label>Username :</label>
+          <label>Nume si prenume :</label>
+          <input type="text" class="form-control" v-model="fullName" />
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Nume de utilizator :</label>
           <input type="text" class="form-control" v-model="username" />
         </fieldset>
         <fieldset class="form-group">
           <label>Email :</label>
           <input type="text" class="form-control" v-model="email" />
         </fieldset>
+         <fieldset class="form-group">
+          <label>Adresa :</label>
+          <input type="text" class="form-control" v-model="address" />
+        </fieldset>
+         <fieldset class="form-group">
+          <label>Numar de telefon :</label>
+          <input type="text" class="form-control" v-model="phoneNumber" />
+        </fieldset>
         <br>
         <div class="form-group text-center">
-            <button class="btn btn-dark btn-block" type="submit">Save</button>
+            <button class="btn btn-dark w-100" type="submit">Save</button>
           </div>
 
       </form>
     </div>
   </div>
+   </div>
   </div>
 </template>
 
@@ -55,7 +71,11 @@ export default {
     return {
       username: "",
       email: "",
+      fullName: "",
+      address: "",
+      phoneNumber: "",
       role:"",
+      errors:[]
     };
   },
   computed: {
@@ -67,10 +87,12 @@ export default {
   methods: {
     UpdateUser() {
       User.getUser(this.id).then((result) => {
+        this.fullName = result.data.fullName;
         this.username = result.data.username;
         this.email = result.data.email;
+        this.address = result.data.address;
+        this.phoneNumber = result.data.phoneNumber;
         this.role= result.data.roles[0].name;    
-        console.log(result);
     });
     },
     validateAndSubmit(e) {
@@ -85,8 +107,11 @@ export default {
       if (this.errors.length === 0) {
         User.updateUser(this.id, {
           id: this.id,
+          fullName :this.fullName,
           username: this.username,
           email: this.email,
+          address : this.address,
+          phoneNumber: this.phoneNumber,
           role:this.role,
         }).then(() => {
           this.$router.push("/admin");
@@ -102,6 +127,11 @@ export default {
 
 <style scoped>
 
+*{
+ 
+  font-family: serif;
+} 
+
 .center_div{
     margin: 0 auto;
     width:80% 
@@ -114,10 +144,12 @@ label {
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
+
 }
 .card {
-  background-color: #f7f7f7;
-  padding: 20px 25px 30px;
+
+  background-color: #ffffff;
+  padding: 20px 25px 30px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
   -moz-border-radius: 2px;

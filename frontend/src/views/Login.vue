@@ -130,7 +130,13 @@ export default {
         if (this.user.username && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then( //Actions are called in the components with the method dispatch()
             () => {
+              if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_ADMIN"){
+                   this.$router.push('/adminProfile');
+              }else if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_TRAINER"){
+                   this.$router.push('/trainerProfile');
+              }else if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_USER"){
               this.$router.push('/profile');
+              }
             },
             error => {
               this.message =

@@ -2,7 +2,10 @@ package backend.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "program_time")
@@ -16,6 +19,7 @@ public class ProgramTime {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id")
     @JsonIgnore
+    //@JsonManagedReference
     Program program;
 
     private String time_program;
@@ -23,6 +27,13 @@ public class ProgramTime {
     
     public ProgramTime() {
     }
+
+    
+    public ProgramTime( String time_program, Program program) {
+        this.program = program;
+        this.time_program = time_program;
+    }
+
 
     public ProgramTime(Long programTime_id, Program program, String time_program) {
         this.programTime_id = programTime_id;
@@ -46,14 +57,23 @@ public class ProgramTime {
         this.program = program;
     }
 
+
     public String getTime_program() {
         return time_program;
     }
+
 
     public void setTime_program(String time_program) {
         this.time_program = time_program;
     }
 
+
+    
+
+   
+
+   
+   
 
     
 

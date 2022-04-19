@@ -1,9 +1,16 @@
 package backend.requests;
 
+import java.util.List;
+
 import javax.validation.constraints.*;
+
+
+import backend.models.ProgramTime;
  
 public class AddProgramRequest {
     
+    private Long id;
+
     @NotBlank
     @Size(max = 50)
     private String name;
@@ -12,24 +19,21 @@ public class AddProgramRequest {
     @Size(max = 50)
     private String description;
     
-    @NotBlank
-    @Size(max = 50)
-    private String trainerName;
+    //@NotBlank
+    private List<ProgramTime> programs;
 
     @NotBlank
     private String price;
-
-    @NotBlank
-    private String perioada;
+    
 
 
     
-    public String getPerioada() {
-        return perioada;
+    public Long getId() {
+        return id;
     }
 
-    public void setPerioada(String perioada) {
-        this.perioada = perioada;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -48,12 +52,13 @@ public class AddProgramRequest {
         this.description = description;
     }
 
-    public String getTrainerName() {
-        return trainerName;
+
+    public List<ProgramTime> getPrograms() {
+        return programs;
     }
 
-    public void setTrainerName(String trainerName) {
-        this.trainerName = trainerName;
+    public void setPrograms(List<ProgramTime> programs) {
+        this.programs = programs;
     }
 
     public String getPrice() {

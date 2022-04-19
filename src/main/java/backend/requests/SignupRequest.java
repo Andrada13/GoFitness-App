@@ -1,8 +1,14 @@
 package backend.requests;
 
-import java.util.Set;
+
+
+import java.util.List;
 
 import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonGetter;
+
+import backend.models.Program;
  
 public class SignupRequest {
     
@@ -19,7 +25,7 @@ public class SignupRequest {
     @Email
     private String email;
     
-    private Set<String> role;
+    private Integer role;
     
     @NotBlank
     @Size(min = 5, max = 20)
@@ -32,6 +38,7 @@ public class SignupRequest {
     @NotBlank
     @Size(max = 70)
     private String address;
+
 
     public String getUsername() {
         return username;
@@ -57,20 +64,28 @@ public class SignupRequest {
         this.password = password;
     }
     
-    public Set<String> getRole() {
-      return this.role;
-    }
-    
-    public void setRole(Set<String> role) {
-      this.role = role;
-    }
+ 
+   
+   
 
     public String getFullName() {
         return fullName;
     }
 
+    
+   
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    @JsonGetter("role")
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public String getPhoneNumber() {

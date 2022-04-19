@@ -1,7 +1,7 @@
 
 <template>
   <div class="rezervare">
-    <br /><br />
+    <br /><br /><br><br>
     <div class="col-md-12">
       <h2 align="center">Programare curs online</h2>
 
@@ -31,12 +31,17 @@
 
           <fieldset class="form-group">
             <label>Antrenor :</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="trainerName"
-              disabled
-            />
+           
+             <select class="form-select">
+              <option selected disabled>
+                Alegeti antrenorul :
+              </option>
+
+              <option v-for="t in fullName" v-bind:key="t.id">
+                {{ t.fullName }}
+              </option>
+            </select>
+          
           </fieldset>
           <fieldset class="form-group">
             <label>Pret :</label>
@@ -78,10 +83,11 @@ export default {
     return {
       name: "",
       date: "",
-      trainerName: "",
       price: 0,
       time_program: "",
       timePrograms: [],
+      trainer:[],
+      fullName:"",
       content: "",
     };
   },
@@ -98,11 +104,11 @@ export default {
     UpdateProgram() {
       Program.getProgram(this.id).then((result) => {
         this.name = result.data.name;
-        this.trainerName = result.data.trainerName;
         this.price = result.data.price;
         this.time_program = result.data.programs;
+        this.fullName = result.data.trainer;
 
-        console.log(this.time_program);
+        console.log(this.fullName);
       });
     },
 

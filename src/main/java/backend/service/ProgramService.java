@@ -17,16 +17,15 @@ public class ProgramService {
     ProgramRepository programRepository;
 
 
-    /*
-    public void updatePrograms(Long id, String name, String description,String trainerName, String price) {
+    
+    public void updatePrograms(Long id, String name, String description,String price) {
         Program program = findProgramById(id);
         program.setName(name);
-        program.setTrainerName(trainerName);
         program.setDescription(description);
         program.setPrice(price);
         programRepository.save(program);
     }
-*/
+
     public Program findProgramById(long id) {
         for (Program program : findAllPrograms()) {
             if (program.getId() == id) {

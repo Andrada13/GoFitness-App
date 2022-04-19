@@ -1,17 +1,21 @@
 <template>
   <div class="jumbotron myclass">
     <div class="container">
-      <br /><br /><br><br>
+      <br /><br /><br /><br />
       <h1 class="display-4">Dashboard cursuri</h1>
       <hr class="my-4" />
 
       <table>
         <thead>
-          <h6> Cursuri : {{numberOfPrograms}}</h6> 
+          <h6>Cursuri : {{ numberOfPrograms }}</h6>
           <th>
             <div style="width: 1150px" align="right">
-              <button type="button" class="btn btn-dark" v-on:click="addProgram()">
-                Adauga curs
+              <button
+                type="button"
+                class="btn btn-dark"
+                v-on:click="addProgram()"
+              >
+                Curs nou
               </button>
             </div>
           </th>
@@ -24,7 +28,7 @@
         <input
           type="text"
           class="form-control rounded"
-          placeholder="Search program by username :"
+          placeholder="Cauta curs dupa nume :"
           v-model="search"
           aria-label="Search"
           aria-describedby="search-addon"
@@ -33,35 +37,55 @@
       <br />
       <br />
 
-      <table class="table table-striped">
+      <table class="table table-hover table-sm">
         <thead class="thead-dark">
-          <th>#</th>
-          <th>Program Name</th>
-          <th>Description</th>
-          <th>Trainer Name</th>
-          <th>Price</th>
-          <th>Update</th>
-          <th>Delete</th>
+          <th>ID</th>
+          <th>Denumire curs</th>
+          <th>Descriere</th>
+          <th>Pret</th>
+          <th>Antrenori</th>
+          <th>Program</th>
+          <th>Editeaza</th>
+          <th>Sterge</th>
         </thead>
         <tbody>
           <tr v-for="program in filteredPrograms" v-bind:key="program.id">
             <td>{{ program.id }}</td>
             <td>{{ program.name }}</td>
             <td>{{ program.description }}</td>
-            <td>{{program.trainerName}}</td>
+
             <td>{{ program.price }}</td>
             <td>
-              <button class="btn btn-dark" v-on:click="updateProgram(program.id)">
-                Update
+              <button
+                class="btn btn-dark btn-sm"
+                v-on:click="listTrainers(program.id)"
+              >
+                Antrenori
               </button>
             </td>
             <td>
-              <button class="btn btn-dark" v-on:click="deleteProgram(program.id)">
-                Delete
+              <button class="btn btn-dark btn-sm" v-on:click="listProgram(program.id)">
+                Program
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-dark btn-sm"
+                v-on:click="updateProgram(program.id)"
+              >
+                Editeaza
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-dark btn-sm"
+                v-on:click="deleteProgram(program.id)"
+              >
+                Sterge
               </button>
             </td>
           </tr>
-       </tbody>
+        </tbody>
       </table>
     </div>
   </div>
@@ -70,7 +94,6 @@
 
 <script>
 import Program from "../services/get-programs";
-
 
 export default {
   name: "Programs",
@@ -82,16 +105,20 @@ export default {
       index: "",
       content: "",
       numberOfPrograms: 0,
-
     };
   },
 
   methods: {
+    listProgram(id) {
+      this.$router.push(`/listProgram/${id}`);
+    },
+    listTrainers(id) {
+      this.$router.push(`/listTrainers/${id}`);
+    },
     getAllPrograms() {
       Program.getPrograms().then((response) => {
         this.programs = response.data;
       });
-
     },
     getNumbers() {
       Program.getNumberOfPrograms().then((response) => {
@@ -103,7 +130,7 @@ export default {
       this.$router.push(`/updateProgram/${id}`);
     },
 
-     deleteProgram(id) {
+    deleteProgram(id) {
       Program.deleteProgramsById(id).then(() => {
         this.getAllPrograms();
       });
@@ -112,10 +139,6 @@ export default {
     addProgram() {
       this.$router.push(`/addProgram/`);
     },
-     //   changePage(pageOfItems) {
-    //  return (this.pageOfItems = pageOfItems);
-  //  },
-
   },
   created() {
     this.getAllPrograms();

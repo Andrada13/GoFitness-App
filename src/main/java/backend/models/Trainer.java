@@ -55,19 +55,6 @@ public class Trainer {
 	private String address;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "trainer_roles", 
-				joinColumns = @JoinColumn(name = "id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
-
-
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id")
-    @JsonIgnore
-    private List<Program> course = new ArrayList<>();
-
-
     public Trainer(@NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 50) String username,
             @NotBlank @Size(max = 50) @Email String email, @NotBlank
             @Size(max = 50) String description,@NotBlank @Size(max = 120) String password,
@@ -129,18 +116,7 @@ public class Trainer {
 
     
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-
-
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-
+  
     public Long getId() {
         return id;
     }

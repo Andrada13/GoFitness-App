@@ -1,11 +1,27 @@
 package backend.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import org.hibernate.Criteria;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 @Entity
 @Table(	name = "users", 
@@ -20,6 +36,7 @@ public class User {
 
 	@NotBlank
 	@Size(max = 50)
+	@Column(name = "full_name")
 	private String fullName;
 
 	@NotBlank
@@ -37,6 +54,7 @@ public class User {
 
 	@NotBlank
 	@Size(min=10,max = 10)
+	@Column(name = "phone_number")
 	private String phoneNumber;
 
 	@NotBlank
@@ -47,14 +65,38 @@ public class User {
 	@JoinTable(	name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
+	private List<Role> roles = new ArrayList<>();
 
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id")
+	//@JsonManagedReference
+	@JsonIgnore
+	//@JsonSerialize(using = CustomTrainer.class)
+    private List<Program> programs = new ArrayList<>();
+
+	
 	public User() {
 	}
 
-
 	
-    public User(@NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 20) String username,
+    public User(Long id, @NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 20) String username,
+			@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password,
+			@NotBlank @Size(min = 10, max = 10) String phoneNumber, @NotBlank @Size(max = 70) String address,
+			List<Role> roles) {
+		this.id = id;
+		this.fullName = fullName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.roles = roles;
+	}
+
+
+
+
+	public User(@NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 20) String username,
 			@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password,
 			@NotBlank @Size(min = 10,max = 10) String phoneNumber, @NotBlank @Size(max = 70) String address) {
 		this.fullName = fullName;
@@ -64,6 +106,24 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
+
+	
+
+
+	public User(@NotBlank @Size(max = 50) String fullName, @NotBlank @Size(max = 20) String username,
+			@NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password,
+			@NotBlank @Size(min = 10, max = 10) String phoneNumber, @NotBlank @Size(max = 70) String address,
+			List<Role> list,List<Program> programs) {
+		this.fullName = fullName;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.roles = list;
+		this.programs  = programs;
+	}
+
 
 
 
@@ -98,13 +158,20 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
+
+
+
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+
+
+
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+
 
 
 
@@ -140,6 +207,20 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+
+
+
+	public List<Program> getPrograms() {
+		return programs;
+	}
+
+
+
+
+	public void setPrograms(List<Program> programs) {
+		this.programs = programs;
 	}
 
 	

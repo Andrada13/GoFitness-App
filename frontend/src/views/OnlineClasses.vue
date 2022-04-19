@@ -25,7 +25,7 @@
               <p>
                 <i>{{ program.description }}</i>
               </p>
-              <p>Antrenor : {{ program.trainerName }}</p>
+              <p>Antrenor : {{ program.trainerName}}</p>
             </div>
             <hr class="my-4" />
             <br />
@@ -268,6 +268,7 @@ export default {
     getAllPrograms() {
       Program.getPrograms().then((response) => {
         this.programs = response.data;
+        console.log(this.programs)
       });
     },
   },

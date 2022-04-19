@@ -68,7 +68,14 @@
                      <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Adresa :
-                          <i>{{currentUser.address}}</i>
+                       {{currentUser.address}}
+                        </label>
+                      </div>
+                    </div>
+                      <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Rol :
+                            <i v-for="(role,index) in currentUser.roles" :key="index">{{role}}</i>
                         </label>
                       </div>
                     </div>
@@ -144,7 +151,7 @@ export default {
 <style scoped>
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family:serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;

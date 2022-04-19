@@ -1,8 +1,8 @@
 <template>
   <div>
-    <br /><br />
+    <br /><br /><br> <br>
     <div class="titlul">
-    <h1 class="display-4">Rezervare curs online</h1>
+    <h1 class="display-4">Rezervare cursuri </h1>
     </div>
 
     <div class="py-5 service-6">
@@ -75,12 +75,12 @@
       <br>
       <div class="tabel">
       <h4>
-        Programul antrenamentelor online este urmatorul :
+        Programul antrenamentelor este urmatorul :
       </h4>
       </div>
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
       <thead class="thead-dark">
         <th>Denumire Curs</th>
         <th>Program</th>
@@ -90,6 +90,7 @@
       </thead>
       <tbody>
         <tr v-for="program in programs" v-bind:key="program.id">
+
          <td>{{ program.name }}</td>
          <td>
          <div v-for="p in program.programs" :key="p.programTime_id">
@@ -98,7 +99,12 @@
           </div>
 
          </td>
-          <td>{{ program.trainerName }}</td>
+          <td>
+             <div v-for="t in program.trainer" :key="t.id">
+              {{ t.fullName }}
+              <br>
+          </div>
+          </td>
           <td>{{ program.price }}</td>
           <td>
             <button class="btn btn-dark" v-on:click="updateProgram(program.id)">
@@ -106,7 +112,6 @@
             </button>
           </td>
         </tr>
-
       </tbody>
     </table>
 
@@ -115,7 +120,8 @@
 
 <script>
 import Program from "../services/get-programs";
-import TimeProgram from "../services/get-time-programs";
+//import TimeProgram from "../services/get-time-programs";
+import User from "../services/get-users";
 
 
 export default {
@@ -124,6 +130,7 @@ export default {
     return {
       programs: [],
       timePrograms:[],
+      users:[]
     };
   },
 
@@ -132,11 +139,15 @@ export default {
       Program.getPrograms().then((response) => {
         this.programs = response.data;
         console.log(this.programs)
+
       });
     },
-    getAllTimePrograms() {
-      TimeProgram.getTimePrograms().then((response) => {
-        this.timePrograms = response.data;
+   
+     getAllTrainersForPrograms() {
+      User.getUsers().then((response) => {
+        this.users = response.data;
+        console.log(this.users);
+
       });
     },
       updateProgram(id) {
@@ -146,7 +157,8 @@ export default {
   },
   created() {
     this.getAllPrograms();
-    this.getAllTimePrograms();
+   // this.getAllTimePrograms();
+    this.getAllTrainersForPrograms();
   },
 };
 </script>
@@ -157,6 +169,7 @@ export default {
 }
 .table{
   font-family: serif;
+
 }
 .tabel h4{
   padding: 30px ;

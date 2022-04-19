@@ -1,8 +1,7 @@
 export default class Program {
-    constructor(name, description, trainerName, price) {
+    constructor(name, description,price) {
       this.name = name;
       this.description = description;
-      this.trainerName = trainerName;
       this.price = price;
     }
   }

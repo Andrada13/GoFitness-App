@@ -3,11 +3,16 @@ import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:8080/api/test/admin';
 const API_URL_USER = 'http://localhost:8080/api/test';
-const API_URL_NEW_USER = 'http://localhost:8080/api/auth';
+//const API_URL_NEW_USER = 'http://localhost:8080/api/auth';
 
 
 
 class User {
+
+  getTrainerByCourse(id) {
+    return axios.get(`${API_URL_USER}/trainersByCourseId${id}`, { headers: authHeader() });
+
+}
 
     getUsers() {
         return axios.get(API_URL,  { headers: authHeader() });
@@ -29,7 +34,7 @@ class User {
 }
 
 
-
+/*
     addUser(user) {
     return axios.post(`${API_URL_NEW_USER}/signup`, {
       username: user.username,
@@ -37,7 +42,8 @@ class User {
       role:user.role,
       password: user.password
     },  { headers: authHeader() });
-}
+    */
+
 
 
     

@@ -4,50 +4,27 @@
       <br /><br /><br><br>
       <h1 class="display-4">Dashboard utilizatori</h1>
       <hr class="my-4" />
-<!--
-      <div class="row">
-        <div class="col-sm-2">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Utilizatori:</h5>
-              <p class="card-text">{{ numberOfUsers }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
--->
+
       <table>
         <thead>
           <h6> Utilizatori : {{numberOfUsers}}</h6> 
           <th>
             <div style="width: 1150px" align="right">
               <button type="button" class="btn btn-dark" v-on:click="addUser()">
-                New User
+                Utilizator Nou
               </button>
             </div>
           </th>
         </thead>
       </table>
-<!--
-      <table>
-        <thead>
-          <th>
-            <div style="width: 1150px" align="right">
-              <button type="button" class="btn btn-dark" v-on:click="addUser()">
-                New User
-              </button>
-            </div>
-          </th>
-        </thead>
-      </table>
--->
+
       <br /><br />
       <h3>{{ content }}</h3>
       <div class="input-group">
         <input
           type="text"
           class="form-control rounded"
-          placeholder="Search by username :"
+          placeholder="Cauta dupa numele de utilizator :"
           v-model="search"
           aria-label="Search"
           aria-describedby="search-addon"
@@ -56,32 +33,38 @@
       <br />
       <br />
 
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <th>#</th>
-          <th>Username</th>
+      <table class="table table-hover table-sm">
+        <thead class="thead-light">
+          <th>ID</th>
+          <th>Nume si prenume</th>
+          <th>Nume de utilizator</th>
           <th>Email</th>
-          <th>Roles</th>
-          <th>Update</th>
-          <th>Delete</th>
+          <th>Adresa</th>
+          <th>Numar de telefon</th>
+          <th>Rol</th>
+          <th>Editeaza</th>
+          <th>Sterge</th>
         </thead>
         <tbody>
           <tr v-for="user in filteredUsers" v-bind:key="user.id"></tr>
           <tr v-for="user in pageOfItems" :key="user.username">
             <td>{{ user.id }}</td>
+            <td>{{user.fullName}}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phoneNumber}}</td>
             <td v-for="(role, index) in user.roles" :key="index">
               {{ role.name }}
             </td>
             <td>
-              <button class="btn btn-dark" v-on:click="updateUser(user.id)">
-                Update
+              <button class="btn btn-dark btn-sm" v-on:click="updateUser(user.id)">
+                Editeaza
               </button>
             </td>
             <td>
-              <button class="btn btn-dark" v-on:click="deleteUser(user.id)">
-                Delete
+              <button class="btn btn-dark btn-sm" v-on:click="deleteUser(user.id)">
+                Sterge
               </button>
             </td>
           </tr>
@@ -182,9 +165,10 @@ export default {
   computed: {
     filteredUsers() {
       return this.users.filter((user) => {
-        return user.username.toLowerCase().match(this.search.toLowerCase());
+        return user.username.toLowerCase().match(this.search.toLowerCase()) ;
       });
     },
+    
   },
 };
 </script>

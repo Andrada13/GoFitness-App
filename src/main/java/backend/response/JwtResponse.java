@@ -2,6 +2,8 @@ package backend.response;
 
 import java.util.List;
 
+import backend.models.Program;
+
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";
@@ -12,9 +14,10 @@ public class JwtResponse {
 	private List<String> roles;
 	private String phoneNumber;
 	private String address;
+	private List<Program> programs;
 
 	public JwtResponse(String accessToken, Long id, String fullName, String username, String email,
-	 List<String> roles, String phoneNumber, String address) {
+	 List<String> roles, String phoneNumber, String address, List<Program> programs) {
 		this.token = accessToken;
 		this.id = id;
 		this.fullName = fullName;
@@ -23,7 +26,30 @@ public class JwtResponse {
 		this.roles = roles;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
+		this.programs = programs;
 	}
+
+	
+
+	public List<Program> getPrograms() {
+		return programs;
+	}
+
+
+
+
+
+
+
+	public void setPrograms(List<Program> programs) {
+		this.programs = programs;
+	}
+
+
+
+
+
+
 
 	public String getAccessToken() {
 		return token;

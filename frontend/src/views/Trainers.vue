@@ -47,12 +47,14 @@
           <div class="card border-0 card-shadow mb-4">
             <div class="card-body d-flex">
               <div class="align-self-center">
-                <h6 class="font-weight-medium">{{ trainer.name }}</h6>
-                <p class="mt-3">{{ trainer.type }}</p>
+                <h6 class="font-weight-medium">{{ trainer.fullName }}</h6>
+                <p class="mt-3">{{ trainer.description }}</p>
               </div>
             </div>
           </div>
         </div>
+
+            
         <!-- Column -->
                       <div class="col-md-12 mt-3 text-center">
           <a

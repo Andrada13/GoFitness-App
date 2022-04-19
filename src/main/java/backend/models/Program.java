@@ -7,7 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "programs", uniqueConstraints = {
@@ -23,94 +27,61 @@ public class Program {
     @Size(max = 50)
     private String name;
 
-    @NotBlank
+   // @NotBlank
     @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
-    private List<ProgramTime> programs =new ArrayList<>();
-
+   // @JsonBackReference
+    private List<ProgramTime> programs = new ArrayList<>();
 
     @NotBlank
     @Size(max = 50)
     private String description;
 
+    
    // @NotBlank
-  //  @Size(max = 50)
-  //  @ManyToMany(mappedBy = "program", cascade = CascadeType.ALL)
-   // private String trainerName;
-
-   // 
-   // @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "program_id")
-   // @JsonIgnore
-    @NotBlank
-    @ManyToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Trainer> trainer = new ArrayList<>();
-
+    @ManyToMany(mappedBy = "programs", cascade = CascadeType.ALL)
+    //@JsonBackReference
+    //@JsonIgnore
+   // @JsonSerialize(using = CustomProgram.class)
+    private List<User> trainer = new ArrayList<>();
 
     @NotBlank
     private String price;
-
 
     public List<ProgramTime> getPrograms() {
         return programs;
     }
 
-
-
     public void setPrograms(List<ProgramTime> programs) {
         this.programs = programs;
     }
 
-
-
-
-
-
-
-
-   
-
     public Program(Long id, @NotBlank @Size(max = 50) String name, @NotBlank List<ProgramTime> programs,
-            @NotBlank @Size(max = 50) String description, List<Trainer> trainerName, @NotBlank String price) {
+            @NotBlank @Size(max = 50) String description,  @NotBlank String price, @NotBlank List<User> trainer) {
         this.id = id;
         this.name = name;
         this.programs = programs;
         this.description = description;
-        //this.trainerName = trainerName;
         this.price = price;
+        this.trainer = trainer;
     }
 
-
-
-
-
-
-    public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description,
-            List<Trainer> trainerName, @NotBlank String price) {
+    public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description, @NotBlank String price) {
         this.name = name;
         this.description = description;
-       // this.trainerName = trainerName;
         this.price = price;
     }
-
-
 
     public Program() {
 
     }
 
-
-
     public Long getId() {
         return id;
     }
 
-
-
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
@@ -128,14 +99,6 @@ public class Program {
         this.description = description;
     }
 
-   
-
-
-
-
-  
-
-
     public String getPrice() {
         return price;
     }
@@ -144,5 +107,14 @@ public class Program {
         this.price = price;
     }
 
+    public List<User> getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(List<User> trainer) {
+        this.trainer = trainer;
+    }
+
+    
 
 }

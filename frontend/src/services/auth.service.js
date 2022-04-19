@@ -22,6 +22,8 @@ class AuthService {
     localStorage.removeItem('user');
   }
 
+ 
+
   register(user) {
     return axios.post(API_URL + 'signup', {
       fullName:user.fullName,
@@ -29,7 +31,9 @@ class AuthService {
       email: user.email,
       password: user.password,
       phoneNumber:user.phoneNumber,
-      address:user.address
+      address:user.address,
+      role:user.role,
+      programs:user.programs
     });
   }
 
@@ -45,7 +49,6 @@ addProgram(program) {
   return axios.post(API_URL +'program', {
       name: program.name,
       description: program.description,
-      trainerName : program.trainerName,
       price: program.price
   });
 }

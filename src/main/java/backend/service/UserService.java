@@ -21,10 +21,13 @@ public class UserService {
 	RoleRepository roleRepository;
 
 	// method for update button on admin board
-	public void updateUsers(long id, String username, String email) {
+	public void updateUsers(long id, String fullName,String username, String email,String address, String phoneNumber) {
 		User user = findById(id);
 		user.setUsername(username);
 		user.setEmail(email);
+		user.setAddress(address);
+		user.setFullName(fullName);
+		user.setPhoneNumber(phoneNumber);
 		userRepository.save(user);
 	}
 

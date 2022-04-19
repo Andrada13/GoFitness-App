@@ -5,7 +5,7 @@
     <br />
     <div class="col-md-12">
       <div class="card card-container">
-        <h2 align="center">Update program</h2>
+        <h2 align="center">Editeaza curs</h2>
 
         <form @submit="validateAndSubmit">
           <div v-if="errors.length">
@@ -18,25 +18,21 @@
             </div>
           </div>
           <fieldset class="form-group">
-            <label>ID program :</label>
+            <label>ID curs :</label>
             <input type="text" class="form-control" v-model="id" disabled />
           </fieldset>
           <fieldset class="form-group">
-            <label>Name :</label>
+            <label>Nume :</label>
             <input type="text" class="form-control" v-model="name" />
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Description :</label>
+            <label>Descriere :</label>
             <input type="text" class="form-control" v-model="description" />
           </fieldset>
 
-          <fieldset class="form-group">
-            <label>Trainer Name :</label>
-            <input type="text" class="form-control" v-model="trainerName" />
-          </fieldset>
-                    <fieldset class="form-group">
-            <label>Price :</label>
+           <fieldset class="form-group">
+            <label>Pret :</label>
             <input type="text" class="form-control" v-model="price" />
           </fieldset>
 
@@ -58,7 +54,6 @@ export default {
     return {
       name: "",
       description: "",
-      trainerName: "",
       price : 0,
       errors: [],
     };
@@ -74,17 +69,18 @@ export default {
       Program.getProgram(this.id).then((result) => {
         this.name = result.data.name;
         this.description = result.data.description;
-        this.trainerName = result.data.trainerName;
         this.price = result.data.price;
       });
     },
+
+    
     validateAndSubmit(e) {
       e.preventDefault();
       this.errors = [];
       if (!this.name) {
         this.errors.push("Enter valid username");
-      } else if (this.name.length < 5) {
-        this.errors.push("Name should be longer");
+      } else if (this.name.length < 2) {
+        this.errors.push("Numele trebuie sa fie mai lung");
       }
 
       if (this.errors.length === 0) {
@@ -92,7 +88,6 @@ export default {
           id: this.id,
           name: this.name,
           description: this.description,
-          trainerName: this.trainerName,
           price: this.price,
         }).then(() => {
           this.$router.push("/programs");

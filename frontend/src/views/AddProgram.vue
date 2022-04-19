@@ -2,11 +2,11 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-     <h2 align="center">Add new program</h2>
+     <h2 align="center">Adaugare curs nou</h2>
       <form name="form" @submit.prevent="handleRegister">
         <div v-if="!successful">
           <div class="form-group">
-            <label for="name">Name :</label>
+            <label for="name">Nume curs :</label>
             <input
               v-model="program.name"
               v-validate="'required|min:3|max:20'"
@@ -20,7 +20,7 @@
             >{{errors.first('name')}}</div></small>
           </div>
           <div class="form-group">
-            <label for="description">Description :</label>
+            <label for="description">Descriere :</label>
             <input
               v-model="program.description"
               type="text"
@@ -28,23 +28,10 @@
               name="description"
             />
           </div>
-          <div class="form-group">
-            <label for="type">Trainer Name :</label>
-            <input
-              v-model="program.trainerName"
-              v-validate="'required|min:6|max:40'"
-              type="text"
-              class="form-control"
-              name="trainerName"
-            />
-           <small> <div
-              v-if="submitted && errors.has('trainerName')"
-              class="alert-danger"
-            >{{errors.first('trainerName')}}</div></small>
-          </div>
+         
         </div>
         <div class="form-group">
-            <label for="type">Price :</label>
+            <label for="type">Pret :</label>
             <input
               v-model="program.price"
               v-validate="'required|max:6'"
@@ -59,7 +46,7 @@
           </div>
           <br>
           <div class="form-group text-center">
-            <button class="btn btn-dark btn-block">Add program</button>
+            <button class="btn btn-dark btn-block">Adauga curs</button>
           </div>
       </form>
 
@@ -79,7 +66,7 @@ export default {
   name: 'AddProgram',
   data() {
     return {
-      program: new Program('', '', '',''),
+      program: new Program('', '',''),
       submitted: false,
       successful: false,
       message: ''
