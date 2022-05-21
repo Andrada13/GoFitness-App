@@ -136,7 +136,7 @@ export default {
       this.$router.push(`/updateUser/${id}`);
     },
     addUser() {
-      this.$router.push(`/addUser/`);
+      this.$router.push(`/addUser`);
     },
     changePage(pageOfItems) {
       return (this.pageOfItems = pageOfItems);

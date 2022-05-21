@@ -7,12 +7,13 @@
           <h3 class="my-3">De ce sa ne alegi?</h3>
           <br>
           <p>
-            Punem la dispozitie un echipament modern, o echipa de instructori profesionisti si cursuri online in functie de preferintele fiecarei persoane.
+            Formam o echipa solida al carei scop este de a ajuta fiecare persoana
+            sa isi indeplineasca visul de a atinge cea mai buna versiune a sa.
           </p>
           <br>
           <p>
-            Schimbarea începe chiar aici!
-            Alatura-te și tu comunitatii noastre și antrenează-te alături de noi prin unul dintre cursurile noastre online sau abonamentele fizice.
+            Va asteptam in sala de sport!
+            
           </p>
           
           <p>Dorința noastră şi în acelaşi timp angajamentul nostru pe termen mediu şi lung este de a aduce schimbarea în stilul de viaţă al clienţilor care apelează la serviciile noastre, de a-i îndruma cum să obţină rezultatele la care acum doar speră, într-un timp cât mai scurt, însă adoptând un stil de viaţă din care nu are voie să lipsească mişcarea.
@@ -51,10 +52,10 @@
             <div class="mt-3">
               <h6 class="font-weight-medium">Cursuri si abonamente</h6>
               <p class="mt-3">
-                In functie de preferinte puteti opta pentru un curs online, alaturi de instructori sau pentru un
-                abonament fizic in cadrul salii noastre de sport.
+                In functie de preferinte puteti opta pentru un curs in cadrul salii noastre de sport. 
+                Puteti vizualiza detalii despre cursuri si puteti face o rezervare:
               </p>
-        <a href="/programs/onlineClasses" class="btn btn-dark border-0 text-white btn-sm my-3"
+        <a href="/programs" class="btn btn-dark border-0 text-white btn-sm my-3"
             >Detalii despre cursuri aici</a
           >
             </div>
@@ -69,11 +70,12 @@
       <div class="row">
         <div class="col-lg-4">
           <p>
-            Punem la dispozitie un echipament modern, o echipa de instructori profesionisti si cursuri online in functie de preferintele fiecarei persoane.
+            Punem la dispozitie un echipament modern, o echipa de instructori profesionisti si cursuri
+             in functie de preferintele fiecarei persoane.
           </p>
           <p>
-            Schimbarea începe chiar aici!
-            Alatura-te și tu comunitatii noastre și antrenează-te alături de noi prin unul dintre cursurile noastre online sau abonamentele fizice.
+            Schimbarea începe chiar acum!
+            Alatura-te și tu comunitatii noastre și antrenează-te alături de noi prin unul dintre cursurile noastre.
           </p>
           <br>
           <a href="/register" class="btn btn-dark border-0 text-white btn-md my-3"

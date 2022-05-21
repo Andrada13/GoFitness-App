@@ -24,6 +24,7 @@
                       class="form-control"
                       id="floatingInputFullName"
                       placeholder="fullName"
+                      name="fullName"
                       required
                       autofocus
                     />
@@ -34,24 +35,27 @@
 
 
                   <div class="form-floating mb-3">
+
                     <input
                       v-model="user.username"
                       v-validate="'required|min:3|max:20'"
+                      data-vv-validate-on="username" 
                       type="text"
                       class="form-control"
                       id="floatingInputUsername"
                       placeholder="username"
+                      name="username"
                       required
                       autofocus
                     />
-                    <label for="floatingInputUsername">Nume de utilizator :</label>
+                <label for="floatingInputUsername">Nume de utilizator :</label>
 
                     <small>
                       <div
-                        v-if="submitted && errors.has('username')"
+                        v-if="submitted && errors.has('username') && errors.collect('username')"
                         class="alert-danger"
                       >
-                        {{ errors.first("username") }}
+                        {{ "Numele de utilizator trebuie sa contina minim 3 si maxim 20 caractere."}}
                       </div></small
                     >
                   </div>
@@ -59,11 +63,12 @@
                   <div class="form-floating mb-3">
                     <input
                       v-model="user.email"
-                      v-validate="'required|email|max:50'"
+                      v-validate="'required|email'"
                       type="email"
                       class="form-control"
                       id="floatingInputEmail"
                       placeholder="email"
+                      name="email"
                     />
                     <label for="floatingInputEmail">Adresa de email :</label>
 
@@ -72,7 +77,7 @@
                         v-if="submitted && errors.has('email')"
                         class="alert-danger"
                       >
-                        {{ errors.first("email") }}
+                        {{ "Introduceti o adresa de email valida." }}
                       </div></small
                     >
                   </div>
@@ -80,11 +85,12 @@
                   <div class="form-floating mb-3">
                     <input
                       v-model="user.password"
-                      v-validate="'required|min:6|max:40'"
+                      v-validate="'required|min:6'"
                       type="password"
                       class="form-control"
                       id="floatingPassword"
                       placeholder="Password"
+                      name="password"
                     />
                     <label for="floatingPassword">Parola :</label>
 
@@ -93,7 +99,7 @@
                         v-if="submitted && errors.has('password')"
                         class="alert-danger"
                       >
-                        {{ errors.first("password") }}
+                        {{ "Parola trebuie sa contina minim 6 caractere." }}
                       </div></small
                     >
                   </div>
@@ -101,22 +107,25 @@
                 <div class="form-floating mb-3">
                     <input
                       v-model="user.phoneNumber"
-                      v-validate="'required|min:10|max:10'"
-                      type="text"
+                      v-validate="'digits:10'" type="text"
                       class="form-control"
-                      id="floatingInputPhoneNumber"
+                      id="phoneNumber"
                       placeholder="phoneNumber"
+                      name="phoneNumber"
                       required
                       autofocus
                     />
-                    <label for="floatingInputPhoneNumber">Numar de telefon :</label>
+                     
+
+                    <label for="phoneNumber">Numar de telefon :</label>
+
 
                     <small>
                       <div
                         v-if="submitted && errors.has('phoneNumber')"
                         class="alert-danger"
                       >
-                        {{ errors.first("phoneNumber") }}
+                        {{ "Introduceti un numar de telefon valid." }}
                       </div></small
                     >
                   </div>
@@ -176,6 +185,7 @@
 
 <script>
 import User from "../models/user";
+
 export default {
   name: "Register",
   data() {
@@ -197,6 +207,7 @@ export default {
     }
   },
   methods: {
+     
     handleRegister() {
       this.message = "";
       this.submitted = true;
@@ -207,11 +218,11 @@ export default {
               this.message = data.message;
               this.successful = true;
             },
-            (error) => {
+            error => {
               this.message =
                 (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
+                  error.response.data ) ||
+                //  error.response.data.message ||
                 error.message ||
                 error.toString();
               this.successful = false;

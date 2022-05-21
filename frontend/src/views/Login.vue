@@ -15,11 +15,10 @@
               </h6>
 
               <form name="form" @submit.prevent="handleLogin">
-                <div v-if="!successful">
                   <div class="form-floating mb-3">
                     <input
                       v-model="user.username"
-                      v-validate="'required|min:3|max:20'"
+                      v-validate="'required'"
                       type="text"
                       class="form-control"
                       id="floatingInputUsername"
@@ -34,7 +33,7 @@
                         v-if="submitted && errors.has('username')"
                         class="alert-danger"
                       >
-                        {{ errors.first("username") }}
+                      Introduceti numele!
                       </div></small
                     >
                   </div>
@@ -42,7 +41,7 @@
                   <div class="form-floating mb-3">
                     <input
                       v-model="user.password"
-                      v-validate="'required|min:6|max:40'"
+                      v-validate="'required'"
                       type="password"
                       class="form-control"
                       id="floatingPassword"
@@ -55,7 +54,7 @@
                         v-if="submitted && errors.has('password')"
                         class="alert-danger"
                       >
-                        {{ errors.first("password") }}
+                        Introduceti parola!
                       </div></small
                     >
                   </div>
@@ -79,16 +78,14 @@
                     >Nu aveti un cont de utilizator? Inregistrati-va aici</a
                   >
                   <hr class="my-4" />
-                </div>
+           
+
+                <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+        </div>
               </form>
 
-              <div
-                v-if="message"
-                class="alert"
-                :class="successful ? 'alert-success' : 'alert-danger'"
-              >
-                {{ message }}
-              </div>
+             
             </div>
           </div>
         </div>
@@ -106,7 +103,7 @@ export default {
       user: new User('', ''),
       message: '',
       submitted: false,
-      successful: false,
+     // successful: false,
 
 
     };
@@ -131,7 +128,7 @@ export default {
           this.$store.dispatch('auth/login', this.user).then( //Actions are called in the components with the method dispatch()
             () => {
               if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_ADMIN"){
-                   this.$router.push('/adminProfile');
+                   this.$router.push('/admin-profile');
               }else if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_TRAINER"){
                    this.$router.push('/trainerProfile');
               }else if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_USER"){
@@ -140,7 +137,7 @@ export default {
             },
             error => {
               this.message =
-                (error.response && error.response.data && error.response.data.message) ||
+                (error.response && error.response.data ) ||
                 error.message ||
                 error.toString();
             }

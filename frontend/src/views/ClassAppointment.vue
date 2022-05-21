@@ -3,72 +3,109 @@
   <div class="rezervare">
     <br /><br /><br><br>
     <div class="col-md-12">
-      <h2 align="center">Programare curs online</h2>
+      <h2 align="center">Programare curs</h2>
 
       <div class="card card-container">
-        <form @submit="validateAndSubmit">
-          <div v-if="errors.length">
-            <div
-              class="alert alert-warning"
-              v-bind:key="index"
-              v-for="(error, index) in errors"
-            >
-              {{ error }}
-            </div>
-          </div>
-
-          <label><strong> Informatii utilizator : </strong></label>
+        <form @submit.prevent="insertBooking()">
+          <div v-if="!successful">
+            
+        
+          <label><strong> Informatii utilizator: </strong></label>
+           <label
+            >Nume: <i> {{ currentUser.fullName }} </i></label
+          >
           <label
-            >Email : <i> {{ currentUser.email }} </i></label
+            >Email: <i> {{ currentUser.email }} </i></label
           >
 
           <hr class="my-4" />
 
+         <fieldset class="form-group">
+            <label>Grupa:</label>
+            <select class="form-select" v-model="grupa" >
+              <option value="" selected disabled>
+                Alegeti grupa:
+              </option>
+
+              <option>
+                1
+              </option>
+               <option >
+                2
+              </option>
+              
+            </select>
+          </fieldset>
+
           <fieldset class="form-group">
-            <label>Denumire :</label>
+            <label>Denumire:</label>
             <input type="text" class="form-control" v-model="name" disabled />
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Antrenor :</label>
            
-             <select class="form-select">
-              <option selected disabled>
-                Alegeti antrenorul :
-              </option>
+           
+            
+            
 
-              <option v-for="t in fullName" v-bind:key="t.id">
-                {{ t.fullName }}
-              </option>
-            </select>
+       
+             <div v-if="grupa === '1'" >
+             <label >Antrenor:</label>
+           <input type="text" class="form-control" v-model=" fullName[0].fullName" disabled />
+               </div>
+            <div v-else-if="grupa === '2'">
+            <label >Antrenor:</label>
+                    <input type="text" class="form-control" v-model=" fullName[1].fullName" disabled />
+                  </div>
+        
           
           </fieldset>
           <fieldset class="form-group">
-            <label>Pret :</label>
+            <label>Pret:</label>
             <input type="text" class="form-control" v-model="price" disabled />
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Program :</label>
 
+            
+       
+             <div v-if="grupa === '1'" >
+             <label >Program:</label>
+           <input type="text" class="form-control" v-model=" time_program[0].time_program" disabled />
+               </div>
+            <div v-else-if="grupa === '2'">
+            <label >Program:</label>
+                    <input type="text" class="form-control" v-model="time_program[1].time_program" disabled />
+                  </div>
+<!--
             <select class="form-select">
               <option selected disabled>
-                Alegeti ziua si ora rezervarii :
+                Alegeti ziua si ora rezervarii:
               </option>
 
               <option v-for="p in time_program" v-bind:key="p.programTime_id">
                 {{ p.time_program }}
               </option>
             </select>
+            -->
           </fieldset>
 
           <br />
           <div class="form-group text-center">
-            <button class="btn btn-dark btn-block" type="submit">
+            <button class="btn btn-dark btn-block w-100" >
               Rezervare
             </button>
           </div>
+
+          </div>
         </form>
+         <div
+                v-if="message"
+                class="alert"
+                :class="successful ? 'alert-success' : 'alert-danger'"
+              >
+                {{ message }}
+              </div>
       </div>
     </div>
   </div>
@@ -89,6 +126,9 @@ export default {
       trainer:[],
       fullName:"",
       content: "",
+      grupa:"",
+      successful: false,
+      message: "",
     };
   },
   computed: {
@@ -108,29 +148,47 @@ export default {
         this.time_program = result.data.programs;
         this.fullName = result.data.trainer;
 
-        console.log(this.fullName);
+
+        //console.log(this.fullName[0].id);
+       // console.log(this.grupa,this.id,this.time_program[0].programTime_id,this.fullName[0].id,this.currentUser.id)
+
+        if (this.grupa === 1) {
+      console.log(this.id, this.grupa,this.time_program[0].programTime_id,this.fullName[0].id,this.currentUser.id)
+     } else if (this.grupa === 2) {
+       console.log(this.id, this.grupa,this.time_program[1].programTime_id,this.fullName[1].id,this.currentUser.id)
+
+     } 
       });
     },
+  
+     insertBooking() {
+        this.message = "";
+    //  this.submitted = true;
 
-    validateAndSubmit(e) {
-      e.preventDefault();
-      this.errors = [];
-      if (!this.name) {
-        this.errors.push("Enter valid username");
-      } else if (this.name.length < 5) {
-        this.errors.push("Name should be longer");
-      }
+      // console.log(this.notUsers);
+     // console.log(this.message3);
+                   //this.message = data.message;
 
-      if (this.errors.length === 0) {
-        Program.updateProgram(this.id, {
-          id: this.id,
-          name: this.name,
-          trainerName: this.trainerName,
-          price: this.price,
-        }).then(() => {
-          this.$router.push("/programs");
-        });
-      }
+
+     if (this.grupa=== '1') {
+      Program.insertBooking(this.id, this.grupa,this.time_program[0].programTime_id,this.fullName[1].id,this.currentUser.id)
+                    this.successful = true;
+
+     } else if (this.grupa === '2') {
+      Program.insertBooking(this.id, this.grupa,this.time_program[1].programTime_id,this.fullName[1].id,this.currentUser.id)
+                    this.successful = true;
+
+
+     } 
+
+
+ 
+
+     // Program.removeTimeFromProgram(this.times.time_program, this.id);
+      //console.log(this.times.time_program, this.id)
+
+      //face refresh automat
+     // location.reload();
     },
   },
   created() {

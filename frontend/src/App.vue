@@ -6,16 +6,17 @@
       <div class="ms-auto">
         <div class="navbar-nav">
           <li v-if="showAdminBoard" class="nav-item">
-            <router-link to="/admin" class="nav-link">Users Board</router-link>
+            <router-link to="/admin" class="nav-link">Utilizatori</router-link>
           </li>
-          <li v-if="showAdminBoard" class="nav-item">
-            <router-link to="/trainers" class="nav-link"
-              >Trainers Board</router-link
-            >
-          </li>
+         
           <li v-if="showAdminBoard" class="nav-item">
             <router-link to="programs" class="nav-link"
-              >Programs Board</router-link
+              >Cursuri</router-link
+            >
+          </li>
+           <li v-if="showAdminBoard" class="nav-item">
+            <router-link to="admin-profile" class="nav-link"
+              >Profil</router-link
             >
           </li>
           <li v-if="showAdminBoard" class="nav-item">
@@ -30,34 +31,13 @@
             <router-link to="/home" class="nav-link"> Acasa </router-link>
           </li>
 
-          <div class="nav-item" @click="isOpen = !isOpen">
-            <li class="nav-item-programs">Antrenamente</li>
+          <li class="nav-item">
+            <router-link to="/program" class="nav-link"> Cursuri </router-link>
+          </li>
 
-            <svg viewBox="0 0 1030 638" width="5">
-              <path
-                d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
-                fill="#FFF"
-              ></path>
-            </svg>
-
-            <transition name="fade" apear>
-              <div class="sub-menu" v-if="isOpen">
-                <div class="nav-item">
-                  <router-link to="/programs/onlineClasses"
-                    >Antrenamente Online</router-link
-                  >
-                </div>
-                <div class="nav-item">
-                  <router-link to="/programs/memberships"
-                    >Abonamente</router-link
-                  >
-                </div>
-              </div>
-            </transition>
-          </div>
 
           <li class="nav-item">
-            <router-link to="/trainersDetails" class="nav-link">
+            <router-link to="/trainers-details" class="nav-link">
               Antrenori
             </router-link>
           </li>
@@ -87,32 +67,12 @@
           <router-link to="/home" class="nav-link"> Acasa </router-link>
         </li>
 
-        <div class="nav-item" @click="isOpen = !isOpen">
-          <li class="nav-item-programs">Antrenamente</li>
-
-          <svg viewBox="0 0 1030 638" width="5">
-            <path
-              d="M1017 68L541 626q-11 12-26 12t-26-12L13 68Q-3 49 6 24.5T39 0h952q24 0 33 24.5t-7 43.5z"
-              fill="#FFF"
-            ></path>
-          </svg>
-
-          <transition name="fade" apear>
-            <div class="sub-menu" v-if="isOpen">
-              <div class="nav-item">
-                <router-link to="/programs/onlineClasses"
-                  >Antrenamente Online</router-link
-                >
-              </div>
-              <div class="nav-item">
-                <router-link to="/programs/memberships">Abonamente</router-link>
-              </div>
-            </div>
-          </transition>
-        </div>
+        <li class="nav-item">
+            <router-link to="/program" class="nav-link"> Cursuri </router-link>
+          </li>
 
         <li class="nav-item">
-          <router-link to="/trainersDetails" class="nav-link">
+          <router-link to="/trainers-details" class="nav-link">
             Antrenori
           </router-link>
         </li>
@@ -125,11 +85,20 @@
           <router-link to="/contact" class="nav-link"> Contact </router-link>
         </li>
 
+ <div v-if ="currentUser.roles == 'ROLE_USER'">
         <li  class="nav-item">
           <router-link to="/profile" class="nav-link">
-            {{ currentUser.fullName }}
+            Profil
           </router-link>
         </li>
+ </div>
+ <div v-else-if="currentUser.roles == 'ROLE_TRAINER'">
+    <li  class="nav-item">
+          <router-link to="/trainerProfile" class="nav-link">
+            Profil
+          </router-link>
+        </li>
+ </div>
         <li class="nav-item py-7 px-8">
           <a class="nav-link" href @click.prevent="logOut"> Iesi din cont </a>
         </li>

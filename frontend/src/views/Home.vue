@@ -1,10 +1,12 @@
 
 <template>
   <body>
-    <br /><br />
-    <div class="title">
+    <br /><br /><br> <br>
+    <!--
+     <div class="title">
       <h3 class="mt-3">Calatoria ta spre un stil de viata mai sanatoas</h3>
     </div>
+    -->
     <div class="py-5 service-26">
       <div class="container">
         <div class="row wrap-service-26"></div>
@@ -29,8 +31,8 @@
               pe care puteti dispune daca ne alegeti.
             </p>
             <div class="col-md-12 mt-3 text-left">
-              <a type="button" class="btn btn-dark btn-lg" href="/register">
-                Incepeti acum
+              <a type="button" class="btn btn-dark" href="/register">
+                INCEPETI ACUM
               </a>
             </div>
           </div>
@@ -41,16 +43,15 @@
             <div class="max-box">
               <h3 class="mt-3">ANTRENAMENTE ONLINE</h3>
               <p class="mt-3">
-                Aici puteti gasi atat cursurile noastre online, organizate de
+                Aici puteti gasi cursuri organizate de
                 catre cei mai profesionisti antrenori.
               </p>
               <p>
-                Pentru mai multe detalii puteti vizita pagina destinata
-                antrenamentelor online :
+                Pentru mai multe detalii puteti vizita pagina destinata cursurilor :
               </p>
               <div class="col-md-12 mt-3 text-left">
-                <a type="button" class="btn btn-dark btn-lg" href="programs/onlineClasses">
-                  Antrenamente
+                <a type="button" class="btn btn-dark" href="programs/onlineClasses">
+                  ANTRENAMENTE
                 </a>
               </div>
             </div>
@@ -75,14 +76,13 @@
           <div class="col-md-6 align-self-center">
             <h3 class="mt-3">INTALNESTE ANTRENORII</h3>
             <p class="mt-3">
-              Antreneaza-te acasa alegand unul dintre cursurile noastre online,
-              si vei fi sub indrumarea unui antrenor ce experienta ce te va
-              ajuta sa iti atingi mai repede si mai eficient scopul pe care ti-l
-              ai propus.
+              Antreneaza-te alegand unul dintre cursurile noastre
+              si vei fi sub indrumarea unui antrenor a carui experienta te va
+              ajuta sa iti atingi mai repede si mai eficient scopul pe care ti l-ai propus.
             </p>
             <div class="col-md-12 mt-3 text-left">
-              <a type="button" class="btn btn-dark btn-lg" href="/trainersDetails">
-                Antrenori
+              <a type="button" class="btn btn-dark" href="/trainersDetails">
+                ANTRENORI
               </a>
             </div>
           </div>

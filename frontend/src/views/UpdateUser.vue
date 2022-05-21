@@ -37,7 +37,7 @@
         </fieldset>
         <fieldset class="form-group">
           <label>Nume de utilizator :</label>
-          <input type="text" class="form-control" v-model="username" />
+          <input type="text" class="form-control" name="username" v-model="username" />
         </fieldset>
         <fieldset class="form-group">
           <label>Email :</label>
@@ -55,7 +55,6 @@
         <div class="form-group text-center">
             <button class="btn btn-dark w-100" type="submit">Save</button>
           </div>
-
       </form>
     </div>
   </div>
@@ -99,9 +98,15 @@ export default {
       e.preventDefault();
       this.errors = [];
       if (!this.username) {
-        this.errors.push("Enter valid username");
-      } else if (this.username.length < 5) {
-        this.errors.push("Username should be longer");
+        this.errors.push("Introduceti un username.");
+      } else if (this.username.length < 3) {
+        this.errors.push("Numele de utilizator trebuie sa contina minim 3 caractere.");
+      }else if (!this.fullName) {
+        this.errors.push("Introduceti numele si prenumele.");
+      }else if (!this.address) {
+        this.errors.push("Introduceti adresa.");
+      }else if (!this.email) {
+        this.errors.push("Introduceti email.");
       }
 
       if (this.errors.length === 0) {

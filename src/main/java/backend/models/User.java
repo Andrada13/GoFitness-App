@@ -3,24 +3,11 @@ package backend.models;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import org.hibernate.Criteria;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
@@ -35,7 +22,6 @@ public class User {
 	private Long id;
 
 	@NotBlank
-	@Size(max = 50)
 	@Column(name = "full_name")
 	private String fullName;
 
@@ -44,21 +30,19 @@ public class User {
 	private String username;
 
 	@NotBlank
-	@Size(max = 50)
 	@Email
 	private String email;
 
 	@NotBlank
-	@Size(max = 120)
 	private String password;
 
 	@NotBlank
-	@Size(min=10,max = 10)
+	//@Size(min=10,max = 10)
+	@Pattern(regexp="[\\d]{10}", message="This field should contain 10 digits!")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
 	@NotBlank
-	@Size(max = 70)
 	private String address;
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -67,12 +51,41 @@ public class User {
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+		      CascadeType.PERSIST,
+		    CascadeType.MERGE
+		  })
+	// (fetch = FetchType.LAZY)
+	// @JoinTable(name = "users_programs", 
+	// 			joinColumns = @JoinColumn(name = "trainer_id", nullable = true), 
+	// 			inverseJoinColumns = @JoinColumn(name = "programs_id", nullable = true))
+//	@ManyToMany( fetch = FetchType.LAZY, cascade = {
+  //      CascadeType.PERSIST,
+  //      CascadeType.MERGE
+  //  })
 	@JoinColumn(name = "id")
 	//@JsonManagedReference
 	@JsonIgnore
-	//@JsonSerialize(using = CustomTrainer.class)
     private List<Program> programs = new ArrayList<>();
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	//@JoinColumn(name = "id")
+	//@JsonManagedReference
+	@JoinTable(	name = "users_bookings", 
+				joinColumns = @JoinColumn(name = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JsonIgnore
+    private List<Bookings> userId = new ArrayList<>();
+
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	//@JoinColumn(name = "trainerId")
+	@JoinTable(	name = "trainers_bookings", 
+				joinColumns = @JoinColumn(name = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "trainer_id"))
+	//@JsonManagedReference
+	@JsonIgnore
+    private List<Bookings> trainerId = new ArrayList<>();
 
 	
 	public User() {
@@ -127,13 +140,20 @@ public class User {
 
 
 
+	
+
+
+
+
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getUsername() {
 		return username;

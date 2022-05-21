@@ -3,9 +3,12 @@
   <div>
     <br />
     <br />
+    <br>
+    <br>
+  <h2 align="center">Editeaza curs</h2>
+
     <div class="col-md-12">
       <div class="card card-container">
-        <h2 align="center">Editeaza curs</h2>
 
         <form @submit="validateAndSubmit">
           <div v-if="errors.length">
@@ -18,27 +21,27 @@
             </div>
           </div>
           <fieldset class="form-group">
-            <label>ID curs :</label>
-            <input type="text" class="form-control" v-model="id" disabled />
+            <label>ID curs:</label>
+            <input type="text" class="form-control"  v-model="id" disabled />
           </fieldset>
           <fieldset class="form-group">
-            <label>Nume :</label>
-            <input type="text" class="form-control" v-model="name" />
+            <label>Nume:</label>
+            <input type="text" class="form-control"  name="name" v-model="name" />
           </fieldset>
 
           <fieldset class="form-group">
-            <label>Descriere :</label>
+            <label>Descriere:</label>
             <input type="text" class="form-control" v-model="description" />
           </fieldset>
 
            <fieldset class="form-group">
-            <label>Pret :</label>
-            <input type="text" class="form-control" v-model="price" />
+            <label>Pret 2h:</label>
+            <input type="text" class="form-control" name="price" v-model="price" pattern="[0-9]+" />
           </fieldset>
 
           <br />
           <div class="form-group text-center">
-            <button class="btn btn-dark btn-block" type="submit">Save</button>
+            <button class="btn btn-dark btn-block w-100" type="submit">Save</button>
           </div>
         </form>
       </div>
@@ -56,6 +59,7 @@ export default {
       description: "",
       price : 0,
       errors: [],
+ 
     };
   },
   computed: {
@@ -78,10 +82,11 @@ export default {
       e.preventDefault();
       this.errors = [];
       if (!this.name) {
-        this.errors.push("Enter valid username");
-      } else if (this.name.length < 2) {
-        this.errors.push("Numele trebuie sa fie mai lung");
+        this.errors.push("Introduceti numele cursului.");
+      } else if (this.name.length < 3) {
+        this.errors.push("Numele cursului trebuie sa contina minim 3 caractere.");
       }
+      
 
       if (this.errors.length === 0) {
         Program.updateProgram(this.id, {
@@ -102,6 +107,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+ 
+  font-family: serif;
+} 
 .center_div {
   margin: 0 auto;
   width: 80%;
@@ -116,7 +125,7 @@ label {
   padding: 40px 40px;
 }
 .card {
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;

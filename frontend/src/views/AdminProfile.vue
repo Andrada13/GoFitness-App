@@ -78,9 +78,7 @@
                         </label>
                       </div>
                     </div>
-                    <div class="col-12 text-right">
-                  <a href="#!" class="btn btn-dark">Editeaza profilul</a>
-                </div>
+                   
 
                   </div>
                   <div class="row">

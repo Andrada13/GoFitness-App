@@ -7,45 +7,45 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 @Entity
 @Table(name = "programs", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name"),
 })
 public class Program {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @Size(max = 50)
     private String name;
 
-   // @NotBlank
-    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "program", cascade = CascadeType.MERGE)
    // @JsonBackReference
     private List<ProgramTime> programs = new ArrayList<>();
 
     @NotBlank
-    @Size(max = 50)
     private String description;
-
     
-   // @NotBlank
-    @ManyToMany(mappedBy = "programs", cascade = CascadeType.ALL)
-    //@JsonBackReference
-    //@JsonIgnore
-   // @JsonSerialize(using = CustomProgram.class)
-    private List<User> trainer = new ArrayList<>();
+    @ManyToMany(mappedBy = "programs", cascade = {
+              CascadeType.PERSIST,
+             CascadeType.MERGE
+      })
+    public List<User> trainer = new ArrayList<>();
 
     @NotBlank
     private String price;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	//@JoinColumn(name = "courseId")
+    @JoinTable(	name = "programs_bookings", 
+				joinColumns = @JoinColumn(name = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "program_id"))
+	//@JsonManagedReference
+	@JsonIgnore
+    private List<Bookings> courseId = new ArrayList<>();
 
     public List<ProgramTime> getPrograms() {
         return programs;
@@ -62,7 +62,7 @@ public class Program {
         this.programs = programs;
         this.description = description;
         this.price = price;
-        this.trainer = trainer;
+      //  this.trainer = trainer;
     }
 
     public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description, @NotBlank String price) {
@@ -107,14 +107,11 @@ public class Program {
         this.price = price;
     }
 
-    public List<User> getTrainer() {
-        return trainer;
+    public void remove() {
+        for(User trainerEntity : new ArrayList<>(trainer)) {
+            trainer.remove(trainerEntity);
+            trainerEntity.getPrograms().remove(this);
+        }
     }
-
-    public void setTrainer(List<User> trainer) {
-        this.trainer = trainer;
-    }
-
-    
 
 }

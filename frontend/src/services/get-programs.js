@@ -14,6 +14,11 @@ class Program {
     
     }
 
+    removeTrainerFromCourse(idCourse, idTrainer) {
+        return axios.delete(`${API_URL_PROGRAM}/removeTrainersFromCourse/${idCourse}/${idTrainer}`, { headers: authHeader() });
+    
+    }
+
     getTrainerNotByCourse(id) {
         return axios.get(`${API_URL_PROGRAM}/trainersNotByCourseId/${id}`, { headers: authHeader() });
     
@@ -53,6 +58,20 @@ class Program {
            
         });
     }
+
+    insertBooking(courseId,grupa,time,trainer,user){
+        return axios.post(`${API_URL_PROGRAM}/booking/${courseId}/${grupa}/${time}/${trainer}/${user}`, {
+           
+        });
+    }
+
+
+    removeTimeFromProgram(time, id){
+        return axios.delete(`${API_URL_PROGRAM}/time/${time}/${id}`, {
+          // time: time
+        });
+    }
+
     addTrainerIdToCourseId(trainerToCourseId,id) {
         return axios.post(`${API_URL_PROGRAM}/trainerIdToCourseId/${trainerToCourseId}/${id}`, {
            

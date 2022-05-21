@@ -34,7 +34,6 @@ import backend.repository.MessageRepository;
 import backend.repository.ProgramRepository;
 import backend.repository.ProgramTimeRepository;
 import backend.repository.RoleRepository;
-import backend.repository.TrainerRepository;
 import backend.repository.UserRepository;
 import backend.requests.AddProgramRequest;
 
@@ -57,8 +56,7 @@ public class AuthController {
 	@Autowired
 	UserRepository userRepository;
 
-	@Autowired
-	TrainerRepository trainerRepository;
+	
 
 	@Autowired
 	ProgramRepository programRepository;
@@ -223,7 +221,7 @@ public class AuthController {
 
 		messageRepository.save(message);
 
-		return ResponseEntity.ok(new MessageResponse("Message send successfully!"));
+		return ResponseEntity.ok(new MessageResponse("Mesajul a fost trimis cu succes! Multumim!"));
 	}
 
 

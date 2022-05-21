@@ -79,9 +79,6 @@
                         </label>
                       </div>
                     </div>
-                    <div class="col-12 text-right">
-                  <a href="#!" class="btn btn-dark">Editeaza profilul</a>
-                </div>
 
                   </div>
                   <div class="row">
@@ -96,7 +93,6 @@
                     <div class="col-md-12">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-address">Curs/Abonament</label>
-                        <input id="input-address" class="form-control form-control-alternative" placeholder="" value="" type="text">
                       </div>
                     </div>
                   </div>

@@ -1,17 +1,16 @@
 package backend.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "program_time")
 public class ProgramTime {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long programTime_id;
@@ -24,6 +23,17 @@ public class ProgramTime {
 
     private String time_program;
 
+
+
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	//@JoinColumn(name = "timeId")
+    @JoinTable(	name = "time_bookings", 
+				joinColumns = @JoinColumn(name = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "time_id"))
+	//@JsonManagedReference
+	@JsonIgnore
+    private List<Bookings> timeId = new ArrayList<>();
     
     public ProgramTime() {
     }

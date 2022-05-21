@@ -25,7 +25,12 @@
               <p>
                 <i>{{ program.description }}</i>
               </p>
-              <p>Antrenor : {{ program.trainerName}}</p>
+              
+             <div v-for="t in program.trainer" :key="t.id">
+              Antrenor : {{ t.fullName }}
+              <br>
+          </div>
+       
             </div>
             <hr class="my-4" />
             <br />
@@ -73,10 +78,7 @@
                       v-bind:src="myImage3"
                       class="rounded img-shadow img-fluid"
                     />
-                    <div class="overlay">
-                      <h2>jajdagd</h2>
-                      <a class="info" href="#">link here</a>
-                    </div>
+                   
                   </div>
                 </div>
               </div>

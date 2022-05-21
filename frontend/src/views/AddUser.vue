@@ -201,7 +201,7 @@ label {
   padding: 40px 40px;
 }
 .card {
-  background-color: #f7f7f7;
+  background-color: #fdfdfd;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;

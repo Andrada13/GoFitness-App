@@ -17,7 +17,7 @@
                   ></i>
                 </h3>
                 <i class="ni location_pin mr-2"
-                  >Aici este profilul antrenorilor
+                  >Acesta este profilul tau
                 </i>
                 <hr class="my-4" />
               </div>
@@ -96,16 +96,14 @@
                       </label>
                     </div>
                   </div>
-                  <div class="col-12 text-right">
-                    <a href="#!" class="btn btn-dark">Editeaza profilul</a>
-                  </div>
+                
                 </div>
                 <div class="row"></div>
               </div>
               <hr class="my-4" />
               <!-- Address -->
               <h6 class="heading-small text-muted mb-4">
-                Curs/Abonament in desfasurare
+                Cursuri in desfasurare
                 
               </h6>
               <div class="pl-lg-4">
@@ -117,6 +115,7 @@
                           v-for="(program, index) in currentUser.programs"
                           :key="index"
                           >{{ program.name  }} {{""}}</i></label>
+                     
                       
                     </div>
                   </div>
@@ -130,20 +129,7 @@
                      
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-country"
-                        >Data abonamentului :</label
-                      >
-                      <input
-                        type="text"
-                        id="input-country"
-                        class="form-control form-control-alternative"
-                        placeholder=""
-                        value=""
-                      />
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </form>

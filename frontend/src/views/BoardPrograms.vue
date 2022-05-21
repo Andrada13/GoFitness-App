@@ -110,10 +110,10 @@ export default {
 
   methods: {
     listProgram(id) {
-      this.$router.push(`/listProgram/${id}`);
+      this.$router.push(`/list-program/${id}`);
     },
     listTrainers(id) {
-      this.$router.push(`/listTrainers/${id}`);
+      this.$router.push(`/list-trainer/${id}`);
     },
     getAllPrograms() {
       Program.getPrograms().then((response) => {
@@ -133,11 +133,12 @@ export default {
     deleteProgram(id) {
       Program.deleteProgramsById(id).then(() => {
         this.getAllPrograms();
+        this.getNumbers();
       });
     },
 
     addProgram() {
-      this.$router.push(`/addProgram/`);
+      this.$router.push(`/addProgram`);
     },
   },
   created() {

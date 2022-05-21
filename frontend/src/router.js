@@ -62,7 +62,7 @@ export const router = new Router({
       component: Contact
     },
     {
-      path: '/trainersDetails',
+      path: '/trainers-details',
       component: Trainers
     },
     {
@@ -70,7 +70,7 @@ export const router = new Router({
       component: About
     },
     {
-      path: '/programs/onlineClasses',
+      path: '/program',
       component: OnlineClasses
     },
    
@@ -94,15 +94,15 @@ export const router = new Router({
 
     },
     {
-      path: '/listTrainers/:id',
-      name: 'listTrainers',
+      path: '/list-trainer/:id',
+      name: 'listTrainer',
       // lazy-loaded
       component: () => import('./views/ListOfTrainers.vue'),
      // beforeEnter: getAdminAccess,
 
     },
     {
-      path: '/listProgram/:id',
+      path: '/list-program/:id',
       name: 'listProgram',
       // lazy-loaded
       component: () => import('./views/ListOfProgram.vue'),
@@ -110,7 +110,7 @@ export const router = new Router({
 
     },
     {
-      path: '/adminProfile',
+      path: '/admin-profile',
       name: 'adminProfile',
       // lazy-loaded
       component: () => import('./views/AdminProfile.vue'),
@@ -123,14 +123,7 @@ export const router = new Router({
       // lazy-loaded
       component: () => import('./views/TrainerProfile.vue')
     },
-    {
-      path: '/trainers',
-      name: 'trainers',
-      // lazy-loaded
-      component: () => import('./views/BoardTrainers.vue'),
-      beforeEnter: getAdminAccess,
-
-    },
+    
 
     {
       path: '/programs',
@@ -149,7 +142,7 @@ export const router = new Router({
       beforeEnter: getAdminAccess,
     },
     {
-      path: "/addUser/",
+      path: "/addUser",
       name: "Add User",
       component: () => import('./views/AddUser.vue'),
       beforeEnter: getAdminAccess,
@@ -181,7 +174,7 @@ export const router = new Router({
     },
 
     {
-      path: "/addProgram/",
+      path: "/addProgram",
       name: "Add Program",
       component: () => import('./views/AddProgram.vue'),
       beforeEnter: getAdminAccess,

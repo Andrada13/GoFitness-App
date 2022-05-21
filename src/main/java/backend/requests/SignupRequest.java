@@ -1,14 +1,11 @@
 package backend.requests;
 
 
-
-import java.util.List;
-
 import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-import backend.models.Program;
+
  
 public class SignupRequest {
     
@@ -32,7 +29,7 @@ public class SignupRequest {
     private String password;
 
     @NotBlank
-    @Size(min = 10,max = 10)
+    @Pattern(regexp="[\\d]{10}", message="This field should contain 10 digits!")
     private String phoneNumber;
 
     @NotBlank

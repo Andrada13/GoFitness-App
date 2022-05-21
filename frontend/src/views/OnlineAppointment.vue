@@ -146,7 +146,6 @@ export default {
      getAllTrainersForPrograms() {
       User.getUsers().then((response) => {
         this.users = response.data;
-        console.log(this.users);
 
       });
     },
