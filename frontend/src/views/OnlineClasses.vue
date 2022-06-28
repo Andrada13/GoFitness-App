@@ -3,9 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
+          <br>
           <br />
-          <h4 class="my-3">Antrenamente Disponibile</h4>
+          <h4 class="my-3">Cursuri disponibile</h4>
           <br />
+                                                                    <br>
+
           <h6 class="font-weight-light subtitle">
             Puteti sa va bucurati de experienta antrenorilor nostri alegand un
             program specific dorintelor dumnevoastra :
@@ -37,7 +40,7 @@
             <br />
             <div class="col-md-12 mt-3 text-center">
               <a
-                href="/programs/onlineClasses/appointment"
+                href="/programs-classes"
                 class="btn btn-dark btn-lg"
               >
                 Faceti o programare online</a
@@ -46,9 +49,14 @@
           </div>
         </div>
         <div class="col-lg-6">
+                                                          <br>
+                                                          <br>
+
           <div class="row wrap-service12">
             <div class="col-md-6">
+
               <div class="row">
+
                 <div class="col-md-12 img-hover mb-4">
                   <img
                     v-bind:src="myImage"

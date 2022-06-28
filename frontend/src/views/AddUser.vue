@@ -8,6 +8,8 @@
     
       <form name="form" @submit.prevent="handleRegister">
         <div v-if="!successful">
+
+
            <div class="form-group">
             <label for="username">Nume si prenume :</label>
             <input
@@ -59,7 +61,7 @@
            <small> <div
               v-if="submitted && errors.has('password')"
               class="alert-danger"
-            >{{errors.first('password')}}</div></small>
+            >{{ "Parola trebuie sa contina minim 6 caractere." }}</div></small>
           </div>
           <div class="form-group">
             <label for="username">Adresa :</label>
@@ -76,12 +78,21 @@
             <label for="username">Numar de telefon :</label>
             <input
               v-model="user.phoneNumber"
-              v-validate="'required|max:50'"
-              type="text"
+              v-validate="'digits:10'" type="text"
               class="form-control"
               name="phoneNumber"
             />
          
+         
+                    <small>
+                      <div
+                        v-if="submitted && errors.has('phoneNumber')"
+                        class="alert-danger"
+                      >
+                        {{ "Introduceti un numar de telefon valid." }}
+                      </div></small
+                    >
+                  
           </div>
 
            <div class="form-group">

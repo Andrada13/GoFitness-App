@@ -26,7 +26,6 @@ import backend.repository.ProgramRepository;
 import backend.repository.ProgramTimeRepository;
 import backend.repository.RoleRepository;
 import backend.repository.UserRepository;
-import backend.requests.DeleteProgramRequest;
 import backend.response.MessageResponse;
 import backend.service.DatabaseService;
 import backend.service.ProgramService;
@@ -84,7 +83,7 @@ public class TestController {
     String email = user.getEmail();
     String address = user.getAddress();
     String phoneNumber = user.getPhoneNumber();
-    userService.updateUsers(id, fullName,name, email,address,phoneNumber);
+     userService.updateUsers(id, fullName,name, email,address,phoneNumber);
 
   }
 

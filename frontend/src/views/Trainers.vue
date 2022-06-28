@@ -1,7 +1,15 @@
 <template>
 
     <div class="container page-top">
+      <div >
+          <br />
+          <h4 class="my-5" style="text-align:center">Antrenori disponibili</h4>
+          <br />
+          <br>
+          </div>
       <div class="row">
+
+        
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <img
             src="https://images.unsplash.com/photo-1574755851171-8959b8334d6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
@@ -55,14 +63,7 @@
         </div>
 
             
-        <!-- Column -->
-                      <div class="col-md-12 mt-3 text-center">
-          <a
-            href="/programs/onlineClasses"
-            class="btn btn-dark text-white border-0 btn-md"
-            ><span>Vizualizeaza antrenamentele</span></a
-          >
-        </div>
+     
 
       </div>
     </div>
@@ -115,10 +116,13 @@
 
 <style scoped>
 
+.my-5{
+    font-family: serif;
+  font-weight: 300;
 
+}
 .service-3 {
   font-family: serif;
-  font-weight: 300;
 }
 
 .service-3 h1,

@@ -21,14 +21,14 @@
             <h3 class="mt-3">STIL DE VIATA ACTIV</h3>
             <p class="mt-3">
               Oferim programe accesibile ce va vor ajuta sa aveti un stil de
-              viata mai sanatos, sa pierdeti kilogramele nedorite, dar si sa va
+              viata sanatos, sa pierdeti kilogramele nedorite, dar si sa va
               mentineti in forma.
             </p>
             <p>
               Promovam miscarea, sportul si alimentatia sanatoasa, iar impreuna
               cu antrenorii nostri putem sa va imbunatatim sanatatea prin
-              antrenamentele online pe care le oferim, dar si prin abonamentele
-              pe care puteti dispune daca ne alegeti.
+              antrenamentele pe care le oferim, dar si prin abonamentele
+              de care puteti dispune daca ne alegeti.
             </p>
             <div class="col-md-12 mt-3 text-left">
               <a type="button" class="btn btn-dark" href="/register">
@@ -41,7 +41,7 @@
         <div class="row wrap-service-26">
           <div class="col-md-7 align-self-center">
             <div class="max-box">
-              <h3 class="mt-3">ANTRENAMENTE ONLINE</h3>
+              <h3 class="mt-3">ANTRENAMENTE</h3>
               <p class="mt-3">
                 Aici puteti gasi cursuri organizate de
                 catre cei mai profesionisti antrenori.
@@ -50,7 +50,7 @@
                 Pentru mai multe detalii puteti vizita pagina destinata cursurilor :
               </p>
               <div class="col-md-12 mt-3 text-left">
-                <a type="button" class="btn btn-dark" href="programs/onlineClasses">
+                <a type="button" class="btn btn-dark" href="program">
                   ANTRENAMENTE
                 </a>
               </div>
@@ -81,7 +81,7 @@
               ajuta sa iti atingi mai repede si mai eficient scopul pe care ti l-ai propus.
             </p>
             <div class="col-md-12 mt-3 text-left">
-              <a type="button" class="btn btn-dark" href="/trainersDetails">
+              <a type="button" class="btn btn-dark" href="/trainers-details">
                 ANTRENORI
               </a>
             </div>

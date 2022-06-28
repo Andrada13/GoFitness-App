@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 import backend.models.User;
 import backend.repository.RoleRepository;
 import backend.repository.UserRepository;
+import backend.response.MessageResponse;
 
 @Service
 public class UserService {
@@ -23,12 +25,25 @@ public class UserService {
 	// method for update button on admin board
 	public void updateUsers(long id, String fullName,String username, String email,String address, String phoneNumber) {
 		User user = findById(id);
+
+		/* 
+		List<User> usersList = findAll();
+		for(int i=0; i < usersList.size(); i++) {
+			String name = usersList.get(i).getUsername();
+
+		if(username.equals(name)){
+               return new MessageResponse("exista");
+		}else{
+
+			*/
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setAddress(address);
 		user.setFullName(fullName);
 		user.setPhoneNumber(phoneNumber);
 		userRepository.save(user);
+		
+
 	}
 
 	public List<User> findAll() {

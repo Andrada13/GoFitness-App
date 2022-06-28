@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <br /><br /><br> <br>
+  <div class="jumbotron myclass">
+    <div class="container">
+    <br /><br /><br> <br><br>
     <div class="titlul">
-    <h1 class="display-4">Rezervare cursuri </h1>
+    <h3 class="display-6">Rezervare cursuri </h3>
     </div>
 
     <div class="py-5 service-6">
@@ -13,19 +14,19 @@
             <div class="card border-0 bg-success-gradiant text-black mb-4">
               <div class="card-body">
                 <h6 class="font-weight-medium text-black">
-                  Cat dureaza un curs/antrenament online ?
+                  Cat dureaza un curs/antrenament?
                 </h6>
                 <p class="mt-3">
                   Antrenamentele dureaza in jur de 2 ore cu posibilitatea prelungirii acestora.
                   
                 </p>
                                 <h6 class="font-weight-medium text-black">
-                  Cum se vor desfasura cursurile ?
+                  Cum se vor desfasura cursurile?
                 </h6>
 
                  <p class="mt-3">
-                  Cursurile se vor desfasura pe platforma zoom, 
-                  link-urile de participare fiind vizibile in mail-ul de confirmare.
+                  Cursurile se vor desfasura in sala de sport, 
+                  adresa fiind disponibila in pagina <i>Contact</i>.
                 </p>
               </div>
             </div>
@@ -34,16 +35,15 @@
             <div class="card border-0 bg-info-gradiant text-black mb-4">
               <div class="card-body">
                                   <h6 class="font-weight-medium text-black">
-                  Pot cumpara si un abonament fizic?
+                  Pot cumpara si un abonament?
                 </h6>
                 <p class="mt-3">
-                  Desigur, acest lucru se poate realiza accesand pagina Abonamente.
+                  Cursurile se desfasoara pe sedinte, cu ajutorul rezervarilor.
                 </p>
 
-                <h6 class="font-weight-medium text-black">Pot participa la mai multe antrenamente ?</h6>
+                <h6 class="font-weight-medium text-black">Pot participa la mai multe cursuri?</h6>
                 <p class="mt-3">
                   Da, in functie de programul dumneavoastra, dar si de cel al instructorilor.
-                  Incurajam sportul si activitatea fizica!
                 </p>
                 
               </div>
@@ -53,16 +53,16 @@
           <div class="col-md-4 wrap-service6-box">
             <div class="card border-0 bg-danger-gradiant text-black mb-4">
               <div class="card-body">
-             <h6 class="font-weight-medium text-black">Cum pot plati ?</h6>
+             <h6 class="font-weight-medium text-black">Cum pot plati?</h6>
                 <p class="mt-3">
                   Plata se efectueaza exclusiv cu cardul.
                 </p>
 
               <h6 class="font-weight-medium text-black">
-                  Ce activitati se desfasoara in cadrul cursurilor online?
+                  Ce activitati se desfasoara in cadrul cursurilor?
                 </h6>
                 <p class="mt-3">
-                  Pentru mai multe detalii legate de antrenamente sau instructori, puteti accesa pagina Antrenamente online sau pagina Antrenori.
+                  Pentru mai multe detalii legate de cursuri, puteti accesa pagina <i>Cursuri</i>.
                 </p>
 
               </div>
@@ -75,18 +75,18 @@
       <br>
       <div class="tabel">
       <h4>
-        Programul antrenamentelor este urmatorul :
+        Programul cursurilor este urmatorul:
       </h4>
       </div>
     </div>
 
     <table class="table table-striped table-sm">
       <thead class="thead-dark">
-        <th>Denumire Curs</th>
+        <th>Curs</th>
         <th>Program</th>
         <th>Antrenor</th>
-        <th>Pret</th>
-        <th>Programare online</th>
+        <th>Pret 2h</th>
+        <th>Rezervare</th>
       </thead>
       <tbody>
         <tr v-for="program in programs" v-bind:key="program.id">
@@ -114,7 +114,9 @@
         </tr>
       </tbody>
     </table>
-
+    <br>
+    <br>
+</div>
   </div>
 </template>
 
@@ -150,7 +152,7 @@ export default {
       });
     },
       updateProgram(id) {
-      this.$router.push(`/programs/onlineClasses/appointment/${id}`);
+      this.$router.push(`/programs-classes/${id}`);
     },
 
   },
@@ -163,7 +165,10 @@ export default {
 </script>
 
 <style scoped>
-.titlul h1{
+*{
+  font-family: serif;
+}
+.titlul h3{
   text-align: center;
 }
 .table{

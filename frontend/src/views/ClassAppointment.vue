@@ -61,7 +61,7 @@
           
           </fieldset>
           <fieldset class="form-group">
-            <label>Pret:</label>
+            <label>Pret (RON):</label>
             <input type="text" class="form-control" v-model="price" disabled />
           </fieldset>
 
@@ -198,7 +198,9 @@ export default {
 </script>
 
 <style scoped>
-
+*{
+  font-family: serif;
+}
 
 .center_div {
  

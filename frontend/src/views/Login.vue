@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       user: new User('', ''),
-      message: '',
+      message: "",
       submitted: false,
      // successful: false,
 
@@ -125,7 +125,7 @@ export default {
           return;
         }
         if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/login', this.user).then( //Actions are called in the components with the method dispatch()
+          this.$store.dispatch('auth/login', this.user).then(
             () => {
               if(JSON.parse(localStorage.getItem('user')).roles == "ROLE_ADMIN"){
                    this.$router.push('/admin-profile');
@@ -137,9 +137,12 @@ export default {
             },
             error => {
               this.message =
-                (error.response && error.response.data ) ||
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
                 error.message ||
                 error.toString();
+              this.successful = false;
             }
           );
         }

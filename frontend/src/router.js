@@ -75,7 +75,7 @@ export const router = new Router({
     },
    
     {
-      path: '/programs/onlineClasses/appointment',
+      path: '/programs-classes',
       component: OnlineAppointment
     },
       {
@@ -163,7 +163,7 @@ export const router = new Router({
       beforeEnter: getAdminAccess,
     },
     {
-      path: "/programs/onlineClasses/appointment/:id",
+      path: "/programs-classes/:id",
       component: () => import('./views/ClassAppointment.vue'),
     },
     {

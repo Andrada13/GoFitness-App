@@ -4,10 +4,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-5">
-            <br /><br />
+            <br /><br /> <br>
             <div class="card-shadow">
               <img
-                src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                src="https://images.unsplash.com/photo-1586810165616-94c631fc2f79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="img-fluid"
               />
             </div>
@@ -16,12 +16,13 @@
             <div class="contact-box ml-3">
               <br />
               <br />
-              <h2 class="font-weight-light mt-2">Trimite un mesaj</h2>
+              <br>
+              <h2 class="mt-2">Trimite un mesaj</h2>
               <br />
               <form class="mt-4" @submit.prevent="handleMessages">
                 <div v-if="!successful">
                   <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                       <div class="form-group mt-2">
                         <input
                           v-model="messages.name"
@@ -31,7 +32,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                       <div class="form-group mt-2">
                         <input
                           v-model="messages.email"
@@ -41,7 +42,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                       <div class="form-group mt-2">
                         <input
                           v-model="messages.subject"
@@ -51,7 +52,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                       <div class="form-group mt-2">
                         <textarea
                           v-model="messages.message"
@@ -61,10 +62,10 @@
                         ></textarea>
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                       <button
                         type="submit"
-                        class="btn btn-dark mt-3 text-white border-0 px-3 py-2"
+                        class="btn btn-dark mt-3 text-white border-0 px-3 py-2 w-100"
                       >
                         <span> TRIMITE </span>
                       </button>
@@ -99,8 +100,8 @@
                     <div class="">
                       <h6>Adresa :</h6>
                       <p>
-                        Calea Victoriei 125 <br />
-                        Sector 1 Bucuresti
+                        Calea Bucuresti 125 <br />
+                        Craiova
                       </p>
                     </div>
                   </div>

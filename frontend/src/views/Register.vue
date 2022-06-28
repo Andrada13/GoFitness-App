@@ -130,22 +130,24 @@
                     >
                   </div>
 
-                  <div class="form-floating mb-3">
+                
+
+   <div class="form-floating mb-3">
                     <input
                       v-model="user.address"
-                      v-validate="'required|max:70'"
-                      type="text"
+                      v-validate="'required|max:100'" type="text"
                       class="form-control"
-                      id="floatingInputAddress"
+                      id="address"
                       placeholder="address"
+                      name="address"
                       required
                       autofocus
                     />
-                    <label for="floatingInputAddress">Adresa :</label>
+                     
 
-                   
-                  </div>
-
+   <label for="address">Adresa :</label>
+             </div>
+                    
 
 
 
@@ -217,12 +219,14 @@ export default {
             (data) => {
               this.message = data.message;
               this.successful = true;
+               this.$router.push("/profile");
+
             },
             error => {
               this.message =
                 (error.response &&
-                  error.response.data ) ||
-                //  error.response.data.message ||
+                  error.response.data &&
+                  error.response.data.message) ||
                 error.message ||
                 error.toString();
               this.successful = false;

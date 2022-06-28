@@ -72,7 +72,7 @@
       </table>
       <div class="card text-center m-11">
         <jw-pagination
-          :pageSize="2"
+          :pageSize="4"
           :items="filteredUsers"
           @changePage="changePage"
           :styles="customStyles"

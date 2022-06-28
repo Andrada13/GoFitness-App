@@ -53,7 +53,7 @@
         </fieldset>
         <br>
         <div class="form-group text-center">
-            <button class="btn btn-dark w-100" type="submit">Save</button>
+            <button class="btn btn-dark w-100" type="submit">Salveaza</button>
           </div>
       </form>
     </div>
@@ -107,6 +107,8 @@ export default {
         this.errors.push("Introduceti adresa.");
       }else if (!this.email) {
         this.errors.push("Introduceti email.");
+      }else if (!this.phoneNumber) {
+        this.errors.push("Introduceti numar de telefon.");
       }
 
       if (this.errors.length === 0) {

@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-lg-4">
             <br>
+            <br>
           <h3 class="my-3">De ce sa ne alegi?</h3>
           <br>
           <p>
@@ -18,6 +19,9 @@
           
           <p>Dorința noastră şi în acelaşi timp angajamentul nostru pe termen mediu şi lung este de a aduce schimbarea în stilul de viaţă al clienţilor care apelează la serviciile noastre, de a-i îndruma cum să obţină rezultatele la care acum doar speră, într-un timp cât mai scurt, însă adoptând un stil de viaţă din care nu are voie să lipsească mişcarea.
 </p>
+<a href="/register" class="btn btn-dark border-0 text-white btn-md my-3"
+            >Devino membru acum</a
+          >
         </div>
 
         <div class="col-lg-4">
@@ -33,7 +37,7 @@
                 Va punem la dispozitie un numar larg de antrenori autorizati ce va pot ajuta in procesul 
                 de a deveni cea mai buna versiune a dumnevoastra.
               </p>
-           <a href="/trainersDetails" class="btn btn-dark border-0 text-white btn-sm my-3"
+           <a href="/trainers-details" class="btn btn-dark border-0 text-white btn-sm my-3"
             >Detalii despre instructori aici</a
           >
             </div>
@@ -50,12 +54,12 @@
               
             />
             <div class="mt-3">
-              <h6 class="font-weight-medium">Cursuri si abonamente</h6>
+              <h6 class="font-weight-medium">Cursuri</h6>
               <p class="mt-3">
                 In functie de preferinte puteti opta pentru un curs in cadrul salii noastre de sport. 
                 Puteti vizualiza detalii despre cursuri si puteti face o rezervare:
               </p>
-        <a href="/programs" class="btn btn-dark border-0 text-white btn-sm my-3"
+        <a href="/program" class="btn btn-dark border-0 text-white btn-sm my-3"
             >Detalii despre cursuri aici</a
           >
             </div>
@@ -78,9 +82,7 @@
             Alatura-te și tu comunitatii noastre și antrenează-te alături de noi prin unul dintre cursurile noastre.
           </p>
           <br>
-          <a href="/register" class="btn btn-dark border-0 text-white btn-md my-3"
-            >Devino membru acum</a
-          >
+          
 
         </div>
       </div>
