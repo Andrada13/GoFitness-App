@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -81,21 +82,34 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+/* 
+		if (!userRepository.existsByUsername(loginRequest.getUsername())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Username-ul nu exista!"));
+		}
+ */
+		//boolean p = encoder.matches(loginRequest.getPassword(),encoder.encode(loginRequest.getPassword()));
+		
 
 		if (!userRepository.existsByUsername(loginRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Username-ul nu exista!"));
 		}
-/* 
-		if (!userRepository.existsByPassword(loginRequest.getPassword())) {
+ 
+		//System.exit(0);
+
+		Authentication authentication;
+		try{
+		 authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+		}catch(AuthenticationException e){
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Parola incorecta!"));
 		}
-*/
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -107,7 +121,7 @@ public class AuthController {
 				.collect(Collectors.toList());
 
 				
-
+		
 		return ResponseEntity.ok(new JwtResponse(jwt, 
 												 userDetails.getId(), 
 												 userDetails.getFullName(),
@@ -153,27 +167,7 @@ public class AuthController {
 			
 				Role newRole = roleRepository.findById(roleId);
 			    roles.add(newRole);
-				/*
-				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(UsersRoles.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "trainer":
-					Role trainerRole = roleRepository.findByName(UsersRoles.ROLE_TRAINER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(trainerRole);
-
-					break;
-
-				case "user":
-					Role userRole = roleRepository.findByName(UsersRoles.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-				*/
+				
 			
 		}
 
@@ -193,31 +187,13 @@ public class AuthController {
 					.body(new MessageResponse("Numele cursului deja exista!"));
 		}
 
-	//	List<ProgramTime> timeProgram = addProgramRequest.getPrograms();
-
-		//List<ProgramTime> programTime = new ArrayList<>();
-
-	//	ObjectMapper mapper = new ObjectMapper();
-     //   ProgramTime p = programTimeRepository.findByTimeProgram(timeProgram);
-
-	//	programTime.add(p);
-		//System.out.println(programTime);
-
 		// Create new program
 		Program program = new Program(addProgramRequest.getName(), 
 							 addProgramRequest.getDescription(),
 							 addProgramRequest.getPrice());
 
 
-
-		//program.setPrograms(programTime);					 
 		programRepository.save(program);
-
-	//	ProgramTime p = new ProgramTime(timeProgram,program);
-	//	programTimeRepository.save(p);
-
-
-	//	System.out.println();
 
 		return ResponseEntity.ok(new MessageResponse("Curs adaugat cu succes!"));
 	}

@@ -18,14 +18,14 @@ public class SignupRequest {
     private String username;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 40)
     @Email
     private String email;
     
     private Integer role;
     
     @NotBlank
-    @Size(min = 5, max = 20)
+    @Size(min = 6, max = 20)
     private String password;
 
     @NotBlank
@@ -33,7 +33,7 @@ public class SignupRequest {
     private String phoneNumber;
 
     @NotBlank
-    @Size(max = 70)
+    @Size(max = 20)
     private String address;
 
 

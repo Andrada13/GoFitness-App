@@ -22,6 +22,7 @@ import backend.models.Program;
 import backend.models.ProgramTime;
 import backend.models.Role;
 import backend.models.User;
+import backend.repository.BookingsRepository;
 import backend.repository.ProgramRepository;
 import backend.repository.ProgramTimeRepository;
 import backend.repository.RoleRepository;
@@ -56,6 +57,8 @@ public class TestController {
   @Autowired
   RoleRepository roleRepository;
 
+  @Autowired
+  BookingsRepository bookingsRepository;
 
 
 
@@ -83,7 +86,7 @@ public class TestController {
     String email = user.getEmail();
     String address = user.getAddress();
     String phoneNumber = user.getPhoneNumber();
-     userService.updateUsers(id, fullName,name, email,address,phoneNumber);
+    userService.updateUsers(id, fullName,name, email,address,phoneNumber);
 
   }
 
@@ -252,13 +255,13 @@ public ResponseEntity<?> insertTimeForCourse(@PathVariable String time, @PathVar
 
 
 @PostMapping("/booking/{courseId}/{grupa}/{timeId}/{trainerId}/{userId}")
-public ResponseEntity<?> insertBooking(@PathVariable Long courseId, @PathVariable Long grupa
+public void insertBooking(@PathVariable Long courseId, @PathVariable Long grupa
 , @PathVariable Long timeId, @PathVariable Long trainerId, @PathVariable Long userId) throws Exception {
   
 
   databaseService.insertBooking(courseId,grupa,timeId,trainerId,userId);
 
-  return ResponseEntity.ok(new MessageResponse("Succes!"));
+  //return ResponseEntity.ok(new MessageResponse("Rezervarea a fost efectuata cu succes!"));
 }
 
 
@@ -316,6 +319,7 @@ public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Ex
     String description = program.getDescription();
     String price = program.getPrice();
     programService.updatePrograms(id, name, description,price);
+   
 
   }
 
@@ -337,6 +341,34 @@ public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Ex
   public Long getNumberOfPrograms() {
     return programRepository.count();
   }
+
+
+ @GetMapping(path="/bookings", produces="application/json")
+ //@PreAuthorize("hasRole('ADMIN')")
+  public String fetchBookings() throws Exception{
+    String delim = ", ";
+    return String.join(delim, databaseService.getBookings()); 
+
+}
+
+
+@GetMapping(path="/bookings-number", produces="application/json")
+ //@PreAuthorize("hasRole('ADMIN')")
+  public Long fetchNumberOfBookings() throws Exception{
+  
+    return bookingsRepository.count();
+
+}
+
+
+@GetMapping(path="/bookings-course/{userId}", produces="application/json")
+//@PreAuthorize("hasRole('ADMIN')")
+ public String fetchBookingsCourse(@PathVariable Long userId) throws Exception{
+  String delim = ", ";
+ 
+  return String.join(delim, databaseService.getBookingsCourse(userId)); 
+}
+
 
 
 

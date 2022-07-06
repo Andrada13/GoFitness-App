@@ -115,8 +115,6 @@ public class Program {
             trainerEntity.getPrograms().remove(this);
         }
     }
-
-   
    
 
 }

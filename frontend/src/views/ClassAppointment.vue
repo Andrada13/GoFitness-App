@@ -6,8 +6,7 @@
       <h2 align="center">Programare curs</h2>
 
       <div class="card card-container">
-        <form @submit.prevent="insertBooking()">
-          <div v-if="!successful">
+        <form @submit.prevent="insertBooking()" v-if="!savingSuccessful">
             
         
           <label><strong> Informatii utilizator: </strong></label>
@@ -97,15 +96,12 @@
             </button>
           </div>
 
-          </div>
         </form>
-         <div
-                v-if="message"
-                class="alert"
-                :class="successful ? 'alert-success' : 'alert-danger'"
-              >
-                {{ message }}
-              </div>
+
+        <div class="success" v-if="savingSuccessful"> 
+    {{ "Rezervarea a fost efectuata cu succes!" }} 
+</div>
+       
       </div>
     </div>
   </div>
@@ -128,7 +124,7 @@ export default {
       content: "",
       grupa:"",
       successful: false,
-      message: "",
+      savingSuccessful: false
     };
   },
   computed: {
@@ -162,7 +158,6 @@ export default {
     },
   
      insertBooking() {
-        this.message = "";
     //  this.submitted = true;
 
       // console.log(this.notUsers);
@@ -172,15 +167,14 @@ export default {
 
      if (this.grupa=== '1') {
       Program.insertBooking(this.id, this.grupa,this.time_program[0].programTime_id,this.fullName[1].id,this.currentUser.id)
-                    this.successful = true;
+             this.savingSuccessful = true;
 
      } else if (this.grupa === '2') {
       Program.insertBooking(this.id, this.grupa,this.time_program[1].programTime_id,this.fullName[1].id,this.currentUser.id)
-                    this.successful = true;
+  this.savingSuccessful = true;
+     }
 
-
-     } 
-
+    
 
  
 
@@ -216,7 +210,7 @@ label {
   padding: 40px 40px;
 }
 .card {
-  background-color: #ffffff;
+  background-color: #fbfbfb;
   padding: 25px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
@@ -226,5 +220,7 @@ label {
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  
+  
 }
 </style>

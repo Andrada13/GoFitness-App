@@ -46,6 +46,7 @@
       </form>
 </div>
 <div>
+  <!--
       <form name="form" class = "form-control" @submit.prevent="removeTimeFromCourse()">
         <h6 class="display-8">Alegeti programul:</h6>
         <select class="form-select" v-model="times.time_program">
@@ -64,6 +65,7 @@
           <button class="btn btn-dark w-40">Sterge program</button>
         </div>
       </form>
+      -->
 </div>
 
 </div>
@@ -119,7 +121,7 @@ export default {
 
       // console.log(this.notUsers);
       this.message3 = this.message  +', ' + this.message1;
-      console.log(this.message3);
+     // console.log(this.message3);
 
       Program.addTimeProgram(this.message3, this.id);
       //face refresh automat
@@ -135,7 +137,7 @@ export default {
 
 
       Program.removeTimeFromProgram(this.times.time_program, this.id);
-      console.log(this.times.time_program, this.id)
+      console.log(this.times.programTime_id, this.id)
 
       //face refresh automat
       location.reload();

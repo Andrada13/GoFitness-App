@@ -52,7 +52,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
 		filterChain.doFilter(request, response);
 	}
-	//get JWT from the Authorization header (by removing Bearer prefix)
 	private String parseJwt(HttpServletRequest request) {
 		String headerAuth = request.getHeader("Authorization");
 

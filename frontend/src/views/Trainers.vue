@@ -55,8 +55,10 @@
           <div class="card border-0 card-shadow mb-4">
             <div class="card-body d-flex">
               <div class="align-self-center">
-                <h6 class="font-weight-medium">{{ trainer.fullName }}</h6>
-                <p class="mt-3">{{ trainer.description }}</p>
+                <h5 class="font-weight-medium">{{ trainer.fullName }}</h5>
+                <i>Informatii antrenor:</i>
+                <p class="mt-3"><i>Email: </i> {{ trainer.email }}</p>
+                <p class="mt-3"><i>Numar de telefon: </i> {{ trainer.phoneNumber }}</p>
               </div>
             </div>
           </div>

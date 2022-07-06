@@ -46,14 +46,12 @@
           <th>Antrenori</th>
           <th>Program</th>
           <th>Editeaza</th>
-          <th>Sterge</th>
         </thead>
         <tbody>
           <tr v-for="program in filteredPrograms" v-bind:key="program.id">
             <td>{{ program.id }}</td>
             <td>{{ program.name }}</td>
             <td>{{ program.description }}</td>
-
             <td>{{ program.price }}</td>
             <td>
               <button
@@ -74,14 +72,6 @@
                 v-on:click="updateProgram(program.id)"
               >
                 Editeaza
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-dark btn-sm"
-                v-on:click="deleteProgram(program.id)"
-              >
-                Sterge
               </button>
             </td>
           </tr>

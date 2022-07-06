@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 import backend.models.User;
 import backend.repository.RoleRepository;
 import backend.repository.UserRepository;
-import backend.response.MessageResponse;
 
 @Service
 public class UserService {

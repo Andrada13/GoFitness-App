@@ -11,7 +11,7 @@
                 <h3><i>
                   Buna, {{currentUser.fullName}}<span class="font-weight-light"></span></i>
                 </h3>
-                <i class="ni location_pin mr-2"> Aceasta este pagina de administrare
+                <i class="ni location_pin mr-2"> - pagina de administrare -
                 </i>
                 <hr class="my-4">
                

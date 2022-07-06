@@ -21,8 +21,6 @@ import backend.models.UsersRoles;
 @Component
 public class DatabaseService {
 
-
-
 	private EntityManagerFactory entityManagerFactory;
 
 	public DatabaseService() {
@@ -177,30 +175,24 @@ public class DatabaseService {
 
 	}
 
-
-	
 	@Transactional
 	public void removeTimeFromProgram(String time, Long idCourse) throws Exception {
 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		//Long id = program.getId();
+		// Long id = program.getId();
 
 		Program program = entityManager.find(Program.class, idCourse);
 		Long id = program.getId();
-
 
 		try {
 
 			entityManager.getTransaction().begin();
 
-			int isSuccessful = entityManager
+			entityManager
 					.createQuery("delete from ProgramTime p where p.time_program=:time and p.program.id=:idCourse")
 					.setParameter("time", time)
 					.setParameter("idCourse", id)
 					.executeUpdate();
-			if (isSuccessful == 0) {
-				System.out.println(" delete succesful");
-			}
 
 			entityManager.getTransaction().commit();
 
@@ -211,8 +203,6 @@ public class DatabaseService {
 		}
 
 	}
-
-
 
 	@Transactional
 	public void insertTrainerToCourse(Long trainerId, Long courseId) throws Exception {
@@ -274,7 +264,7 @@ public class DatabaseService {
 	}
 
 	@Transactional
-	public void insertBooking(Long courseId,Long grupa, Long timeId,Long trainerId,Long userId) throws Exception {
+	public void insertBooking(Long courseId, Long grupa, Long timeId, Long trainerId, Long userId) throws Exception {
 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -289,7 +279,7 @@ public class DatabaseService {
 			booking.setUserId(userId);
 			booking.setPaid(false);
 			booking.setCanceled(false);
-			
+
 			entityManager.persist(booking);
 			entityManager.getTransaction().commit();
 			/*
@@ -306,5 +296,117 @@ public class DatabaseService {
 				entityManager.close();
 			}
 		}
+	}
+
+	@Transactional
+	public List<String> getBookings() throws Exception {
+
+		List<Long> userId = new ArrayList<>();
+		//List<Long> courseId = new ArrayList<>();
+
+		List<String> bookingsUser = new ArrayList<>();
+		//List<String> bookingsUserCourse = new ArrayList<>();
+		List<String> b = new ArrayList<>();
+		//List<String> c = new ArrayList<>();
+
+		//Map<String, String> map = new HashMap<>();
+
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+	
+
+		try {
+
+			userId = entityManager
+					.createQuery("SELECT distinct b.userid FROM Bookings b ",
+							Long.class)
+					.getResultList();
+
+					/* 
+			courseId = entityManager
+					.createQuery("SELECT distinct b.courseid FROM Bookings b ",
+							Long.class)
+					.getResultList();
+*/
+
+
+			for (Long booking : userId) {
+				b = entityManager
+						.createQuery("SELECT distinct u.username FROM User u where u.id=:idUser",
+								String.class)
+						.setParameter("idUser", booking)
+						.getResultList();
+
+				bookingsUser.addAll(b);
+				// map.put(b.toString(),c.toString());
+		
+
+			}
+			/* 
+			for (Long course : courseId) {
+				c = entityManager
+						.createQuery("SELECT distinct c.name FROM Program c where c.id=:idCourse",
+								String.class)
+						.setParameter("idCourse", course)
+						.getResultList();
+
+				bookingsUserCourse.addAll(c);
+			 map.put(b.toString(),c.toString());
+
+				
+
+			}
+			
+ */
+		} finally {
+			if (entityManager != null) {
+				entityManager.close();
+			}
+		}
+
+		return bookingsUser;
+
+	}
+
+
+
+	@Transactional
+	public List<String> getBookingsCourse(Long userIdFromFrontend) throws Exception {
+
+
+		List<Long> courseId = new ArrayList<>();
+		List<String> nameCourseId = new ArrayList<>();
+        List<String> finalListCourse = new ArrayList<>();
+	
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+
+		try {
+
+			courseId = entityManager
+					.createQuery("SELECT distinct b.courseid FROM Bookings b where userid = :userId",
+							Long.class)
+							.setParameter("userId", userIdFromFrontend)
+					.getResultList();
+
+		for (Long course : courseId) {
+			nameCourseId = entityManager
+					.createQuery("SELECT distinct p.name FROM Program p where p.id = :courseId  ",
+							String.class)
+							.setParameter("courseId", course)
+					.getResultList();
+
+            finalListCourse.addAll(nameCourseId);
+
+					}
+
+		} finally {
+			if (entityManager != null) {
+				entityManager.close();
+			}
+		}
+
+		return finalListCourse;
+
 	}
 }

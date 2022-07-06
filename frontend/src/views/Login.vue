@@ -103,7 +103,7 @@ export default {
       user: new User('', ''),
       message: "",
       submitted: false,
-     // successful: false,
+      //successful: false,
 
 
     };
@@ -136,6 +136,7 @@ export default {
               }
             },
             error => {
+              console.log("hei");
               this.message =
                 (error.response &&
                   error.response.data &&

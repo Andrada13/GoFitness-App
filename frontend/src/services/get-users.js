@@ -33,19 +33,19 @@ class User {
     return axios.get(`${API_URL_USER}/usersNumber/`,  { headers: authHeader() });
 }
 
+getNumberOfBookings() {
+  return axios.get(`${API_URL_USER}/bookings-number/`,  { headers: authHeader() });
+}
 
-/*
-    addUser(user) {
-    return axios.post(`${API_URL_NEW_USER}/signup`, {
-      username: user.username,
-      email: user.email,
-      role:user.role,
-      password: user.password
-    },  { headers: authHeader() });
-    */
+getCoursesForUser(idCourse) {
+  return axios.get(`${API_URL_USER}/bookings-course/${idCourse}`,  { headers: authHeader() });
+    
+}
 
-
-
+getUsersWithBooking() {
+  return axios.get(`${API_URL_USER}/bookings/`,  { headers: authHeader() });
+    
+}
     
     
 }

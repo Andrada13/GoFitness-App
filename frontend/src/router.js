@@ -90,15 +90,15 @@ export const router = new Router({
       name: 'admin',
       // lazy-loaded
       component: () => import('./views/BoardUsers.vue'),
-      beforeEnter: getAdminAccess,
+     
 
     },
     {
-      path: '/list-trainer/:id',
+      path: '/list-trainer/:id', 
       name: 'listTrainer',
       // lazy-loaded
       component: () => import('./views/ListOfTrainers.vue'),
-     // beforeEnter: getAdminAccess,
+      beforeEnter: getAdminAccess,
 
     },
     {
@@ -106,7 +106,7 @@ export const router = new Router({
       name: 'listProgram',
       // lazy-loaded
       component: () => import('./views/ListOfProgram.vue'),
-     // beforeEnter: getAdminAccess,
+      beforeEnter: getAdminAccess,
 
     },
     {

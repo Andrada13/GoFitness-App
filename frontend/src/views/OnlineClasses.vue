@@ -29,10 +29,7 @@
                 <i>{{ program.description }}</i>
               </p>
               
-             <div v-for="t in program.trainer" :key="t.id">
-              Antrenor : {{ t.fullName }}
-              <br>
-          </div>
+             
        
             </div>
             <hr class="my-4" />

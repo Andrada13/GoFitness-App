@@ -78,8 +78,8 @@ export const auth = {
           return Promise.reject(error);
         }
       );
-    }
-
+      },
+  
 
   },
 

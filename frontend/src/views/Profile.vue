@@ -11,8 +11,7 @@
                 <h3><i>
                   Buna, {{currentUser.fullName}}<span class="font-weight-light"></span></i>
                 </h3>
-                <i class="ni location_pin mr-2">Bine ai venit in profilul tau, aici poti gasi informatii personale, cat
-                  si detalii legate de cursurile de care esti interesata.
+                <i class="ni location_pin mr-2"> - profil utilizator -
                 </i>
                 <hr class="my-4">
                
@@ -87,29 +86,16 @@
                 </div>
                 <hr class="my-4">
                 <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Curs/Abonament in desfasurare</h6>
+                <h6 class="heading-small text-muted mb-4">Cursuri</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-address">Curs/Abonament</label>
+                        <label class="form-control-label" for="input-address">Curs in desfasurare: {{courses}}</label>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-city">Timpul de desfasurare a cursului :</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="" value="">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-country">Data abonamentului :</label>
-                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="" value="">
-                      </div>
-                    </div>
-                  </div>
+                
                 </div>
                 
               </form>
@@ -125,10 +111,23 @@
 </template>
 
 <script>
+import User from "../services/get-users";
 
 export default {
   name: 'Profile',
-
+data() {
+    return {
+      courses:[]
+    };
+  },
+ methods: {
+    getCoursesForUser() {
+      User.getCoursesForUser(this.currentUser.id).then((response) => {
+        this.courses = response.data;
+        console.log(this.courses)
+      });
+    },
+ },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -139,6 +138,9 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login');
     }
+  },
+    created() {
+    this.getCoursesForUser();
   },
 
 };

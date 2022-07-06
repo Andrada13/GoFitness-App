@@ -17,7 +17,7 @@
                   ></i>
                 </h3>
                 <i class="ni location_pin mr-2"
-                  >Acesta este profilul tau
+                  >- profil antrenor -
                 </i>
                 <hr class="my-4" />
               </div>
@@ -111,7 +111,7 @@
                   <div class="col-md-12">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-address"
-                        >Cursuri in desfasurare : <i
+                        >Cursuri predate : <i
                           v-for="(program, index) in currentUser.programs"
                           :key="index"
                           >{{ program.name  }} {{""}}</i></label>
@@ -120,17 +120,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-city"
-                        >Timpul de desfasurare a cursului : 2 ore</label
-                      >
-                     
-                    </div>
-                  </div>
+              
                  
-                </div>
               </div>
             </form>
           </div>

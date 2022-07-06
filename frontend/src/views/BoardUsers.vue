@@ -7,7 +7,7 @@
 
       <table>
         <thead>
-          <h6> Utilizatori : {{numberOfUsers}}</h6> 
+          <h6> Utilizatori: {{numberOfUsers}}</h6> 
           <th>
             <div style="width: 1150px" align="right">
               <button type="button" class="btn btn-dark" v-on:click="addUser()">
@@ -17,6 +17,15 @@
           </th>
         </thead>
       </table>
+
+       <h6> Utilizatori ce au efectuat o rezervare online:</h6> 
+       <ul>
+          <li>
+          {{ usersWithBooking }}
+        </li>
+       </ul>
+
+<h6> Numarul rezervarilor online: {{numberOfBookings}}</h6> 
 
       <br /><br />
       <h3>{{ content }}</h3>
@@ -72,7 +81,7 @@
       </table>
       <div class="card text-center m-11">
         <jw-pagination
-          :pageSize="4"
+          :pageSize="5"
           :items="filteredUsers"
           @changePage="changePage"
           :styles="customStyles"
@@ -111,6 +120,8 @@ export default {
       index: "",
       content: "",
       numberOfUsers: 0,
+      usersWithBooking:[],
+      numberOfBookings:0
     };
   },
 
@@ -120,16 +131,29 @@ export default {
         this.users = response.data;
       });
     },
+     getAllUsersWithBooking() {
+      User.getUsersWithBooking().then((response) => {
+        this.usersWithBooking = response.data;
+      });
+    },
     getNumbers() {
       User.getNumberOfUsers().then((response) => {
         this.numberOfUsers = response.data;
       });
     },
 
+     getNumbersOfBookings() {
+      User.getNumberOfBookings().then((response) => {
+        this.numberOfBookings = response.data;
+      });
+    },
+
+
     deleteUser(id) {
       User.deleteUsersById(id).then(() => {
         this.getAllUsers();
         this.getNumbers();
+        this.getNumbersOfBookings();
       });
     },
     updateUser(id) {
@@ -145,6 +169,8 @@ export default {
   created() {
     this.getAllUsers();
     this.getNumbers();
+    this.getAllUsersWithBooking();
+    this.getNumbersOfBookings();
   },
   mounted() {
     UserService.getAdminBoard().then(
