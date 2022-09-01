@@ -24,16 +24,6 @@ public class UserService {
 	public void updateUsers(long id, String fullName,String username, String email,String address, String phoneNumber) {
 		User user = findById(id);
 
-		/* 
-		List<User> usersList = findAll();
-		for(int i=0; i < usersList.size(); i++) {
-			String name = usersList.get(i).getUsername();
-
-		if(username.equals(name)){
-               return new MessageResponse("exista");
-		}else{
-
-			*/
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setAddress(address);

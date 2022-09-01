@@ -22,7 +22,6 @@ public class UsersPrograms {
     @Column(name = "programs_id")
     Long programsId;
 
-    
 
     public UsersPrograms(Long trainerId, Long programsId) {
         this.trainerId = trainerId;

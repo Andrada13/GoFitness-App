@@ -36,11 +36,6 @@ public class JwtResponse {
 	}
 
 
-
-
-
-
-
 	public void setPrograms(List<Program> programs) {
 		this.programs = programs;
 	}

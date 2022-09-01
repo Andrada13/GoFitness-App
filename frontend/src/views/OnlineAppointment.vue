@@ -122,7 +122,6 @@
 
 <script>
 import Program from "../services/get-programs";
-//import TimeProgram from "../services/get-time-programs";
 import User from "../services/get-users";
 
 

@@ -86,7 +86,6 @@
 
 <script>
 import Program from "../services/get-programs";
-//import TrainerToCourse from '../models/trainertocourse';
 
 export default {
   name: "Trainers",
@@ -129,7 +128,6 @@ export default {
       this.message = "";
       this.submitted = true;
 
-      // console.log(this.notUsers);
 
       Program.addTrainerIdToCourseId(this.notUsers.id, this.id);
       location.reload();
@@ -139,12 +137,8 @@ export default {
       this.message = "";
       this.submitted = true;
 
-      // console.log(this.notUsers);
-
-      // Program.addTrainerIdToCourseId(this.notUsers.id,this.id);
       Program.removeTrainerFromCourse(this.id, this.users.id);
       console.log(this.id, this.users.id);
-      // console.log(this.id,this.users.map(({id}) => id));
 
       location.reload();
     },
@@ -153,7 +147,6 @@ export default {
     this.getProgramsById();
     this.getTrainersByCourseId();
     this.getTrainersNotByCourseId();
-    // this.addTrainerToCourse();
   },
 };
 </script>

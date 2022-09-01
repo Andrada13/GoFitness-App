@@ -19,7 +19,6 @@ public class AddProgramRequest {
     @Size(max = 50)
     private String description;
     
-    //@NotBlank
     private List<ProgramTime> programs;
 
     @NotBlank

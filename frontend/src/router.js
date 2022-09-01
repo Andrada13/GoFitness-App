@@ -11,8 +11,6 @@ import OnlineAppointment from './views/OnlineAppointment.vue';
 
 
 
-
-
 Vue.use(Router);
 
 function getAdminAccess(to, from, next) {
@@ -81,14 +79,12 @@ export const router = new Router({
       {
       path: '/profile',
       name: 'profile',
-      // lazy-loaded
       component: () => import('./views/Profile.vue'),
 
     },
     {
       path: '/admin',
       name: 'admin',
-      // lazy-loaded
       component: () => import('./views/BoardUsers.vue'),
      
 
@@ -96,7 +92,6 @@ export const router = new Router({
     {
       path: '/list-trainer/:id', 
       name: 'listTrainer',
-      // lazy-loaded
       component: () => import('./views/ListOfTrainers.vue'),
       beforeEnter: getAdminAccess,
 
@@ -104,7 +99,6 @@ export const router = new Router({
     {
       path: '/list-program/:id',
       name: 'listProgram',
-      // lazy-loaded
       component: () => import('./views/ListOfProgram.vue'),
       beforeEnter: getAdminAccess,
 
@@ -112,7 +106,6 @@ export const router = new Router({
     {
       path: '/admin-profile',
       name: 'adminProfile',
-      // lazy-loaded
       component: () => import('./views/AdminProfile.vue'),
       beforeEnter: getAdminAccess,
 
@@ -120,7 +113,6 @@ export const router = new Router({
     {
       path: '/trainerProfile',
       name: 'trainerProfile',
-      // lazy-loaded
       component: () => import('./views/TrainerProfile.vue')
     },
     
@@ -128,7 +120,6 @@ export const router = new Router({
     {
       path: '/programs',
       name: 'programs',
-      // lazy-loaded
       component: () => import('./views/BoardPrograms.vue'),
       beforeEnter: getAdminAccess,
 
@@ -181,22 +172,6 @@ export const router = new Router({
     },
 
 
-
-
   ]
 });
-/*
- router.beforeEach((to, from, next) => {
-   const publicPages = ['/login', '/register', '/home'];
-   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
 
-   // trying to access a restricted page + not logged in
-   // redirect to login page
-   if (authRequired && !loggedIn) {
-     next('/login');
-   } else {
-    next();
-   }
-   
- });*/

@@ -20,7 +20,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import backend.service.UserDetailsServiceImpl;
 
 
-//OncePerRequestFilter makes a single execution for each request to our API
 public class AuthTokenFilter extends OncePerRequestFilter {
 
 	@Autowired

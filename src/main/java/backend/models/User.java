@@ -55,22 +55,11 @@ public class User {
 		      CascadeType.PERSIST,
 		    CascadeType.MERGE
 		  })
-	// (fetch = FetchType.LAZY)
-	// @JoinTable(name = "users_programs", 
-	// 			joinColumns = @JoinColumn(name = "trainer_id", nullable = true), 
-	// 			inverseJoinColumns = @JoinColumn(name = "programs_id", nullable = true))
-//	@ManyToMany( fetch = FetchType.LAZY, cascade = {
-  //      CascadeType.PERSIST,
-  //      CascadeType.MERGE
-  //  })
 	@JoinColumn(name = "id")
-	//@JsonManagedReference
 	@JsonIgnore
     private List<Program> programs = new ArrayList<>();
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "id")
-	//@JsonManagedReference
 	@JoinTable(	name = "users_bookings", 
 				joinColumns = @JoinColumn(name = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -79,11 +68,9 @@ public class User {
 
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "trainerId")
 	@JoinTable(	name = "trainers_bookings", 
 				joinColumns = @JoinColumn(name = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "trainer_id"))
-	//@JsonManagedReference
 	@JsonIgnore
     private List<Bookings> trainerId = new ArrayList<>();
 
@@ -136,14 +123,6 @@ public class User {
 		this.roles = list;
 		this.programs  = programs;
 	}
-
-
-
-
-	
-
-
-
 
 	public Long getId() {
 		return id;

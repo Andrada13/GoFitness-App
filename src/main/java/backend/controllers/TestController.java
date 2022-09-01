@@ -104,7 +104,7 @@ public class TestController {
   }
 
   @GetMapping("program/{id}")
-  //@PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Program> getProgramById(@PathVariable("id") long id) {
     Optional<Program> program = programRepository.findById(id);
 
@@ -119,7 +119,7 @@ public class TestController {
   
 
   @GetMapping("programs/program/{id}")
- // @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Program> getProgramsById(@PathVariable("id") long id) {
     Optional<Program> programData = programRepository.findById(id);
 
@@ -176,16 +176,12 @@ public class TestController {
 
   // get all users from database
   @GetMapping("/admin")
-  // @PreAuthorize is used to provide expression-based access control before
-  // executing the method.
-  //@PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ADMIN')")
   public List<User> fetchUsers() {
     return userRepository.findAll();
   }
 
   @GetMapping("/timeprograms")
-  // @PreAuthorize is used to provide expression-based access control before
-  // executing the method.
   public List<ProgramTime> fetchProgramTime() {
     return programTimeRepository.findAll();
   }
@@ -196,40 +192,30 @@ public class TestController {
 //get all trainers from database
 @CrossOrigin
 @GetMapping(path = "/trainersByCourseId/{id}")
-// @PreAuthorize is used to provide expression-based access control before
-// executing the method.
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public List<User> fetchTrainersForCourse( @PathVariable Long id) throws Exception {
-  //return trainerRepository.findAll();
   return databaseService.getTrainersForCourseId(id);
 }
 
 //get all trainers from database
 @CrossOrigin
 @DeleteMapping(path = "/removeTrainersFromCourse/{idCourse}/{idTrainer}")
-// @PreAuthorize is used to provide expression-based access control before
-// executing the method.
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public void removeTrainersFromCourse( @PathVariable Long idCourse, @PathVariable Long idTrainer) throws Exception {
-  //return trainerRepository.findAll();
    databaseService.removeTrainersFromCourse(idCourse, idTrainer);
 }
 
 
 @GetMapping(path = "/time/{id}")
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public List<String> fetchTimeForCourse( @PathVariable Long id) throws Exception {
-  //return trainerRepository.findAll();
   return databaseService.getTimeForCourseId(id);
 }
 
 
 @DeleteMapping(path = "/time/{time}/{id}")
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public void removeTimeFromProgram( @PathVariable String time, @PathVariable Long id) throws Exception {
-  //return trainerRepository.findAll();
-  //String time = deleteProgramRequest.getTime();
-  //System.out.println(time);
   databaseService.removeTimeFromProgram(time, id);
 }
 
@@ -238,7 +224,6 @@ public void removeTimeFromProgram( @PathVariable String time, @PathVariable Long
 @PostMapping("/trainerIdToCourseId/{trainerId}/{courseId}")
 public ResponseEntity<?> trainerToCourse(@PathVariable Long trainerId, @PathVariable Long courseId) throws Exception {
   
-
   databaseService.insertTrainerToCourse(trainerId,courseId);
 
   return ResponseEntity.ok(new MessageResponse("S-a facut inregistrarea!"));
@@ -247,7 +232,6 @@ public ResponseEntity<?> trainerToCourse(@PathVariable Long trainerId, @PathVari
 @PostMapping("/time/{time}/{courseId}")
 public ResponseEntity<?> insertTimeForCourse(@PathVariable String time, @PathVariable Program courseId) throws Exception {
   
-
   databaseService.insertTimeCourse(time,courseId);
 
   return ResponseEntity.ok(new MessageResponse("Succes!"));
@@ -257,11 +241,8 @@ public ResponseEntity<?> insertTimeForCourse(@PathVariable String time, @PathVar
 @PostMapping("/booking/{courseId}/{grupa}/{timeId}/{trainerId}/{userId}")
 public void insertBooking(@PathVariable Long courseId, @PathVariable Long grupa
 , @PathVariable Long timeId, @PathVariable Long trainerId, @PathVariable Long userId) throws Exception {
-  
 
   databaseService.insertBooking(courseId,grupa,timeId,trainerId,userId);
-
-  //return ResponseEntity.ok(new MessageResponse("Rezervarea a fost efectuata cu succes!"));
 }
 
 
@@ -269,51 +250,34 @@ public void insertBooking(@PathVariable Long courseId, @PathVariable Long grupa
 //get all trainers from database
 @CrossOrigin
 @GetMapping(path = "/trainersNotByCourseId/{id}")
-// @PreAuthorize is used to provide expression-based access control before
-// executing the method.
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Exception {
-  //return trainerRepository.findAll();
   return databaseService.getTrainersNotByCourseId(id);
 }
 
 
-  //get all trainers from database
   @GetMapping(path = "/trainers", produces="application/json")
-  // @PreAuthorize is used to provide expression-based access control before
-  // executing the method.
- //@PreAuthorize("hasRole('ADMIN')")
+ @PreAuthorize("hasRole('ADMIN')")
   public List<User> fetchTrainers() throws Exception {
-    //return trainerRepository.findAll();
     return databaseService.getTrainers();
   }
 
-    //get all programs from database
     @GetMapping(path="/programsForTrainers", produces="application/json")
-    // @PreAuthorize is used to provide expression-based access control before
-    // executing the method.
-   //@PreAuthorize("hasRole('ADMIN')")
-  // @Query("select t from Program t join fetch t.trainer t1 where t1.username='bogdan123' ")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<String> fetchProgramsForTrainers() throws Exception{
-     // return programRepository.findAll();
       return databaseService.getPrograms();
     }
 
-     //get all programs from database
      @GetMapping(path="/programs", produces="application/json")
-     // @PreAuthorize is used to provide expression-based access control before
-     // executing the method.
-    //@PreAuthorize("hasRole('ADMIN')")
-   // @Query("select t from Program t join fetch t.trainer t1 where t1.username='bogdan123' ")
+     @PreAuthorize("hasRole('ADMIN')")
      public List<Program> fetchPrograms() throws Exception{
        return programRepository.findAll();
-      // return databaseService.getPrograms();
      }
   
 
 
   @PutMapping("programs/{id}")
- // @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('ADMIN')")
   public void updateProgram(@PathVariable long id, @RequestBody Program program) {
     String name = program.getName();
     String description = program.getDescription();
@@ -343,8 +307,8 @@ public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Ex
   }
 
 
- @GetMapping(path="/bookings", produces="application/json")
- //@PreAuthorize("hasRole('ADMIN')")
+  @GetMapping(path="/bookings", produces="application/json")
+  @PreAuthorize("hasRole('ADMIN')")
   public String fetchBookings() throws Exception{
     String delim = ", ";
     return String.join(delim, databaseService.getBookings()); 
@@ -352,8 +316,8 @@ public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Ex
 }
 
 
-@GetMapping(path="/bookings-number", produces="application/json")
- //@PreAuthorize("hasRole('ADMIN')")
+  @GetMapping(path="/bookings-number", produces="application/json")
+  @PreAuthorize("hasRole('ADMIN')")
   public Long fetchNumberOfBookings() throws Exception{
   
     return bookingsRepository.count();
@@ -361,15 +325,13 @@ public List<User> fetchTrainersNotFromCourseId( @PathVariable Long id) throws Ex
 }
 
 
-@GetMapping(path="/bookings-course/{userId}", produces="application/json")
-//@PreAuthorize("hasRole('ADMIN')")
+ @GetMapping(path="/bookings-course/{userId}", produces="application/json")
+ @PreAuthorize("hasRole('ADMIN')")
  public String fetchBookingsCourse(@PathVariable Long userId) throws Exception{
   String delim = ", ";
  
   return String.join(delim, databaseService.getBookingsCourse(userId)); 
 }
-
-
 
 
 }

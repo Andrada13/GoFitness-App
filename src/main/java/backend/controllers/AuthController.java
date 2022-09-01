@@ -82,15 +82,6 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-/* 
-		if (!userRepository.existsByUsername(loginRequest.getUsername())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Username-ul nu exista!"));
-		}
- */
-		//boolean p = encoder.matches(loginRequest.getPassword(),encoder.encode(loginRequest.getPassword()));
-		
 
 		if (!userRepository.existsByUsername(loginRequest.getUsername())) {
 			return ResponseEntity

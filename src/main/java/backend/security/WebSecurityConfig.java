@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import backend.service.UserDetailsServiceImpl;
 
 @Configuration
-//gaseste si aplica automat securitatea
 @EnableWebSecurity
 //enables @PreAuthorize, @PostAuthorize
 @EnableGlobalMethodSecurity(

@@ -76,7 +76,7 @@ public class DatabaseService {
 		List<User> trainers = new ArrayList<User>();
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		try {// SELECT t.fullName, t.id FROM User t JOIN t.programs p WHERE p.id = :id
+		try {
 
 			trainers = entityManager
 					.createQuery("select distinct t from User t JOIN FETCH t.roles c WHERE c.name = :role",
@@ -131,7 +131,6 @@ public class DatabaseService {
 
 		try {
 			trainers = entityManager
-					// .createQuery("SELECT t FROM User t JOIN t.programs p WHERE p.id != :id ",
 					.createQuery(
 							"select t from User t JOIN FETCH t.roles c WHERE c.name = :role and not exists (select up from UsersPrograms up where t.id=up.trainerId and up.programsId=:id)",
 							User.class)
@@ -179,7 +178,6 @@ public class DatabaseService {
 	public void removeTimeFromProgram(String time, Long idCourse) throws Exception {
 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		// Long id = program.getId();
 
 		Program program = entityManager.find(Program.class, idCourse);
 		Long id = program.getId();
@@ -217,15 +215,7 @@ public class DatabaseService {
 			usersPrograms.setTrainerId(trainerId);
 			entityManager.persist(usersPrograms);
 			entityManager.getTransaction().commit();
-			/*
-			 * entityManager.
-			 * createNativeQuery("INSERT INTO usersPrograms (trainer_id, programs_id) VALUES (?,?) "
-			 * )
-			 * .setParameter(1, usersPrograms.getTrainerId())
-			 * .setParameter(2, usersPrograms.getProgramsId())
-			 * .executeUpdate();
-			 * 
-			 */
+		
 		} finally {
 			if (entityManager != null) {
 				entityManager.close();
@@ -247,15 +237,7 @@ public class DatabaseService {
 			programTime.setProgram(courseId);
 			entityManager.persist(programTime);
 			entityManager.getTransaction().commit();
-			/*
-			 * entityManager.
-			 * createNativeQuery("INSERT INTO usersPrograms (trainer_id, programs_id) VALUES (?,?) "
-			 * )
-			 * .setParameter(1, usersPrograms.getTrainerId())
-			 * .setParameter(2, usersPrograms.getProgramsId())
-			 * .executeUpdate();
-			 * 
-			 */
+		
 		} finally {
 			if (entityManager != null) {
 				entityManager.close();
@@ -282,15 +264,7 @@ public class DatabaseService {
 
 			entityManager.persist(booking);
 			entityManager.getTransaction().commit();
-			/*
-			 * entityManager.
-			 * createNativeQuery("INSERT INTO usersPrograms (trainer_id, programs_id) VALUES (?,?) "
-			 * )
-			 * .setParameter(1, usersPrograms.getTrainerId())
-			 * .setParameter(2, usersPrograms.getProgramsId())
-			 * .executeUpdate();
-			 * 
-			 */
+		
 		} finally {
 			if (entityManager != null) {
 				entityManager.close();
@@ -302,14 +276,9 @@ public class DatabaseService {
 	public List<String> getBookings() throws Exception {
 
 		List<Long> userId = new ArrayList<>();
-		//List<Long> courseId = new ArrayList<>();
-
 		List<String> bookingsUser = new ArrayList<>();
-		//List<String> bookingsUserCourse = new ArrayList<>();
 		List<String> b = new ArrayList<>();
-		//List<String> c = new ArrayList<>();
 
-		//Map<String, String> map = new HashMap<>();
 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -322,12 +291,6 @@ public class DatabaseService {
 							Long.class)
 					.getResultList();
 
-					/* 
-			courseId = entityManager
-					.createQuery("SELECT distinct b.courseid FROM Bookings b ",
-							Long.class)
-					.getResultList();
-*/
 
 
 			for (Long booking : userId) {
@@ -338,26 +301,10 @@ public class DatabaseService {
 						.getResultList();
 
 				bookingsUser.addAll(b);
-				// map.put(b.toString(),c.toString());
 		
 
 			}
-			/* 
-			for (Long course : courseId) {
-				c = entityManager
-						.createQuery("SELECT distinct c.name FROM Program c where c.id=:idCourse",
-								String.class)
-						.setParameter("idCourse", course)
-						.getResultList();
-
-				bookingsUserCourse.addAll(c);
-			 map.put(b.toString(),c.toString());
-
-				
-
-			}
-			
- */
+		
 		} finally {
 			if (entityManager != null) {
 				entityManager.close();

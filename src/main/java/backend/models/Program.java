@@ -23,7 +23,6 @@ public class Program {
     private String name;
 
     @OneToMany(mappedBy = "program", cascade = CascadeType.MERGE)
-   // @JsonBackReference
     private List<ProgramTime> programs = new ArrayList<>();
 
     @NotBlank
@@ -39,11 +38,9 @@ public class Program {
     private String price;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "courseId")
     @JoinTable(	name = "programs_bookings", 
 				joinColumns = @JoinColumn(name = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "program_id"))
-	//@JsonManagedReference
 	@JsonIgnore
     private List<Bookings> courseId = new ArrayList<>();
 
@@ -58,13 +55,12 @@ public class Program {
     }
 
     public Program(Long id, @NotBlank @Size(max = 50) String name, @NotBlank List<ProgramTime> programs,
-            @NotBlank @Size(max = 50) String description,  @NotBlank String price, @NotBlank List<User> trainer) {
+            @NotBlank @Size(max = 50) String description,  @NotBlank String price) {
         this.id = id;
         this.name = name;
         this.programs = programs;
         this.description = description;
         this.price = price;
-      //  this.trainer = trainer;
     }
 
     public Program(@NotBlank @Size(max = 50) String name, @NotBlank @Size(max = 50) String description, @NotBlank String price) {

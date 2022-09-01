@@ -10,7 +10,5 @@ import backend.models.Bookings;
 public interface BookingsRepository extends JpaRepository<Bookings, Long> {
 	
 
-
-
 }
 

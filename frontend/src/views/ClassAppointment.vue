@@ -76,17 +76,7 @@
             <label >Program:</label>
                     <input type="text" class="form-control" v-model="time_program[1].time_program" disabled />
                   </div>
-<!--
-            <select class="form-select">
-              <option selected disabled>
-                Alegeti ziua si ora rezervarii:
-              </option>
 
-              <option v-for="p in time_program" v-bind:key="p.programTime_id">
-                {{ p.time_program }}
-              </option>
-            </select>
-            -->
           </fieldset>
 
           <br />
@@ -143,11 +133,6 @@ export default {
         this.price = result.data.price;
         this.time_program = result.data.programs;
         this.fullName = result.data.trainer;
-
-
-        //console.log(this.fullName[0].id);
-       // console.log(this.grupa,this.id,this.time_program[0].programTime_id,this.fullName[0].id,this.currentUser.id)
-
         if (this.grupa === 1) {
       console.log(this.id, this.grupa,this.time_program[0].programTime_id,this.fullName[0].id,this.currentUser.id)
      } else if (this.grupa === 2) {
@@ -158,12 +143,6 @@ export default {
     },
   
      insertBooking() {
-    //  this.submitted = true;
-
-      // console.log(this.notUsers);
-     // console.log(this.message3);
-                   //this.message = data.message;
-
 
      if (this.grupa=== '1') {
       Program.insertBooking(this.id, this.grupa,this.time_program[0].programTime_id,this.fullName[1].id,this.currentUser.id)
@@ -174,15 +153,7 @@ export default {
   this.savingSuccessful = true;
      }
 
-    
-
- 
-
-     // Program.removeTimeFromProgram(this.times.time_program, this.id);
-      //console.log(this.times.time_program, this.id)
-
-      //face refresh automat
-     // location.reload();
+  
     },
   },
   created() {

@@ -9,7 +9,6 @@ import backend.models.Program;
 @Repository
 public interface ProgramRepository extends JpaRepository<Program, Long> {
 	
-	//Program findByName(String name) ;
 	Boolean existsByName(String name);
 
 

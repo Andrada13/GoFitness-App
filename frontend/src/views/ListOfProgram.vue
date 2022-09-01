@@ -46,26 +46,7 @@
       </form>
 </div>
 <div>
-  <!--
-      <form name="form" class = "form-control" @submit.prevent="removeTimeFromCourse()">
-        <h6 class="display-8">Alegeti programul:</h6>
-        <select class="form-select" v-model="times.time_program">
-
-          <option v-for="time in times" v-bind:key="time.programTime_id" v-bind:value="time">
-          {{time}}
-          </option>
-         
-          <option selected disabled v-if="times.length === 0">
-            Nu exista program!
-          </option>
-        </select>
-      <br>
-        
-        <div class="form-group">
-          <button class="btn btn-dark w-40">Sterge program</button>
-        </div>
-      </form>
-      -->
+ 
 </div>
 
 </div>
@@ -81,7 +62,6 @@
 import Program from "../services/get-programs";
 import "vue2-timepicker/dist/VueTimepicker.css";
 
-//import TrainerToCourse from '../models/trainertocourse';
 
 export default {
   name: "ProgramTime",
@@ -116,12 +96,9 @@ export default {
     },
 
     addTimeToCourse() {
-      //  this.message = "";
       this.submitted = true;
 
-      // console.log(this.notUsers);
       this.message3 = this.message  +', ' + this.message1;
-     // console.log(this.message3);
 
       Program.addTimeProgram(this.message3, this.id);
       //face refresh automat
@@ -129,12 +106,7 @@ export default {
     },
 
      removeTimeFromCourse() {
-      //  this.message = "";
       this.submitted = true;
-
-      // console.log(this.notUsers);
-     // console.log(this.message3);
-
 
       Program.removeTimeFromProgram(this.times.time_program, this.id);
       console.log(this.times.programTime_id, this.id)

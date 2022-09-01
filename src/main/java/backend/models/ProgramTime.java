@@ -18,7 +18,6 @@ public class ProgramTime {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id")
     @JsonIgnore
-    //@JsonManagedReference
     Program program;
 
     private String time_program;
@@ -27,11 +26,9 @@ public class ProgramTime {
 
 
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "timeId")
     @JoinTable(	name = "time_bookings", 
 				joinColumns = @JoinColumn(name = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "time_id"))
-	//@JsonManagedReference
 	@JsonIgnore
     private List<Bookings> timeId = new ArrayList<>();
     
@@ -76,16 +73,5 @@ public class ProgramTime {
     public void setTime_program(String time_program) {
         this.time_program = time_program;
     }
-
-
-    
-
-   
-
-   
-   
-
-    
-
     
 }
